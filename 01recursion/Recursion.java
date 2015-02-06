@@ -1,4 +1,6 @@
-public class Recursion{
+import java.util.*;
+
+public class Recursion implements hw1{
 
     public String name(){
 	return "Li,Helen";
@@ -16,17 +18,30 @@ public class Recursion{
 	if (n == 0 || n == 1){
 	    return n;
 	}else{
-	    return helpFib(n, 2, 1);
+	    return helpFib(n, 2, 0, 1);
 	}
     }
 
-    public int helpFib(int orig, int first, int value1, int sec, int value2, int sum){
-	if (first + 1 == orig || sec + 1 == orig){
-	    return sum;
+    public int helpFib(int orig, int index, int sum1, int sum2){
+	if (index == orig){
+	    return sum1 + sum2;
 	}else{
-	    return helpFib(orig, first + 1, sec, sum + first);
+	    return helpFib(orig, index + 1, sum2, sum1 + sum2);
 	}
     }
+
+    public double sqrt(double n){
+	return guess(n, 1.00);
+    }
+
+    public double guess(double n, double guessNum){
+	if(Math.abs(n - guessNum) < 0.0001){
+	    return guessNum;
+	}else{
+	    return guess(n, ((n / guessNum + guessNum) / 2));
+	}
+    }
+
 
 
 
@@ -34,6 +49,7 @@ public class Recursion{
 
     public static void main(String[]args){
 	Recursion test = new Recursion();
+	System.out.println(test.fact(0));
 	System.out.println(test.fact(5));
 	System.out.println(test.fact(1));
 	System.out.println(test.fact(3));
@@ -44,20 +60,11 @@ public class Recursion{
 	System.out.println(test.fib(4));
 	System.out.println(test.fib(5));
 	System.out.println(test.fib(6));
+	System.out.println(test.fib(10));
+	System.out.println(test.sqrt(100.0));
 
     }
 }
-
-
-
-
-
-// public interface hw1{
-//     public String name();
-//     public int fact(int n);
-//     public int fib(int n);
-//     public double sqrt(double n); 
-// }
 
 
 
