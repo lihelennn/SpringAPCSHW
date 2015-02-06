@@ -55,27 +55,27 @@ public class Recursion implements hw1{
     }
 
 
-    public static void main(String[]args){
-    	Recursion test = new Recursion();
-	System.out.println(test.name());
-    	System.out.println(test.fact(0));
-    	System.out.println(test.fact(5));
-    	System.out.println(test.fact(1));
-    	System.out.println(test.fact(3));
-    	System.out.println(test.fib(0));
-    	System.out.println(test.fib(1));
-    	System.out.println(test.fib(2));
-    	System.out.println(test.fib(3));
-    	System.out.println(test.fib(4));
-    	System.out.println(test.fib(5));
-    	System.out.println(test.fib(6));
-    	System.out.println(test.fib(10));
-    	System.out.println(test.sqrt(100.0));
-    	System.out.println(test.sqrt(1.00000));
-    	System.out.println(test.sqrt(16.0));
-    	System.out.println(test.sqrt(256.00));
+    // public static void main(String[]args){
+    // 	Recursion test = new Recursion();
+    // 	System.out.println(test.name());
+    // 	System.out.println(test.fact(0));
+    // 	System.out.println(test.fact(5));
+    // 	System.out.println(test.fact(1));
+    // 	System.out.println(test.fact(3));
+    // 	System.out.println(test.fib(0));
+    // 	System.out.println(test.fib(1));
+    // 	System.out.println(test.fib(2));
+    // 	System.out.println(test.fib(3));
+    // 	System.out.println(test.fib(4));
+    // 	System.out.println(test.fib(5));
+    // 	System.out.println(test.fib(6));
+    // 	System.out.println(test.fib(10));
+    // 	System.out.println(test.sqrt(100.0));
+    // 	System.out.println(test.sqrt(1.00000));
+    // 	System.out.println(test.sqrt(16.0));
+    // 	System.out.println(test.sqrt(256.00));
 
-    }
+    // }
 }
 
 
