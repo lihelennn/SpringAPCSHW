@@ -27,7 +27,7 @@ public class KnightsTour{
     }
 
     public String name(){
-	return "Li,Helen";
+	return "li.helen";
     }
 
     public String toString(){
@@ -76,15 +76,12 @@ public class KnightsTour{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	//	System.out.println(this);
-	//	wait(20);
+	//		System.out.println(this);
+        //		wait(10);
+	// if (currentMoveNumber == 10){
+	//     System.out.println(this);
+	// }
 
-	if (currentMoveNumber == board.length * board[0].length - 1){
-	    System.out.println(currentMoveNumber);
-	    System.out.println(board.length * board[0].length - 1);
-	    System.out.println(currentMoveNumber == board.length * board[0].length - 1);
-	    return true;
-	}
 	if (x < 0 || x >= board.length || y < 0 || y >= board[0].length){
 	    return false;
 	}
@@ -96,7 +93,31 @@ public class KnightsTour{
 	    solve(x+2,y+1,currentMoveNumber+1) || solve(x-2,y+1,currentMoveNumber+1) || solve(x+2,y-1,currentMoveNumber+1) || solve(x-2,y-1,currentMoveNumber+1)){
 	    return true;
 	}
-	board[x][y] = -1;				
+	if (currentMoveNumber == board.length * board[0].length - 1){
+	    System.out.println(this);
+	    System.out.println(currentMoveNumber);
+	    System.out.println(board.length * board[0].length - 1);
+	    System.out.println(currentMoveNumber == board.length * board[0].length - 1);
+	    int place = 0;
+	    int place2 = 0;
+	    // while (place < board.length){
+	    //     while (place2 < board[0].length){
+	    // 	if (board[place][place2] == 24){
+	    // 	    System.out.println(place + "," + place2);
+	    // 	    place2 = 100;
+	    // 	    place = 100;
+	    // 	}else{
+	    // 	    place2++;
+	    // 	}
+	    //     }
+	    //     place2 = 0;
+	    //     place++;
+	    // }
+
+	    return true;
+	}
+	
+	board[x][y] = -1;
 	return false;
     }
 
@@ -108,6 +129,7 @@ public class KnightsTour{
 	    test = new KnightsTour(6);
 	}else{
 	    test = new KnightsTour(Integer.parseInt(args[0]));
+	    System.out.println(test.name());
 	    if (test.solve(0,0,0)){
 		test.solve();
      		System.out.println(test);
