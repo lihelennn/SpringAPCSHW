@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -45,7 +44,7 @@ public class KnightsTour{
 	    place+=1;
 	    place2 = 0;
 	}
-	return hide + go(0,0) + ans + "\n" + show;
+	return hide + clear + go(0,0) + ans + "\n" + show;
     }
 
     public KnightsTour(int size){
@@ -77,16 +76,19 @@ public class KnightsTour{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this);
-	wait(20);
+	//	System.out.println(this);
+	//	wait(20);
 
 	if (currentMoveNumber == board.length * board[0].length - 1){
+	    System.out.println(currentMoveNumber);
+	    System.out.println(board.length * board[0].length - 1);
+	    System.out.println(currentMoveNumber == board.length * board[0].length - 1);
 	    return true;
 	}
 	if (x < 0 || x >= board.length || y < 0 || y >= board[0].length){
 	    return false;
 	}
-	if (board[x][y] >= 0){
+	if (board[x][y] > -1){
 	    return false;
 	}
 	board[x][y] = currentMoveNumber;
@@ -108,7 +110,7 @@ public class KnightsTour{
 	    test = new KnightsTour(Integer.parseInt(args[0]));
 	    if (test.solve(0,0,0)){
 		test.solve();
-		System.out.println(test);
+     		System.out.println(test);
 	    }else{
 		System.out.println("No Solution");
 	    }
