@@ -63,17 +63,23 @@ public class KnightsTour{
     }
 
     
-    public void solve(){
-	solve(0,0,0);
+    // public void solve(){
+    // 	solve(0,0,0);
 				
+    // }
+
+    // public void solve(int startx, int starty){
+    // 	solve(startx,starty,0);
+				
+    // }
+
+    public boolean solve(){
+	return solve(0,0,0);
     }
 
-    public void solve(int startx, int starty){
-	solve(startx,starty,0);
-				
+    public boolean solve(int x, int y){
+	return solve(x,y,0);
     }
-
-
 		
     public boolean solve(int x,int y,int currentMoveNumber){
 	//		System.out.println(this);
@@ -94,10 +100,10 @@ public class KnightsTour{
 	    return true;
 	}
 	if (currentMoveNumber == board.length * board[0].length - 1){
-	    System.out.println(this);
-	    System.out.println(currentMoveNumber);
-	    System.out.println(board.length * board[0].length - 1);
-	    System.out.println(currentMoveNumber == board.length * board[0].length - 1);
+	    //	    System.out.println(this);
+	    //	    System.out.println(currentMoveNumber);
+	    //	    System.out.println(board.length * board[0].length - 1);
+	    //	    System.out.println(currentMoveNumber == board.length * board[0].length - 1);
 	    int place = 0;
 	    int place2 = 0;
 	    // while (place < board.length){
@@ -122,6 +128,7 @@ public class KnightsTour{
     }
 
 
+    /*
 
     public static void main(String[]args){
 	KnightsTour test;
@@ -130,12 +137,12 @@ public class KnightsTour{
 	}else{
 	    test = new KnightsTour(Integer.parseInt(args[0]));
 	    System.out.println(test.name());
-	    if (test.solve(0,0,0)){
-		test.solve();
+	    if (test.solve()){
      		System.out.println(test);
 	    }else{
 		System.out.println("No Solution");
 	    }
 	}
     }
+    */
 }
