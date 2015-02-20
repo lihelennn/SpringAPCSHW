@@ -104,8 +104,8 @@ public class KnightsTour{
 	    //	    System.out.println(currentMoveNumber);
 	    //	    System.out.println(board.length * board[0].length - 1);
 	    //	    System.out.println(currentMoveNumber == board.length * board[0].length - 1);
-	    int place = 0;
-	    int place2 = 0;
+	    //	    int place = 0;
+	    //	    int place2 = 0;
 	    // while (place < board.length){
 	    //     while (place2 < board[0].length){
 	    // 	if (board[place][place2] == 24){
@@ -129,7 +129,6 @@ public class KnightsTour{
 
 
     /*
-
     public static void main(String[]args){
 	KnightsTour test;
 	if (args.length < 0){
@@ -145,4 +144,5 @@ public class KnightsTour{
 	}
     }
     */
+
 }
