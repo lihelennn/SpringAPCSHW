@@ -123,7 +123,7 @@ public class NQueens{
     }
 
 
-
+    /*
     public static void main(String[]args){
 	NQueens test;
 	if (args.length < 0){
@@ -139,4 +139,5 @@ public class NQueens{
 	    }
 	}
     }
+    */
 }
