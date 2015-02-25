@@ -152,6 +152,7 @@ public class NQueens{
 	    if (solve(solver,y+1, currentMoveNumber+1) || solve(x+1,solver,currentMoveNumber+1)){
 		return true;
 	    }
+	    System.out.println(this);
 	    solver++;
 	}
 	if (currentMoveNumber == board.length){

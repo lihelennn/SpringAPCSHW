@@ -126,23 +126,4 @@ public class KnightsTour{
 	board[x][y] = -1;
 	return false;
     }
-
-
-    /*
-    public static void main(String[]args){
-	KnightsTour test;
-	if (args.length < 0){
-	    test = new KnightsTour(6);
-	}else{
-	    test = new KnightsTour(Integer.parseInt(args[0]));
-	    System.out.println(test.name());
-	    if (test.solve()){
-     		System.out.println(test);
-	    }else{
-		System.out.println("No Solution");
-	    }
-	}
-    }
-    */
-
 }
