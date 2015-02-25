@@ -63,13 +63,11 @@ public class NQueens{
 
     /*
       public void solve(){
-      solve(0,0,0);
-				
+      solve(0,0,0);				
       }
 
       public void solve(int startx, int starty){
       solve(startx,starty,0);
-				
       }
     */
 
@@ -149,10 +147,10 @@ public class NQueens{
 	board[x][y] = 'Q';
 	int solver = 0;
 	while (solver < board.length){
+	    System.out.println(this);
 	    if (solve(solver,y+1, currentMoveNumber+1) || solve(x+1,solver,currentMoveNumber+1)){
 		return true;
 	    }
-	    System.out.println(this);
 	    solver++;
 	}
 	if (currentMoveNumber == board.length){
