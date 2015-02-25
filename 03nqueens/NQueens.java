@@ -61,83 +61,111 @@ public class NQueens{
 				
     }
 
-    
-    public void solve(){
-	solve(0,0,0);
+    /*
+      public void solve(){
+      solve(0,0,0);
 				
+      }
+
+      public void solve(int startx, int starty){
+      solve(startx,starty,0);
+				
+      }
+    */
+
+    public boolean solve(){
+	return solve(0,0,0);
     }
 
-    public void solve(int startx, int starty){
-	solve(startx,starty,0);
-				
+    public boolean solve(int x){
+	return solve(x,0,0) || solve(0,x,0);
     }
-
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	//		System.out.println(this);
-        //		wait(10);
-	// if (currentMoveNumber == 10){
-	//     System.out.println(this);
-	// }
-	/*
+     	System.out.println(this);
+        wait(10);
+	int place, place2;
+	
 	if (x < 0 || x >= board.length || y < 0 || y >= board[0].length){
 	    return false;
 	}
-	if (board[x][y] > -1){
+	if (board[x][y] == 'Q'){
 	    return false;
 	}
-	board[x][y] = currentMoveNumber;
-	if (solve(x+1,y+2,currentMoveNumber+1) || solve(x-1,y+2,currentMoveNumber+1) || solve(x+1,y-2,currentMoveNumber+1) || solve(x-1,y-2,currentMoveNumber+1)||
-	    solve(x+2,y+1,currentMoveNumber+1) || solve(x-2,y+1,currentMoveNumber+1) || solve(x+2,y-1,currentMoveNumber+1) || solve(x-2,y-1,currentMoveNumber+1)){
-	    return true;
+
+	place = x;
+        place2 = y;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    if (board[place][place] == 'Q'){
+		return false;
+	    }	
+	    place++;
+	    place2++;
 	}
-	if (currentMoveNumber == board.length * board[0].length - 1){
-	    System.out.println(this);
-	    System.out.println(currentMoveNumber);
-	    System.out.println(board.length * board[0].length - 1);
-	    System.out.println(currentMoveNumber == board.length * board[0].length - 1);
-	    int place = 0;
-	    int place2 = 0;
-	    // while (place < board.length){
-	    //     while (place2 < board[0].length){
-	    // 	if (board[place][place2] == 24){
-	    // 	    System.out.println(place + "," + place2);
-	    // 	    place2 = 100;
-	    // 	    place = 100;
-	    // 	}else{
-	    // 	    place2++;
-	    // 	}
-	    //     }
-	    //     place2 = 0;
-	    //     place++;
-	    // }
-
-	    return true;
+	place = 0;
+        place2 = y;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    if (board[place][place] == 'Q'){
+		return false;
+	    }	
+	    place++;
 	}
-	
-	board[x][y] = -1;
-	return false;
-	*/
-	return false;
-    }
-
-
-    /*
-    public static void main(String[]args){
-	NQueens test;
-	if (args.length < 0){
-	    test = new NQueens(6);
-	}else{
-	    test = new NQueens(Integer.parseInt(args[0]));
-	    System.out.println(test.name());
-	    if (test.solve(0,0,0)){
-		test.solve();
-     		System.out.println(test);
-	    }else{
-		System.out.println("No Solution");
+	place = x;
+        place2 = 0;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    if (board[place][place2] == 'Q'){
+		return false;
 	    }
+	    place2++;
 	}
+	place = x;
+        place2 = y;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    if (board[place][place] == 'Q'){
+		return false;
+	    }	
+	    place++;
+	    place2--;
+	}
+	place = x;
+        place2 = y;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    if (board[place][place] == 'Q'){
+		return false;
+	    }	
+	    place--;
+	    place2++;
+	}
+	place = x;
+        place2 = y;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    if (board[place][place] == 'Q'){
+		return false;
+	    }	
+	    place--;
+	    place2--;
+	}
+	board[x][y] = 'Q';
+	int solver = 0;
+	while (solver < board.length){
+	    if (solve(solver,y+1, currentMoveNumber+1) || solve(x+1,solver,currentMoveNumber+1)){
+		return true;
+	    }
+	    solver++;
+	}
+	if (currentMoveNumber == board.length){
+	    return true;
+	}
+	board[x][y] = 'a';
+	return false;
+	
     }
-    */
+
+    public static void main(String[]arrr){
+	NQueens t = new NQueens(5);
+	t.solve();
+	System.out.println(t);
+    }
+   
 }
