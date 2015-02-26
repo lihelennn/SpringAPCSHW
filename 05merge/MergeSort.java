@@ -2,13 +2,14 @@ import java.util.*;
 
 public class MergeSort{
 
-    public static String merge(Object[]a, Object[]b){
+    public static String merge(int[]a, int[]b){
 	int placea = 0;
 	int placeb = 0;
 	int placeans = 0;
-	Object[]ans = new Object[a.length + b.length];
+	int[]ans = new int[a.length + b.length];
        	while (placea < a.length && placeb < b.length){
-      	    if (b[placeb].compareTo(a[placea]) <= 0){
+	    //      	    if (b[placeb].compareTo(a[placea].getItemNumber()) <= 0){
+	    if (b[placeb] < a[placea]){
 		ans[placeans] = b[placeb];
 		placeb++;
 	    }else{
@@ -18,18 +19,28 @@ public class MergeSort{
 	    placeans ++;
 
 	}
+	while (placea < a.length){
+	    ans[placeans] = a[placea];
+	    placea++;
+	    placeans++;
+	}
+	while(placeb < b.length){
+	    ans[placeans] = b[placeb];
+	    placeb++;
+	    placeans++;
+	}
 	int place = 0;
 	String answerString = "[";
 	while (place < ans.length){
 	    answerString += ans[place] + ", ";
 	    place++;
-	}
+	} 
 	return answerString;
     }
 
     public static void main(String[]args){
-	Object[]test1 = new Object[3];
-	Object[]test2 = new Object[4];
+	int[]test1 = new int[3];
+	int[]test2 = new int[4];
 	test1[0] = 1;
 	test1[1] = 3;
 	test1[2] = 5;
