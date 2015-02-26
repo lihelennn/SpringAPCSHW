@@ -76,7 +76,7 @@ public class NQueens{
     }
 
     public boolean solve(int x){
-	return solve(x,0,0) || solve(0,x,0);
+	return solve(x,0,0);
     }
 
 		
@@ -92,8 +92,8 @@ public class NQueens{
 	    return false;
 	}
 
-	place = x;
-        place2 = y;
+	place = x+1;
+        place2 = y+1;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place] == 'Q'){
 		return false;
@@ -101,15 +101,17 @@ public class NQueens{
 	    place++;
 	    place2++;
 	}
+	/*
 	place = 0;
         place2 = y;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+      	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place] == 'Q'){
 		return false;
 	    }	
 	    place++;
 	}
-	place = x;
+	*/
+	place = x+1;
         place2 = 0;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place2] == 'Q'){
@@ -117,8 +119,8 @@ public class NQueens{
 	    }
 	    place2++;
 	}
-	place = x;
-        place2 = y;
+	place = x+1;
+        place2 = y-1;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place] == 'Q'){
 		return false;
@@ -126,8 +128,8 @@ public class NQueens{
 	    place++;
 	    place2--;
 	}
-	place = x;
-        place2 = y;
+	place = x-1;
+        place2 = y+1;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place] == 'Q'){
 		return false;
@@ -135,8 +137,8 @@ public class NQueens{
 	    place--;
 	    place2++;
 	}
-	place = x;
-        place2 = y;
+	place = x-1;
+        place2 = y-1;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place] == 'Q'){
 		return false;
@@ -145,15 +147,15 @@ public class NQueens{
 	    place2--;
 	}
 	board[x][y] = 'Q';
+	System.out.println(this);
 	int solver = 0;
 	while (solver < board.length){
-	    System.out.println(this);
-	    if (solve(solver,y+1, currentMoveNumber+1) || solve(x+1,solver,currentMoveNumber+1)){
+	    if (solve(x+1,solver,currentMoveNumber+1)){
 		return true;
 	    }
 	    solver++;
 	}
-	if (currentMoveNumber == board.length){
+	if (currentMoveNumber == board.length -1){
 	    return true;
 	}
 	board[x][y] = 'a';
