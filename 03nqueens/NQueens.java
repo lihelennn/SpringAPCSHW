@@ -79,8 +79,8 @@ public class NQueens{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this);
-	wait(1000);
+	//	System.out.println(this);
+	//	wait(1000);
 	int solver,place, place2, reset1, reset2;
 	char[][]alt = new char[board.length][board[0].length];
 	
@@ -165,54 +165,54 @@ public class NQueens{
 
 	board[x][y] = 'Q';
 	/*
-	alt = board;
+	  alt = board;
 
-	place = x+1;
-	place2 = y+1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    board[place][place2] = 'x';	
-	    place++;
-	    place2++;
-	}
-	place = x;
-	place2 = y-1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place!=x){
-	    board[place][place2] = 'x';	
-	    place2--;
-	}
-	place = x;
-	place2 = y+1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place2!=y){
-	    board[place][place2] = 'x';	
-	    place2++;
-	}
-	place = 0;
-	place2 = y;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place2!=y){
-	    board[place][place2] = 'x';	
-	    place++;
-	}
-	place = x+1;
-	place2 = y-1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    board[place][place2] = 'x';	
-	    place++;
-	    place2--;
-	}
-	place = x-1;
-	place2 = y+1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    board[place][place2] = 'x';	
-	    place--;
-	    place2++;
-	}
-	place = x-1;
-	place2 = y-1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    board[place][place2] = 'x';	
-	    place--;
-	    place2--;
-	}
+	  place = x+1;
+	  place2 = y+1;
+	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	  board[place][place2] = 'x';	
+	  place++;
+	  place2++;
+	  }
+	  place = x;
+	  place2 = y-1;
+	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place!=x){
+	  board[place][place2] = 'x';	
+	  place2--;
+	  }
+	  place = x;
+	  place2 = y+1;
+	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place2!=y){
+	  board[place][place2] = 'x';	
+	  place2++;
+	  }
+	  place = 0;
+	  place2 = y;
+	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place2!=y){
+	  board[place][place2] = 'x';	
+	  place++;
+	  }
+	  place = x+1;
+	  place2 = y-1;
+	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	  board[place][place2] = 'x';	
+	  place++;
+	  place2--;
+	  }
+	  place = x-1;
+	  place2 = y+1;
+	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	  board[place][place2] = 'x';	
+	  place--;
+	  place2++;
+	  }
+	  place = x-1;
+	  place2 = y-1;
+	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	  board[place][place2] = 'x';	
+	  place--;
+	  place2--;
+	  }
 	*/
 
 	solver = 0;
@@ -221,18 +221,18 @@ public class NQueens{
 	    if (solve(solver, y+1, currentMoveNumber+1)){
 		System.out.println("good");
 		/*
-		reset1 = 0;
-		reset2 = 0;
-		while (reset1 < board.length){
-		    while (reset2 < board[0].length){
-			if (board[reset1][reset2] == 't'){
-			    board[reset1][reset2] = 'x';
-			}
-			reset2++;
-		    }
-		    reset2 = 0;
-		    reset1++;
-		}
+		  reset1 = 0;
+		  reset2 = 0;
+		  while (reset1 < board.length){
+		  while (reset2 < board[0].length){
+		  if (board[reset1][reset2] == 't'){
+		  board[reset1][reset2] = 'x';
+		  }
+		  reset2++;
+		  }
+		  reset2 = 0;
+		  reset1++;
+		  }
 		*/
 		return true;
 	    }
@@ -243,18 +243,18 @@ public class NQueens{
 	}
 	board[x][y] = '_';
 	/*
-	reset1 = 0;
-	reset2 = 0;
-	while (reset1 < board.length){
-	    while (reset2 < board[0].length){
-		if (board[reset1][reset2] == 't'){
-		    board[reset1][reset2] = '_';
-		}
-		reset2++;
-	    }
-	    reset2 = 0;
-	    reset1++;
-	}
+	  reset1 = 0;
+	  reset2 = 0;
+	  while (reset1 < board.length){
+	  while (reset2 < board[0].length){
+	  if (board[reset1][reset2] == 't'){
+	  board[reset1][reset2] = '_';
+	  }
+	  reset2++;
+	  }
+	  reset2 = 0;
+	  reset1++;
+	  }
 	*/
 
 	return false;
@@ -263,8 +263,8 @@ public class NQueens{
 
    public static void main(String[]arrr){
      NQueens t = new NQueens(5);
-     t.solve();
-     System.out.println(t);
+	t.solve(3);
+	System.out.println(t);
     }
-   
+
 }
