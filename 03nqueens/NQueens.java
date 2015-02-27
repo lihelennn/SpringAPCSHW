@@ -99,8 +99,8 @@ public class NQueens{
         place2 = y+1;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place2] == 'Q'){
-		System.out.println(place + ",aaa" + place2); 
-		System.out.println(x + "," + y);
+		//		System.out.println(place + ",aaa" + place2); 
+		//		System.out.println(x + "," + y);
 		return false;
 	    }	
 	    place++;
@@ -111,8 +111,8 @@ public class NQueens{
         place2 = y+1;
       	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place2] == 'Q'){
-		System.out.println(place + ",bbb" + place2);
-		System.out.println(x + "," + y);
+		//		System.out.println(place + ",bbb" + place2);
+		//		System.out.println(x + "," + y);
 		return false;
 	    }	
 	    place2++;
@@ -122,8 +122,8 @@ public class NQueens{
         place2 = y-1;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place2] == 'Q'){
-		System.out.println(place + ",ccc" + place2); 
-		System.out.println(x + "," + y);
+		//		System.out.println(place + ",ccc" + place2); 
+		//		System.out.println(x + "," + y);
 		return false;
 	    }
 	    place2--;
@@ -132,8 +132,8 @@ public class NQueens{
         place2 = y-1;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place2] == 'Q'){
-		System.out.println(place + ",ddd" + place2);
-		System.out.println(x + "," + y); 
+		//		System.out.println(place + ",ddd" + place2);
+		//		System.out.println(x + "," + y); 
 		return false;
 	    }	
 	    place++;
@@ -143,8 +143,8 @@ public class NQueens{
         place2 = y+1;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place2] == 'Q'){
-		System.out.println(place + ",eee" + place2); 
-		System.out.println(x + "," + y);
+		//		System.out.println(place + ",eee" + place2); 
+		//		System.out.println(x + "," + y);
 		return false;
 	    }	
 	    place--;
@@ -154,86 +154,22 @@ public class NQueens{
         place2 = y-1;
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
 	    if (board[place][place2] == 'Q'){
-		System.out.println(place + ",fff" + place2); 
-		System.out.println(x + "," + y);
+		//		System.out.println(place + ",fff" + place2); 
+		//		System.out.println(x + "," + y);
 		return false;
 	    }	
 	    place--;
 	    place2--;
 	}
 
-
 	board[x][y] = 'Q';
-	/*
-	  alt = board;
-
-	  place = x+1;
-	  place2 = y+1;
-	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	  board[place][place2] = 'x';	
-	  place++;
-	  place2++;
-	  }
-	  place = x;
-	  place2 = y-1;
-	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place!=x){
-	  board[place][place2] = 'x';	
-	  place2--;
-	  }
-	  place = x;
-	  place2 = y+1;
-	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place2!=y){
-	  board[place][place2] = 'x';	
-	  place2++;
-	  }
-	  place = 0;
-	  place2 = y;
-	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place2!=y){
-	  board[place][place2] = 'x';	
-	  place++;
-	  }
-	  place = x+1;
-	  place2 = y-1;
-	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	  board[place][place2] = 'x';	
-	  place++;
-	  place2--;
-	  }
-	  place = x-1;
-	  place2 = y+1;
-	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	  board[place][place2] = 'x';	
-	  place--;
-	  place2++;
-	  }
-	  place = x-1;
-	  place2 = y-1;
-	  while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	  board[place][place2] = 'x';	
-	  place--;
-	  place2--;
-	  }
-	*/
 
 	solver = 0;
 	while (solver < board.length){
-	    System.out.println("alright");
+	    //	    System.out.println("alright");
 	    if (solve(solver, y+1, currentMoveNumber+1)){
-		System.out.println("good");
-		/*
-		  reset1 = 0;
-		  reset2 = 0;
-		  while (reset1 < board.length){
-		  while (reset2 < board[0].length){
-		  if (board[reset1][reset2] == 't'){
-		  board[reset1][reset2] = 'x';
-		  }
-		  reset2++;
-		  }
-		  reset2 = 0;
-		  reset1++;
-		  }
-		*/
+		//		System.out.println("good");
+
 		return true;
 	    }
 	    solver++;
@@ -242,29 +178,29 @@ public class NQueens{
 	    return true;
 	}
 	board[x][y] = '_';
-	/*
-	  reset1 = 0;
-	  reset2 = 0;
-	  while (reset1 < board.length){
-	  while (reset2 < board[0].length){
-	  if (board[reset1][reset2] == 't'){
-	  board[reset1][reset2] = '_';
-	  }
-	  reset2++;
-	  }
-	  reset2 = 0;
-	  reset1++;
-	  }
-	*/
 
 	return false;
 	
     }
 
-   public static void main(String[]arrr){
-     NQueens t = new NQueens(5);
-	t.solve(3);
-	System.out.println(t);
+    public static void main(String[]arrr){
+	NQueens t = new NQueens(5);
+	System.out.println(t.name());
+	System.out.println("NQueens:");
+    
+	NQueens q = new NQueens(5);
+	q.solve();
+	System.out.println(q);
+    
+	NQueens w = new NQueens(5);
+	w.solve(3);
+	System.out.println(w);
+
+	if(w.solve()){
+	    System.out.println(w);
+	}else{
+	    System.out.println("Cannot solve");
+	}
     }
 
 }
