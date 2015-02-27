@@ -81,84 +81,75 @@ public class NQueens{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-     	System.out.println(this);
-        wait(10);
-	int place, place2;
+	System.out.println(this);
+	wait(500);
+	int solver,place, place2;
 	
 	if (x < 0 || x >= board.length || y < 0 || y >= board[0].length){
 	    return false;
 	}
-	if (board[x][y] == 'Q'){
+	if (board[x][y] == 'Q' || board[x][y] == 'x'){
 	    return false;
 	}
 
-	place = x+1;
-        place2 = y+1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    if (board[place][place] == 'Q'){
-		return false;
-	    }	
-	    place++;
-	    place2++;
-	}
-	/*
-	place = 0;
-        place2 = y;
-      	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    if (board[place][place] == 'Q'){
-		return false;
-	    }	
-	    place++;
-	}
-	*/
-	place = x+1;
-        place2 = 0;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    if (board[place][place2] == 'Q'){
-		return false;
-	    }
-	    place2++;
-	}
-	place = x+1;
-        place2 = y-1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    if (board[place][place] == 'Q'){
-		return false;
-	    }	
-	    place++;
-	    place2--;
-	}
-	place = x-1;
-        place2 = y+1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    if (board[place][place] == 'Q'){
-		return false;
-	    }	
-	    place--;
-	    place2++;
-	}
-	place = x-1;
-        place2 = y-1;
-	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
-	    if (board[place][place] == 'Q'){
-		return false;
-	    }	
-	    place--;
-	    place2--;
-	}
+
 	board[x][y] = 'Q';
-	System.out.println(this);
-	int solver = 0;
+
+	place = x+1;
+	place2 = y+1;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    board[place][place2] = 'x';	
+	    place++;
+	    place2++;
+	}
+	place = x;
+	place2 = y-1;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place!=x){
+	    board[place][place2] = 'x';	
+	    place2--;
+	}
+	place = x;
+	place2 = y+1;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place2!=y){
+	    board[place][place2] = 'x';	
+	    place2++;
+	}
+	place = x+1;
+	place2 = y-1;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    board[place][place2] = 'x';	
+	    place++;
+	    place2--;
+	}
+	place = x-1;
+	place2 = y+1;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    board[place][place2] = 'x';	
+	    place--;
+	    place2++;
+	}
+	place = x-1;
+	place2 = y-1;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0){
+	    board[place][place2] = 'x';	
+	    place--;
+	    place2--;
+	}
+
+	solver = 0;
 	while (solver < board.length){
-	    if (solve(x+1,solver,currentMoveNumber+1)){
+	    System.out.println("alright");
+	    if (solve(solver, x+1, currentMoveNumber+1)){
+		System.out.println("good");
 		return true;
 	    }
 	    solver++;
 	}
-	if (currentMoveNumber == board.length -1){
+	if (currentMoveNumber == board.length - 1){
 	    return true;
 	}
-	board[x][y] = 'a';
+	board[x][y] = '_';
+
 	return false;
 	
     }
