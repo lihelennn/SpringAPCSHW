@@ -183,6 +183,7 @@ public class NQueens{
 	
     }
 
+    /*
     public static void main(String[]arrr){
 	NQueens t = new NQueens(5);
 	System.out.println(t.name());
@@ -202,5 +203,7 @@ public class NQueens{
 	    System.out.println("Cannot solve");
 	}
     }
+
+    */
 
 }
