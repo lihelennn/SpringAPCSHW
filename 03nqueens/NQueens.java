@@ -1,7 +1,6 @@
 import java.util.*;
 import java.io.*;
 
-
 public class NQueens{
     //constants for the class
     //terminal specific character to clear screen , or hide/show cursor
@@ -57,8 +56,7 @@ public class NQueens{
 	    }
 	    place+=1;
 	    place2 = 0;
-	}
-				
+	}				
     }
 
     /*
@@ -82,8 +80,9 @@ public class NQueens{
 		
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
-	wait(500);
-	int solver,place, place2;
+	wait(1000);
+	int solver,place, place2, reset1, reset2;
+	char[][]alt = new char[board.length][board[0].length];
 	
 	if (x < 0 || x >= board.length || y < 0 || y >= board[0].length){
 	    return false;
@@ -92,8 +91,9 @@ public class NQueens{
 	    return false;
 	}
 
-
 	board[x][y] = 'Q';
+
+	alt = board;
 
 	place = x+1;
 	place2 = y+1;
@@ -113,6 +113,12 @@ public class NQueens{
 	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place2!=y){
 	    board[place][place2] = 'x';	
 	    place2++;
+	}
+	place = 0;
+	place2 = y;
+	while (place < board.length && place2 < board[0].length && place >= 0 && place2 >= 0 && place2!=y){
+	    board[place][place2] = 'x';	
+	    place++;
 	}
 	place = x+1;
 	place2 = y-1;
@@ -139,8 +145,20 @@ public class NQueens{
 	solver = 0;
 	while (solver < board.length){
 	    System.out.println("alright");
-	    if (solve(solver, x+1, currentMoveNumber+1)){
+	    if (solve(solver, y+1, currentMoveNumber+1)){
 		System.out.println("good");
+		reset1 = 0;
+		reset2 = 0;
+		while (reset1 < board.length){
+		    while (reset2 < board[0].length){
+			if (board[reset1][reset2] == 't'){
+			    board[reset1][reset2] = 'x';
+			}
+			reset2++;
+		    }
+		    reset2 = 0;
+		    reset1++;
+		}
 		return true;
 	    }
 	    solver++;
@@ -149,15 +167,30 @@ public class NQueens{
 	    return true;
 	}
 	board[x][y] = '_';
+	reset1 = 0;
+	reset2 = 0;
+	while (reset1 < board.length){
+	    while (reset2 < board[0].length){
+		if (board[reset1][reset2] == 't'){
+		    board[reset1][reset2] = '_';
+		}
+		reset2++;
+	    }
+	    reset2 = 0;
+	    reset1++;
+	}
 
 	return false;
 	
     }
 
     public static void main(String[]arrr){
-	NQueens t = new NQueens(5);
-	t.solve();
-	System.out.println(t);
+	NQueens t = new NQueens(6);
+	if(t.solve()){
+	    System.out.println(t);
+	}else{
+	    System.out.println("Cannot solve");
+	}
     }
    
 }
