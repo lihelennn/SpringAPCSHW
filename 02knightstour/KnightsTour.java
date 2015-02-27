@@ -1,7 +1,6 @@
 import java.util.*;
 import java.io.*;
 
-
 public class KnightsTour{
     //constants for the class
     //terminal specific character to clear screen , or hide/show cursor
@@ -61,7 +60,6 @@ public class KnightsTour{
 	}
 				
     }
-
     
     // public void solve(){
     // 	solve(0,0,0);
@@ -100,30 +98,37 @@ public class KnightsTour{
 	    return true;
 	}
 	if (currentMoveNumber == board.length * board[0].length - 1){
-	    //	    System.out.println(this);
-	    //	    System.out.println(currentMoveNumber);
-	    //	    System.out.println(board.length * board[0].length - 1);
-	    //	    System.out.println(currentMoveNumber == board.length * board[0].length - 1);
-	    //	    int place = 0;
-	    //	    int place2 = 0;
-	    // while (place < board.length){
-	    //     while (place2 < board[0].length){
-	    // 	if (board[place][place2] == 24){
-	    // 	    System.out.println(place + "," + place2);
-	    // 	    place2 = 100;
-	    // 	    place = 100;
-	    // 	}else{
-	    // 	    place2++;
-	    // 	}
-	    //     }
-	    //     place2 = 0;
-	    //     place++;
-	    // }
-
 	    return true;
 	}
 	
 	board[x][y] = -1;
 	return false;
     }
+
+    /*
+    public static void main(String[]arrr){
+	KnightsTour t = new KnightsTour(5);
+	System.out.println(t.name());
+	System.out.println("Knights Tour:");
+    
+
+	KnightsTour q = new KnightsTour(5);
+	q.solve();
+	System.out.println(q);
+
+
+	KnightsTour w = new KnightsTour(5);
+	w.solve(3,3);
+	System.out.println(w);
+
+
+	KnightsTour a = new KnightsTour(6);
+	if(a.solve()){
+	    System.out.println(a);
+	}else{
+	    System.out.println("Cannot solve");
+	}
+    }
+
+    */
 }
