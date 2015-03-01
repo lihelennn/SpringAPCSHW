@@ -48,30 +48,45 @@ public class ctravel{
     }
 
 
-    public boolean solve(int x, int y){
+    public int solve(int x, int y, int timer){
+	time -= 1;
 	int timer = 0;
-	if (field[x][y] == '*'){
-	    return false;
+	int ans = 0;
+	if (x>=0 && y>=0 && x<field.length && y<field[0].length){
+	    if (field[x][y] != '*')
+		if (x == destination[0][0] && y == destination[1][1]){
+		    if (timer == time){
+			return ans;
+		    }
+		}else{
+		    if (solve(x+1,y) == timer || solve(x-1,y) == timer || solve(x,y+1) == timer || solve(x,y-1) == timer){
+			ans = 1;
+			if (solve(x+1,y) == timer || solve(x-1,y) == timer || solve(x,y+1) == timer || solve(x,y-1) == timer){
+			    ans ++;
+			    if (solve(x+1,y) == timer || solve(x-1,y) == timer || solve(x,y+1) == timer || solve(x,y-1) == timer){
+				ans ++;
+				if (solve(x+1,y) == timer || solve(x-1,y) == timer || solve(x,y+1) == timer || solve(x,y-1) == timer){
+				    ans ++;
+				}
+			    }
+			}
+		    }
+		}
 	}
-	if (x < 0 || y < 0 || x >= field.length || y >= field[0].length){
-	    return false;
-	}
-	if (x == destination[0] && y == destination[1]){
-	    return true;
-	}
-	if (solve(x+1,y) || solve(x-1,y) || solve(x,y+1) || solve(x,y-1)){
-	    return true;
-	}
-	field[x][y] = '*';	 
+	return ans;
     }
 
-    public int answer(){
-	int ans = 0;
-	if (solve(x+1 
+
+
+
+    public int run(){
+	return solve(destination[0][0], destination[0][1]);
+    }
 
     public static void main(String[] args){
 	ctravel test = new ctravel("testingctravel.txt");
 	System.out.println(test);
+	System.out.println(test.run());
     }
 
 
