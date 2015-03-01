@@ -48,13 +48,26 @@ public class ctravel{
     }
 
 
-    public boolean solve(int x, int y, int seconds){
+    public boolean solve(int x, int y){
+	int timer = 0;
 	if (field[x][y] == '*'){
 	    return false;
 	}
-	return false;
-
+	if (x < 0 || y < 0 || x >= field.length || y >= field[0].length){
+	    return false;
+	}
+	if (x == destination[0] && y == destination[1]){
+	    return true;
+	}
+	if (solve(x+1,y) || solve(x-1,y) || solve(x,y+1) || solve(x,y-1)){
+	    return true;
+	}
+	field[x][y] = '*';	 
     }
+
+    public int answer(){
+	int ans = 0;
+	if (solve(x+1 
 
     public static void main(String[] args){
 	ctravel test = new ctravel("testingctravel.txt");
