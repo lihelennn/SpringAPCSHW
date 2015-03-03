@@ -24,6 +24,7 @@ public class ctravel{
 	    for(int i=0;i<2;i++){
 		for(int ii=0;ii<2;ii++){
 		    destination[i][ii] = scan.nextInt();
+		    destination[i][ii]--;
 		}
 	    }
 	}catch(Exception FileNotFoundException){
@@ -48,45 +49,64 @@ public class ctravel{
     }
 
 
-    public int solve(int x, int y, int timer){
-	time -= 1;
-	int timer = 0;
-	int ans = 0;
-	if (x>=0 && y>=0 && x<field.length && y<field[0].length){
-	    if (field[x][y] != '*')
-		if (x == destination[0][0] && y == destination[1][1]){
-		    if (timer == time){
-			return ans;
-		    }
-		}else{
-		    if (solve(x+1,y) == timer || solve(x-1,y) == timer || solve(x,y+1) == timer || solve(x,y-1) == timer){
-			ans = 1;
-			if (solve(x+1,y) == timer || solve(x-1,y) == timer || solve(x,y+1) == timer || solve(x,y-1) == timer){
-			    ans ++;
-			    if (solve(x+1,y) == timer || solve(x-1,y) == timer || solve(x,y+1) == timer || solve(x,y-1) == timer){
-				ans ++;
-				if (solve(x+1,y) == timer || solve(x-1,y) == timer || solve(x,y+1) == timer || solve(x,y-1) == timer){
-				    ans ++;
-				}
-			    }
-			}
-		    }
-		}
+    public void wait(int millis){
+	try {
+	    Thread.sleep(millis);
 	}
-	return ans;
+	catch (InterruptedException e) {
+	}
     }
 
 
+    public boolean solve(int x, int y, int current){
+	// System.out.println(this);
+	// wait(20);
+	// System.out.println(x + "," + y);
+
+	if (x<0 || x>=field.length || y<0 || y>=field[0].length){
+	    return false;
+	}
+	if (field[x][y] == '*'){ 
+	    return false;
+	}
+
+	/*
+	if (timeremaining == 0){
+	    return (x == destination[1][0] && y == destination[1][1]);
+	}
+	*/
+
+	if (x == destination[1][0] && y == destination[1][1]){
+	    return true;
+	}
+
+	if (field[x][y] == '.'){
+	    field[x][y] = '@';
+	    if (solve(x+1, y, current+1) || solve(x-1, y, current+1) || solve(x, y+1, current+1) || solve(x, y-1, current+1)){
+		field[x][y] = (char)current;
+		return true;
+	    }
+	    field[x][y] = '*';
+	}
+	return false;
+    }
+
+    public int solver(int x, int y, 
 
 
-    public int run(){
-	return solve(destination[0][0], destination[0][1]);
+
+
+    public boolean run(){
+	System.out.println(destination[0][0] + "," + destination[0][1]);
+	return solve(destination[0][0], destination[0][1],0);
     }
 
     public static void main(String[] args){
 	ctravel test = new ctravel("testingctravel.txt");
 	System.out.println(test);
 	System.out.println(test.run());
+	System.out.println(test);
+
     }
 
 
