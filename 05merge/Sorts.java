@@ -30,6 +30,7 @@ public class Sorts{
 	    placeans++;
 	}
 	System.arraycopy(ans,0,c,0,ans.length);
+
 	/*
 	  int place = 0;
 	  String answerString = "[";
@@ -43,24 +44,44 @@ public class Sorts{
 
 
     public static void mergesort(int[]hello){
-	System.out.println(Arrays.toString(hello));
+	// System.out.println(Arrays.toString());
 	int half = hello.length/2;
 	int otherhalf = hello.length - half;
 	int[]one = new int[half];
+	int place = 0;
+	while (place < half){
+	    one[place] = hello[place];
+	    place++;
+	}
 	int[]two = new int [otherhalf];
+	place = half;
+	int place2 = 0;
+	while(place2 < otherhalf){
+	    two[place2] = hello[place];
+	    place2++;
+	    place++;
+	}
+	// System.out.println(Arrays.toString(two));
+	// System.arraycopy(hello,one.length,two,0,two.length);
 	int[]combine = new int[hello.length];
 
 	if (one.length <= 1 && two.length <= 1){
 	    merge(one, two, combine);
-	    System.arraycopy(combine,0,hello,0,one.length+two.length);
+	    System.out.println(1);
+	    System.arraycopy(combine,0,hello,0,combine.length);
+	    System.out.println(Arrays.toString(hello));
+
 	}
 
 
 
-	while (hello.length > 2){
+	while (hello.length >= 2){
 	    mergesort(one);
 	    mergesort(two);
-	    merge(one,two,hello);
+	    merge(one,two,combine);
+	    System.arraycopy(combine,0,hello,0,combine.length);
+
+
 	}
 
 
@@ -85,6 +106,7 @@ public class Sorts{
 	test1[5] = 6;
 	test1[6] = 8;
 	mergesort(test1);
+	// System.out.println(Arrays.toString(test1));
 	// System.out.println(Arrays.toString(c));
     }
 }

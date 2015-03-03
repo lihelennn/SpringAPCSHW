@@ -94,10 +94,18 @@ public class ctravel{
     public int solver(int x, int y, int current, int solutions){
 	if (solve(x, y, 0)){
 	    if (current == time && x == destination[1][0] && y == destination[1][1]){
-		solver(x,y,0,solutions+1);
+		return solutions;
 	    }
 	    if (x>=0 && x<field.length && y>=0 && y<field[0].length){
 		if (field[x][y] != '*'){
+		    if (solve(x+1,y,current+1)){
+			solver(x+1,y,current+1,solutions+1);
+		    }
+		    if (solve(x-1,y,current+1)){
+			solver(x-1,y,current+1,solutions+1);
+		    }
+		    if (solve(x,y+1,current+1)){
+			solver(x,y+1,current+1,solutions+1)
 
 
 

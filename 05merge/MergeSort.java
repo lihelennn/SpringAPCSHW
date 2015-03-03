@@ -2,7 +2,7 @@ import java.util.*;
 
 public class MergeSort{
 
-    public static String merge(int[]a, int[]b){
+    public static void merge(int[]a, int[]b, int[]c){
 	int placea = 0;
 	int placeb = 0;
 	int placeans = 0;
@@ -29,18 +29,24 @@ public class MergeSort{
 	    placeb++;
 	    placeans++;
 	}
-	int place = 0;
-	String answerString = "[";
-	while (place < ans.length){
-	    answerString += ans[place] + ", ";
-	    place++;
-	} 
-	return answerString;
+	System.arraycopy(ans,0,c,0,ans.length);
+
+	/*
+	  int place = 0;
+	  String answerString = "[";
+	  while (place < ans.length){
+	  answerString += ans[place] + ", ";
+	  place++;
+	  } 
+	  return answerString;
+	*/
     }
+
 
     public static void main(String[]args){
 	int[]test1 = new int[3];
 	int[]test2 = new int[4];
+	int[]c = new int[7];
 	test1[0] = 1;
 	test1[1] = 3;
 	test1[2] = 5;
@@ -48,7 +54,9 @@ public class MergeSort{
 	test2[1] = 4;
 	test2[2] = 6;
 	test2[3] = 8;
-	System.out.println(merge(test1, test2));
+	merge(test1,test2,c);
+	System.out.println(Arrays.toString(c));
     }
+
 }
 			   
