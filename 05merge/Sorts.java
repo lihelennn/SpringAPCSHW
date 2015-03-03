@@ -73,8 +73,6 @@ public class Sorts{
 
 	}
 
-
-
 	while (hello.length >= 2){
 	    mergesort(one);
 	    mergesort(two);
@@ -84,15 +82,7 @@ public class Sorts{
 
 	}
 
-
-
     }
-
-
-
-
-
-
 
     public static void main(String[]args){
 	int[]test1 = new int[7];

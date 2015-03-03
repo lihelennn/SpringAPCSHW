@@ -48,12 +48,12 @@ public class MergeSort{
 	int[]test2 = new int[4];
 	int[]c = new int[7];
 	test1[0] = 1;
-	test1[1] = 3;
-	test1[2] = 5;
+	// test1[1] = 3;
+	// test1[2] = 5;
 	test2[0] = 2;
-	test2[1] = 4;
-	test2[2] = 6;
-	test2[3] = 8;
+	// test2[1] = 4;
+	// test2[2] = 6;
+	// test2[3] = 8;
 	merge(test1,test2,c);
 	System.out.println(Arrays.toString(c));
     }
