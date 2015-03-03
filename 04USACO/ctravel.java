@@ -91,7 +91,15 @@ public class ctravel{
 	return false;
     }
 
-    public int solver(int x, int y, 
+    public int solver(int x, int y, int current, int solutions){
+	if (solve(x, y, 0)){
+	    if (current == time && x == destination[1][0] && y == destination[1][1]){
+		solver(x,y,0,solutions+1);
+	    }
+	    if (x>=0 && x<field.length && y>=0 && y<field[0].length){
+		if (field[x][y] != '*'){
+
+
 
 
 
