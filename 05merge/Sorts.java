@@ -61,26 +61,25 @@ public class Sorts{
 	    place2++;
 	    place++;
 	}
+	// System.out.println(Arrays.toString(one));
+
 	// System.out.println(Arrays.toString(two));
 	// System.arraycopy(hello,one.length,two,0,two.length);
+
+	
 	int[]combine = new int[hello.length];
 
-	if (one.length <= 1 && two.length <= 1){
-	    merge(one, two, combine);
-	    System.out.println(1);
-	    System.arraycopy(combine,0,hello,0,combine.length);
-	    System.out.println(Arrays.toString(hello));
-
-	}
-
-	while (hello.length >= 2){
+	if (hello.length >= 2){
 	    mergesort(one);
 	    mergesort(two);
-	    merge(one,two,combine);
-	    System.arraycopy(combine,0,hello,0,combine.length);
-
-
 	}
+
+	merge(one, two, combine);
+	// System.out.println(1);
+	System.arraycopy(combine,0,hello,0,combine.length);
+	// System.out.println(Arrays.toString(hello));
+
+	
 
     }
 
@@ -96,7 +95,7 @@ public class Sorts{
 	test1[5] = 6;
 	test1[6] = 8;
 	mergesort(test1);
-	// System.out.println(Arrays.toString(test1));
+	System.out.println(Arrays.toString(test1));
 	// System.out.println(Arrays.toString(c));
     }
 }
