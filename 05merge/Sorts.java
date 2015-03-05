@@ -89,37 +89,69 @@ public class Sorts{
 
     }
 
-    /*
 
     public static void main(String[]args){
 
+	/*
+
+	  Random r = new Random();
+	  int[]test1 = new int[100000];
+	  int start = 0;
+	  while (start < test1.length){
+	  test1[start]=start;
+	  start++;
+	  }
+	  int[]test2 = new int[100000];
+	  start = 0;
+	  int end = 100000;
+	  while (start < test2.length){
+	  test2[start] = end;
+	  start++;
+	  end--;
+	  }
+	  int[]test3 = new int[100000];
+	  int place = 0;
+	  while (place < test3.length){
+	  test3[place] = r.nextInt(3) + 1;
+	  place++;
+	  }
+
+	*/
+
 	Random r = new Random();
-	int[]test1 = new int[100000];
-	int start = 0;
-	while (start < test1.length){
-	    test1[start]=start;
-	    start++;
-	}
-	int[]test2 = new int[100000];
-	start = 0;
-	int end = 100000;
-	while (start < test2.length){
-	    test2[start] = end;
-	    start++;
-	    end--;
-	}
-	int[]test3 = new int[100000];
-	int place = 0;
-	while (place < test3.length){
-	    test3[place] = r.nextInt(3) + 1;
-	    place++;
-	}
-	int[]test4 = new int[100000];
+
+	int place=0;
+
+
+	int[]test1 = new int[1000000];
 	place = 0;
-	while (place < test4.length){
-	    test4[place] = r.nextInt(2000000) - 1000000;
+	while (place < test1.length){
+	    test1[place] = r.nextInt(2000000) - 1000000;
 	    place++;
 	}
+
+	int[]test2 = new int[2000000];
+	place = 0;
+	while (place < test2.length){
+	    test2[place] = r.nextInt(2000000) - 1000000;
+	    place++;
+	}
+
+	int[]test3 = new int[4000000];
+	place = 0;
+	while (place < test3.length){
+	    test3[place] = r.nextInt(2000000) - 1000000;
+	    place++;
+	}
+
+	/*
+	  int[]test4 = new int[100000];
+	  place = 0;
+	  while (place < test4.length){
+	  test4[place] = r.nextInt(2000000) - 1000000;
+	  place++;
+	  }
+	*/
 
 	// int[]test2 = new int[4];
 	// int[]c = new int[test1.length + test2.length];
@@ -128,11 +160,19 @@ public class Sorts{
 	mergesort(test1);
 	long end_time = System.currentTimeMillis();
 	System.out.println(end_time-start_time);
+	start_time = System.currentTimeMillis();
+	Arrays.sort(test1);
+	end_time = System.currentTimeMillis();
+	System.out.println(end_time-start_time);
 	// System.out.println(test1);
 	// System.out.println(Arrays.toString(test1));
 
 	start_time = System.currentTimeMillis();
 	mergesort(test2);
+	end_time = System.currentTimeMillis();
+	System.out.println(end_time-start_time);
+	start_time = System.currentTimeMillis();
+	Arrays.sort(test2);
 	end_time = System.currentTimeMillis();
 	System.out.println(end_time-start_time);
 	// System.out.println(test2);
@@ -142,19 +182,29 @@ public class Sorts{
 	mergesort(test3);
 	end_time = System.currentTimeMillis();
 	System.out.println(end_time-start_time);
+	start_time = System.currentTimeMillis();
+	Arrays.sort(test3);
+	end_time = System.currentTimeMillis();
+	System.out.println(end_time-start_time);
 	// System.out.println(test3);
 	// System.out.println(Arrays.toString(test3));
 
-	start_time = System.currentTimeMillis();
-	mergesort(test4);
-	end_time = System.currentTimeMillis();
-	System.out.println(end_time-start_time);
-	// System.out.println(test4);
-	// System.out.println(Arrays.toString(test4));
+	/*
+	  start_time = System.currentTimeMillis();
+	  mergesort(test4);
+	  end_time = System.currentTimeMillis();
+	  System.out.println(end_time-start_time);
+	  start_time = System.currentTimeMillis();
+	  Arrays.sort(test4);
+	  end_time = System.currentTimeMillis();
+	  System.out.println(end_time-start_time);
+	  // System.out.println(test4);
+	  // System.out.println(Arrays.toString(test4));
+	  */
 
     }
     
-    */
+   
 
 
    
