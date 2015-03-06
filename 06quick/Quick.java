@@ -43,28 +43,39 @@ public class Quick{
 
 	//copy back
 	System.arraycopy(D,0,ary,0,D.length);
+
+	System.out.println(Arrays.toString(D));
     }
 
+
+    /*
+    
     public static void main(String[]args){
 	Quick tester = new Quick();
-	int[]ary = {3,5,1,13,53,2};
+	int[]ary = new int[10];
+	ArrayList<Integer>past = new ArrayList();
+	int place = 0;
+	Random r = new Random();
+	int holder = r.nextInt(200000) - 100000;
+	while (place < ary.length){
+	    while (past.contains(holder)){
+		holder = r.nextInt(200000) - 100000;
+	    }
+	    ary[place] = holder;
+	    place++;
+	    past.add(holder);
+	}
+	System.out.println(Arrays.toString(ary));
 	tester.partition(ary,0,ary.length-1);
-	System.out.println(Arrays.toString(ary));
-	tester.partition(ary,3,ary.length-1);
-	System.out.println(Arrays.toString(ary));
-	tester.partition(ary,3,ary.length-1);
-	System.out.println(Arrays.toString(ary));
-
+	// tester.partition(ary,3,ary.length-1);
+	// System.out.println(Arrays.toString(ary));
+	// tester.partition(ary,3,ary.length-1);
+	// System.out.println(Arrays.toString(ary));
 
     }
+
+    */   
   
-
-
-
-
-
-
-
 }
 
 
