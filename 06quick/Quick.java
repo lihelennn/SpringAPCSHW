@@ -48,6 +48,10 @@ public class Quick{
     }
 
     public static int quickSelect(int[] ary, int target){
+	if (target < 0 || target >= ary.length){
+	    System.out.println("out of bounds");
+	}
+
 	int start = 0;
 	int end = ary.length-1;
 	int now = partition(ary,start,end);
@@ -57,16 +61,14 @@ public class Quick{
 	    System.out.println("start" + start);
 	    System.out.println("end" + end);
 	    if (target > now){
-		start = target;
-		now = partition(ary,start,end);
+		start = now;
 
 	    }else{
 		if (target < now){
-		    end = target;
-		    now = partition(ary,start,end);
+		    end = now;
 		}
-
 	    }
+	    now = partition(ary,start,end);
 	}
 	System.out.println("answer");
 	return ary[target];
@@ -76,11 +78,11 @@ public class Quick{
     
     public static void main(String[]args){
 	Quick tester = new Quick();
-	int[]ary = {5,4,3,7,1,2,13,10,45};
+	int[]ary = {5,4,3,7,1,2,13,10,45, -1, -10, 100};
 	System.out.println(Arrays.toString(ary));
 	// tester.partition(ary,2,ary.length-3);
 	// System.out.println(Arrays.toString(ary));
-	System.out.println(quickSelect(ary,9));
+	System.out.println(quickSelect(ary,7));
 	// tester.partition(ary,3,ary.length-1);
 	// System.out.println(Arrays.toString(ary));
 	// tester.partition(ary,3,ary.length-1);
@@ -88,8 +90,6 @@ public class Quick{
 
     }
 
-    
-  
 }
 
 
