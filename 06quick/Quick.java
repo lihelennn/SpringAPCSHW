@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Quick{
 
-    public void partition(int[]ary, int si, int ei){
+    public static int partition(int[]ary, int si, int ei){
 	int[]D = new int[ary.length];
 	int place = 0;
 
@@ -16,20 +16,16 @@ public class Quick{
 
 	//choose a pivot element
 
-	/*
-	  Random r = new Random();
-	  int pivotal = pivotal = r.nextInt(ei - si) + si;
-	  while (pivotal < si || pivotal > ei){
-	  pivotal = r.nextInt(ei - si + 1) + si;
-	  }
-	*/
+	Random r = new Random();
+	int pivotal = ary[r.nextInt(ei - si + 1) + si];
+	System.out.println("pivot" + pivotal);
 
-	int pivotal = ary[si];
+	//	int pivotal = ary[si];
 
 	//recreate
 
 	int index = si;
-	while (si != ei){
+	while (si < ei){
 	    if (ary[index] < pivotal){
 		D[si] = ary[index];
 		si++;
@@ -47,35 +43,50 @@ public class Quick{
 	System.arraycopy(D,0,ary,0,D.length);
 	// System.out.println(Arrays.toString(D));
 
+	return si;
+
     }
 
-    public static void quickSelect(int 
+    public static int quickSelect(int[] ary, int target){
+	int start = 0;
+	int end = ary.length-1;
+	int now = partition(ary,start,end);
+
+	while (now != target){
+	    System.out.println(Arrays.toString(ary));
+	    System.out.println("start" + start);
+	    System.out.println("end" + end);
+	    if (target > now){
+		start = target;
+		now = partition(ary,start,end);
+
+	    }else{
+		if (target < now){
+		    end = target;
+		    now = partition(ary,start,end);
+		}
+
+	    }
+	}
+	System.out.println("answer");
+	return ary[target];
+    }
 
 
     
-      public static void main(String[]args){
-      Quick tester = new Quick();
-      int[]ary = new int[10];
-      ArrayList<Integer>past = new ArrayList();
-      int place = 0;
-      Random r = new Random();
-      int holder = r.nextInt(200000) - 100000;
-      while (place < ary.length){
-      while (past.contains(holder)){
-      holder = r.nextInt(200000) - 100000;
-      }
-      ary[place] = holder;
-      place++;
-      past.add(holder);
-      }
-      System.out.println(Arrays.toString(ary));
-      tester.partition(ary,0,ary.length-1);
-      // tester.partition(ary,3,ary.length-1);
-      // System.out.println(Arrays.toString(ary));
-      // tester.partition(ary,3,ary.length-1);
-      // System.out.println(Arrays.toString(ary));
+    public static void main(String[]args){
+	Quick tester = new Quick();
+	int[]ary = {5,4,3,7,1,2,13,10,45};
+	System.out.println(Arrays.toString(ary));
+	// tester.partition(ary,2,ary.length-3);
+	// System.out.println(Arrays.toString(ary));
+	System.out.println(quickSelect(ary,9));
+	// tester.partition(ary,3,ary.length-1);
+	// System.out.println(Arrays.toString(ary));
+	// tester.partition(ary,3,ary.length-1);
+	// System.out.println(Arrays.toString(ary));
 
-      }
+    }
 
     
   
