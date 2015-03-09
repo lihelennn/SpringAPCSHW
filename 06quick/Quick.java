@@ -114,27 +114,53 @@ public class Quick{
 	return ary[target];
     }
 
-    public static void quicksort(int[]ary){
-	int start = 0;
-	int end = ary.length-1;
+    /*
+      public static void quicksort(int[]ary){
+      int start = 0;
+      int end = ary.length-1;
+      int now = partitionIn(ary,start,end);
+      System.out.println(Arrays.toString(ary));
+      System.out.println("start" + start);
+      System.out.println("end" + end);
+      System.out.println("now" + now);
+      if (ary.length > 1){
+      if (now >= 2){
+      quicksort(Arrays.copyOfRange(ary,start,now-1));
+      }
+      if (now < ary.length - 2){
+      quicksort(Arrays.copyOfRange(ary,now+1,end));
+      }
+	    
+      }
+      }
+    */
+
+    public static void quicksortH(int[]ary, int start, int end){
+	// int start = 0;
+	// int end = ary.length-1;
 	int now = partitionIn(ary,start,end);
 	System.out.println(Arrays.toString(ary));
+	System.out.println("start" + start);
+	System.out.println("end" + end);
 	System.out.println("now" + now);
-	if (ary.length < 1){
-	    quicksort(Arrays.copyOfRange(ary,start,now-1));
-	    quicksort(Arrays.copyOfRange(ary,now+1,end));
-	    
+	if (ary.length > 1 && end!= now && start!= now){
+	    if (now >= 2){
+		quicksortH(ary,start,now-1);
+	    }
+	    if (now < ary.length - 2){
+		quicksortH(ary,now+1,end);
+
+	    }
 	}
     }
 
-	
-
-
-    
+    public static void quicksort(int[]ary){
+	quicksortH(ary,0,ary.length-1);
+    }
     
     public static void main(String[]args){
 	Quick tester = new Quick();
-	int[]ary = {5,4,3,7,1,2,13,10,45, -1, -10, 100};
+	int[]ary = {5,4,3,7,1,2,59,-2,-5,-1, -10, 100};
 	System.out.println(Arrays.toString(ary));
 	// tester.partitionIn(ary,0,ary.length-1);
 	quicksort(ary);
