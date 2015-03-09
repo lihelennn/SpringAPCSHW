@@ -122,8 +122,8 @@ public class Quick{
 	int now2 = 0;
 	if (ary.length != 1){
 	    start1 = start1;
-	    end1 = now1;
-	    start2 = now1;
+	    end1 = now1-1;
+	    start2 = now1+1;
 	    end2 = end1;
 	    now1 = partition(ary,start1,end1);
 	    now2 = partition(ary,start2,end2);
