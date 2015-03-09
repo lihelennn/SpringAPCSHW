@@ -86,17 +86,6 @@ public class Quick{
 	return start;
     }
 
-	
-
-
-
-
-
-
-
-
-
-
 
     public static int quickSelect(int[] ary, int target){
 	if (target < 0 || target >= ary.length){
@@ -125,13 +114,32 @@ public class Quick{
 	return ary[target];
     }
 
-    /*
+    public static void quicksort(int[]ary){
+	int start1 = 0;
+	int end1 = ary.length-1;
+	int start2,end2;
+	int now1 = partition(ary,start1,end1);
+	int now2 = 0;
+	if (ary.length != 1){
+	    start1 = start1;
+	    end1 = now1;
+	    start2 = now1;
+	    end2 = end1;
+	    now1 = partition(ary,start1,end1);
+	    now2 = partition(ary,start2,end2);
+	    quicksort(ary);
+	}
+    }
+
+
+    
     
     public static void main(String[]args){
 	Quick tester = new Quick();
 	int[]ary = {5,4,3,7,1,2,13,10,45, -1, -10, 100};
 	System.out.println(Arrays.toString(ary));
-	tester.partitionIn(ary,0,ary.length-1);
+	// tester.partitionIn(ary,0,ary.length-1);
+	quicksort(ary);
 	System.out.println(Arrays.toString(ary));
 	// System.out.println(quickSelect(ary,11));
 	// tester.partition(ary,3,ary.length-1);
@@ -140,7 +148,7 @@ public class Quick{
 	// System.out.println(Arrays.toString(ary));
 
     }
-    */
+   
 
 }
 
