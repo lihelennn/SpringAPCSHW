@@ -115,21 +115,19 @@ public class Quick{
     }
 
     public static void quicksort(int[]ary){
-	int start1 = 0;
-	int end1 = ary.length-1;
-	int start2,end2;
-	int now1 = partition(ary,start1,end1);
-	int now2 = 0;
-	if (ary.length != 1){
-	    start1 = start1;
-	    end1 = now1-1;
-	    start2 = now1+1;
-	    end2 = end1;
-	    now1 = partition(ary,start1,end1);
-	    now2 = partition(ary,start2,end2);
-	    quicksort(ary);
+	int start = 0;
+	int end = ary.length-1;
+	int now = partitionIn(ary,start,end);
+	System.out.println(Arrays.toString(ary));
+	System.out.println("now" + now);
+	if (ary.length < 1){
+	    quicksort(Arrays.copyOfRange(ary,start,now-1));
+	    quicksort(Arrays.copyOfRange(ary,now+1,end));
+	    
 	}
     }
+
+	
 
 
     
@@ -149,6 +147,13 @@ public class Quick{
 
     }
    
+    // start1 = start1;
+    // end1 = now1-1;
+    // start2 = now1+1;
+    // end2 = end1;
+    // now1 = partition(ary,start1,end1);
+    // now2 = partition(ary,start2,end2);
+    // quicksort(ary);
 
 }
 
