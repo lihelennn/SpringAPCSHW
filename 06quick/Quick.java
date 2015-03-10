@@ -47,7 +47,7 @@ public class Quick{
 
     }
 
-
+    //partition with multiple swaps
     public static int partitionIn(int[]ary, int si, int ei){
 	Random r = new Random();
 	int pivotal = ary[r.nextInt(ei - si + 1) + si];
@@ -84,6 +84,54 @@ public class Quick{
 	    }
 	}
 	return start;
+    }
+
+    //partition with swap pivot to the end
+    public static int partitionIn2(int[]ary, int si, int ei){
+	Random r = new Random();
+	int ind = r.nextInt(ei - si + 1) + si;
+	int pivotal = ary[ind];
+	System.out.println("pivotal" + pivotal);
+	int start = si;
+	int end = ei-1;
+	int one,two;
+
+	//swapping to the end
+	one = ary[ary.length-1];
+	ary[ind] = one;
+	ary[ary.length-1] = pivotal;
+
+	while (start < end){
+	    System.out.println(Arrays.toString(ary));
+	  
+	    if (ary[start] > ary[end]){
+		one = ary[start];
+		two = ary[end];
+		//swap
+		ary[end] = one;
+		ary[start] = two;
+	    }
+	    if (ary[end] > pivotal){
+		end--;
+	    }
+	    if (ary[start] < pivotal){
+		start++;
+	    }
+	}
+	//swap back
+	if (ary[start] < pivotal){
+	    one = ary[start+1];
+	    ary[start+1] = pivotal;
+	    ary[ary.length-1] = one;
+	    return start + 1;
+	}else{
+	    one = ary[start];
+	    ary[start] = pivotal;
+	    ary[ary.length-1] = one;
+	    return start;
+	}
+	// System.out.println("start" + start);
+	// System.out.println("one" + one);
     }
 
 
@@ -162,8 +210,9 @@ public class Quick{
 	Quick tester = new Quick();
 	int[]ary = {5,4,3,7,1,2,59,-2,-5,-1, -10, 100};
 	System.out.println(Arrays.toString(ary));
+	System.out.println(partitionIn2(ary,0,ary.length-1));
 	// tester.partitionIn(ary,0,ary.length-1);
-	quicksort(ary);
+	// quicksort(ary);
 	System.out.println(Arrays.toString(ary));
 	// System.out.println(quickSelect(ary,11));
 	// tester.partition(ary,3,ary.length-1);
