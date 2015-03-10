@@ -91,7 +91,7 @@ public class Quick{
 	Random r = new Random();
 	int ind = r.nextInt(ei - si + 1) + si;
 	int pivotal = ary[ind];
-	System.out.println("pivotal" + pivotal);
+	// System.out.println("pivotal" + pivotal);
 	int start = si;
 	int end = ei-1;
 	int one,two;
@@ -102,7 +102,7 @@ public class Quick{
 	ary[ary.length-1] = pivotal;
 
 	while (start < end){
-	    System.out.println(Arrays.toString(ary));
+	    // System.out.println(Arrays.toString(ary));
 	  
 	    if (ary[start] > ary[end]){
 		one = ary[start];
@@ -187,10 +187,10 @@ public class Quick{
 	// int start = 0;
 	// int end = ary.length-1;
 	int now = partitionIn(ary,start,end);
-	System.out.println(Arrays.toString(ary));
-	System.out.println("start" + start);
-	System.out.println("end" + end);
-	System.out.println("now" + now);
+	// System.out.println(Arrays.toString(ary));
+	// System.out.println("start" + start);
+	// System.out.println("end" + end);
+	// System.out.println("now" + now);
 	if (ary.length > 1 && end!= now && start!= now){
 	    if (now >= 2){
 		quicksortH(ary,start,now-1);
@@ -206,14 +206,15 @@ public class Quick{
 	quicksortH(ary,0,ary.length-1);
     }
     
+    /*
     public static void main(String[]args){
 	Quick tester = new Quick();
 	int[]ary = {5,4,3,7,1,2,59,-2,-5,-1, -10, 100};
-	System.out.println(Arrays.toString(ary));
+	// System.out.println(Arrays.toString(ary));
 	System.out.println(partitionIn2(ary,0,ary.length-1));
 	// tester.partitionIn(ary,0,ary.length-1);
 	// quicksort(ary);
-	System.out.println(Arrays.toString(ary));
+	// System.out.println(Arrays.toString(ary));
 	// System.out.println(quickSelect(ary,11));
 	// tester.partition(ary,3,ary.length-1);
 	// System.out.println(Arrays.toString(ary));
@@ -221,6 +222,7 @@ public class Quick{
 	// System.out.println(Arrays.toString(ary));
 
     }
+    */
    
     // start1 = start1;
     // end1 = now1-1;
