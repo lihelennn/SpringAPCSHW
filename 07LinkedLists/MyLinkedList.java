@@ -10,9 +10,28 @@ public class MyLinkedList{
 
     public String toString(){
 	String ans = "";
-	while (a.getNext() != null){
-	    ans += a.getData();
+	LNode temp = a;
+	while (temp.getNext() != null){
+	    ans += temp.getData();
+	    temp = temp.getNext();
 	}
 	return ans;
     }
+
+    public boolean add(LNode value){
+	LNode temp = a;
+	if (a.getNext() == null){
+	    a.setNext(value);
+	}else{
+	    while (temp.getNext() != null){
+		temp = temp.getNext();
+	    }
+	    temp.setNext(value);
+	    a = temp;
+	}
+	return true;
+    }
+
+    public int get(int index){
+	
 }

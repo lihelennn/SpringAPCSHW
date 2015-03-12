@@ -13,6 +13,10 @@ public class LNode{
     // 	next = null;
     // }
 
+    public LNode(){
+	// data = null;
+    }
+
     public LNode(int n, LNode m){
 	data = n;
 	next = m;
@@ -34,8 +38,8 @@ public class LNode{
 	next = n;
     }
 
-    public int toString(){
-	return data;
+    public String toString(){
+	return "[" + this.getData() + "]";
     }
 
 }
