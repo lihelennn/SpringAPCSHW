@@ -12,6 +12,8 @@ public class Driver{
 	// System.out.println(tester.get(10));
 	System.out.println(tester.indexOf(2));
 	System.out.println(tester.indexOf(13));
-	System.out.println(tester.indexOf(1000));
+	// System.out.println(tester.indexOf(1000));
+        tester.add(2,1000);
+	System.out.println(tester);
     }
 }

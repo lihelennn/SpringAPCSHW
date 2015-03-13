@@ -75,6 +75,20 @@ public class MyLinkedList{
 	}
 	return -1;
     }
+
+    public void add(int index, int i){
+	LNode temp = a;
+	if (index < 0 || index > size()){
+	    throw new IndexOutOfBoundsException();
+	}else{
+	    while (index > 1){
+		temp = temp.getNext();
+		index--;
+	    }
+	    temp.setNext(new LNode(i));
+	}
+    }
+
     
 	
 }
