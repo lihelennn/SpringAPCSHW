@@ -8,14 +8,19 @@ public class MyLinkedList{
 
     }
 
+    public MyLinkedList(int data){
+	a.setData(data);
+    }
+
     public String toString(){
-	String ans = "";
+	String ans = "[";
 	LNode temp = a;
 	while (temp.getNext() != null){
-	    ans += temp.getData();
+	    ans += temp.getData() + " , ";
 	    temp = temp.getNext();
 	}
-	return ans;
+	ans += temp.getData();
+	return ans + "]";
     }
 
     public boolean add(LNode value){
@@ -27,7 +32,6 @@ public class MyLinkedList{
 		temp = temp.getNext();
 	    }
 	    temp.setNext(value);
-	    a = temp;
 	}
 	return true;
     }
@@ -39,10 +43,38 @@ public class MyLinkedList{
 	    ans++;
 	    temp = temp.getNext();
 	}
+	ans++;
+	return ans;
+    }
 
-    /*
+    
     public int get(int index){
-	if (index < 0 || index >= 
-    */
+	LNode temp = a;
+    	if (index < 0 || index >= this.size()){
+    	    throw new IndexOutOfBoundsException();
+    	}
+	while (index > 0){
+	    temp = temp.getNext();
+	    index--;
+	}
+	return temp.getData();
+    }
+
+    public int indexOf(int i){
+	int ans = 0;
+	LNode temp = a;
+	if (a.getData() == i){
+	    return ans;
+	}
+	while (temp.getNext() != null){
+	    if (temp.getNext().getData() == i){
+		return ans + 1;
+	    }
+	    temp = temp.getNext();
+	    ans++;
+	}
+	return -1;
+    }
+    
 	
 }
