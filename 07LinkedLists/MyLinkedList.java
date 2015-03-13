@@ -3,6 +3,8 @@ import java.util.*;
 public class MyLinkedList{
 
     LNode a = new LNode();
+    LNode tail = new LNode();
+    int size = 0;
 
     public MyLinkedList(){
 
@@ -23,16 +25,18 @@ public class MyLinkedList{
 	return ans + "]";
     }
 
-    public boolean add(LNode value){
+    public boolean add(int i){
 	LNode temp = a;
 	if (a.getNext() == null){
-	    a.setNext(value);
+	    a.setNext(new LNode(i));
 	}else{
 	    while (temp.getNext() != null){
 		temp = temp.getNext();
 	    }
-	    temp.setNext(value);
+	    temp.setNext(new LNode(i));
 	}
+	size++;
+	tail = temp;
 	return true;
     }
 
@@ -81,14 +85,56 @@ public class MyLinkedList{
 	if (index < 0 || index > size()){
 	    throw new IndexOutOfBoundsException();
 	}else{
-	    while (index > 1){
-		temp = temp.getNext();
-		index--;
+	    if (index == 0){
+		temp.setNext(new LNode(a.getData()));
+		temp.setData(i);
+		// LNode b = new LNode(i);
+		// b.setNext(temp);
+	    }else{
+		while (index > 1){
+		    temp = temp.getNext();
+		    index--;
+		}
+		temp.setNext(new LNode(i));
 	    }
-	    temp.setNext(new LNode(i));
 	}
     }
 
-    
+    public int set(int index, int i){
+	LNode temp = a;
+	int old = 0;
+	if (index < 0 || index >= size()){
+	    throw new IndexOutOfBoundsException();
+	}else{
+	    while (index > 0){
+		temp = temp.getNext();
+		index--;
+	    }
+	    old = temp.getData();
+	    temp.setData(i);
+	}
+	return old;
+    }   
+
+    public int remove(int index){
+	int old = 0;
+	LNode temp = a;
+	if (index < 0 || index >= size ()){
+	    throw new IndexOutOfBoundsException();
+	}else{
+	    if (index == 0){
+		old = temp.getData();
+		temp.setData(0);
+	    }else{
+		while (index > 1){
+		    temp = temp.getNext();
+		    index--;
+		}
+		old = temp.getNext().getData();
+		temp.setNext(temp.getNext().getNext());
+	    }
+	}
+	return old;
+    }
 	
 }
