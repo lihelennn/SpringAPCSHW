@@ -7,10 +7,11 @@ public class MyLinkedList{
     int size = 0;
 
     public MyLinkedList(){
-
+	a = null;
     }
 
     public MyLinkedList(int data){
+	size = 1;
 	a.setData(data);
     }
 
@@ -41,14 +42,15 @@ public class MyLinkedList{
     }
 
     public int size(){
-	int ans = 0;
-	LNode temp = a;
-	while (temp.getNext() != null){
-	    ans++;
-	    temp = temp.getNext();
-	}
-	ans++;
-	return ans;
+	// int ans = 0;
+	// LNode temp = a;
+	// while (temp.getNext() != null){
+	//     ans++;
+	//     temp = temp.getNext();
+	// }
+	// ans++;
+	// return ans;
+	return size;
     }
 
     
@@ -98,6 +100,11 @@ public class MyLinkedList{
 		temp.setNext(new LNode(i));
 	    }
 	}
+	size++;
+	while (temp.getNext() != null){
+	    temp = temp.getNext();
+	}
+	tail = temp;
     }
 
     public int set(int index, int i){
@@ -124,7 +131,8 @@ public class MyLinkedList{
 	}else{
 	    if (index == 0){
 		old = temp.getData();
-		temp.setData(0);
+		temp = null;
+		size = 0;
 	    }else{
 		while (index > 1){
 		    temp = temp.getNext();
@@ -132,9 +140,16 @@ public class MyLinkedList{
 		}
 		old = temp.getNext().getData();
 		temp.setNext(temp.getNext().getNext());
+		size--;
+	    
+		while (temp.getNext() != null){
+		    temp = temp.getNext();
+		}
+		tail = temp;
 	    }
 	}
 	return old;
+
     }
 	
 }
