@@ -1,11 +1,11 @@
 import java.util.*;
 
-public class LNode{
-    private LNode next;
-    private int data;
+public class LNode<T>{
+    private LNode<T> next;
+    private T data;
 
-    public LNode(int n){
-	data = n;
+    public LNode(T n){
+	setData(n);
     }
 
     // public LNode(){
@@ -17,24 +17,24 @@ public class LNode{
 	// data = null;
     }
 
-    public LNode(int n, LNode m){
+    public LNode(T n, LNode<T> m){
 	data = n;
 	next = m;
     }
 
-    public int getData(){
+    public T getData(){
 	return data;
     }
 
-    public void setData(int n){
+    public void setData(T n){
 	data = n;
     }
 
-    public LNode getNext(){
+    public LNode<T> getNext(){
 	return next;
     }
 
-    public void setNext(LNode n){
+    public void setNext(LNode<T> n){
 	next = n;
     }
 

@@ -1,7 +1,7 @@
 public class Driver{
 
     public static void main(String[]args){
-	MyLinkedList tester = new MyLinkedList();
+	MyLinkedList<T> tester = new MyLinkedList<T>(99);
 	System.out.println(tester);
 	// LNode n1 = new LNode(13);
 	// System.out.println(n1);
