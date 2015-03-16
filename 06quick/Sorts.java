@@ -97,13 +97,16 @@ public class Sorts{
 	int pivotal = ary[ind];
 	System.out.println("pivotal" + pivotal);
 	int start = si;
-	int end = ei-1;
+	int end = ei;
 	int one,two;
 
+	System.out.println("start" + start);
+	System.out.println("end" + end);
+
 	//swapping to the end
-	one = ary[ary.length-1];
+	one = ary[end];
 	ary[ind] = one;
-	ary[ary.length-1] = pivotal;
+	ary[end] = pivotal;
 
 	while (start < end){
 	    System.out.println(Arrays.toString(ary));
@@ -126,12 +129,16 @@ public class Sorts{
 	if (ary[start] < pivotal){
 	    one = ary[start+1];
 	    ary[start+1] = pivotal;
-	    ary[ary.length-1] = one;
+	    ary[ei] = one;
+	    System.out.println(Arrays.toString(ary));
+	    System.out.println(start+1);
 	    return start + 1;
 	}else{
 	    one = ary[start];
 	    ary[start] = pivotal;
-	    ary[ary.length-1] = one;
+	    ary[ei] = one;
+	    System.out.println(Arrays.toString(ary));
+	    System.out.println(start);
 	    return start;
 	}
 	// System.out.println("start" + start);
@@ -142,12 +149,13 @@ public class Sorts{
     public static void quicksortH(int[]ary, int start, int end){
 	// int start = 0;
 	// int end = ary.length-1;
-	int now = partitionIn2(ary,start,end);
+	int now = partitionIn(ary,start,end);
 	// System.out.println(Arrays.toString(ary));
 	// System.out.println("start" + start);
 	// System.out.println("end" + end);
 	// System.out.println("now" + now);
 	if (ary.length > 1 && end>now && now>start){
+	    // if (ary.length > 1){
 	    if (now >= 2){
 		quicksortH(ary,start,now-1);
 	    }
@@ -160,6 +168,33 @@ public class Sorts{
 
     public static void quicksort(int[]ary){
 	quicksortH(ary,0,ary.length-1);
+    }
+
+    public static int quickSelect(int[] ary, int target){
+	if (target < 0 || target >= ary.length){
+	    System.out.println("out of bounds");
+	}
+
+	int start = 0;
+	int end = ary.length-1;
+	int now = partition(ary,start,end);
+
+	while (now != target){
+	    // System.out.println(Arrays.toString(ary));
+	    // System.out.println("start" + start);
+	    // System.out.println("end" + end);
+	    if (target > now){
+		start = now;
+
+	    }else{
+		if (target < now){
+		    end = now;
+		}
+	    }
+	    now = partition(ary,start,end);
+	}
+	// System.out.println("answer");
+	return ary[target];
     }
 
     
