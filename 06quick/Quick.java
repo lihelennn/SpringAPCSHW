@@ -2,6 +2,10 @@ import java.util.*;
 
 public class Quick{
 
+    public String name(){
+	return "li,helen";
+    }
+
     public static int partition(int[]ary, int si, int ei){
 	int[]D = new int[ary.length];
 	int place = 0;
