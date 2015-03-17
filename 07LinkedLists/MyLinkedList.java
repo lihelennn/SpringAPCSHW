@@ -27,7 +27,9 @@ public class MyLinkedList<T>{
 	    ans += temp.getData() + " , ";
 	    temp = temp.getNext();
 	}
-	ans += temp.getData();
+	if (temp.getData() != null){
+	    ans += temp.getData();
+	}
 	return ans + "]";
     }
 
@@ -56,9 +58,8 @@ public class MyLinkedList<T>{
     */
     
 
-    
     public boolean add(T i){
-    	LNode<T> temp = a;
+    	LNode<T> temp = tail;
     	if (a.getData() == null){
     	    a.setData(i);
     	}else{
@@ -137,8 +138,8 @@ public class MyLinkedList<T>{
 	size++;
 	while (temp.getNext() != null){
 	    temp = temp.getNext();
+	    tail = temp;
 	}
-	tail = temp;
 	System.out.println(tail.toString());
     }
 
@@ -155,6 +156,11 @@ public class MyLinkedList<T>{
 	    old = temp.getData();
 	    temp.setData(i);
 	}
+	while (temp.getNext() != null){
+	    temp = temp.getNext();
+	    tail = temp;
+	}
+
 	return old;
     }   
 
@@ -164,27 +170,31 @@ public class MyLinkedList<T>{
 	if (index < 0 || index >= size ()){
 	    throw new IndexOutOfBoundsException();
 	}else{
-	    if (index == 0){
+	    if (size == 1){
 		old = temp.getData();
-		temp = null;
+		temp.setData(null);
 		size = 0;
 	    }else{
-		while (index > 1){
-		    temp = temp.getNext();
-		    index--;
+		if (index == 0){
+		    old = temp.getData();
+		    temp.setData(temp.getNext().getData());
+		    temp.setNext(temp.getNext().getNext());
+		}else{
+		    while (index > 1){
+			temp = temp.getNext();
+			index--;
+		    }
+		    old = temp.getNext().getData();
+		    temp.setNext(temp.getNext().getNext());
 		}
-		old = temp.getNext().getData();
-		temp.setNext(temp.getNext().getNext());
 		size--;
-	    
 		while (temp.getNext() != null){
 		    temp = temp.getNext();
+		    tail = temp;
 		}
-		tail = temp;
 	    }
 	}
 	return old;
-
     }
-	
+
 }
