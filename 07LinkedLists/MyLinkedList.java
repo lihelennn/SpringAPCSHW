@@ -17,6 +17,7 @@ public class MyLinkedList<T>{
     public MyLinkedList(T data){
 	size = 1;
 	a.setData(data);
+	tail.setData(data);
     }
 
     public String toString(){
@@ -30,24 +31,47 @@ public class MyLinkedList<T>{
 	return ans + "]";
     }
 
+    /*
+      public boolean add(T i){
+      // LNode<T> temp = a;
+      LNode<T> temp = tail;
+      // if (a.getNext() == null){
+      //     a.setNext(new LNode<T>(i));
+      if (a.getData() == null){
+      a.setData(i);
+      // tail = a;
+      System.out.println("1");
+      }else{
+      while (temp.getNext() != null){
+      temp = temp.getNext();
+      }
+      temp.setNext(new LNode<T>(i));
+      // tail = temp.getNext();
+      System.out.println("2");
+      }
+      size++;
+      tail = temp.getNext();
+      return true;
+      }
+    */
+    
+
+    
     public boolean add(T i){
-	// LNode<T> temp = a;
-	LNode<T> temp = tail;
-	// if (a.getNext() == null){
-	//     a.setNext(new LNode<T>(i));
-	if (size == 0){
-	    a.setData(i);
-	    tail = a;
-	}else{
-	    while (temp.getNext() != null){
-		temp = temp.getNext();
-	    }
-	    temp.setNext(new LNode<T>(i));
-	    tail = temp;
-	}
-	size++;
-	return true;
+    	LNode<T> temp = a;
+    	if (a.getData() == null){
+    	    a.setData(i);
+    	}else{
+    	    // while (temp.getNext() != null){
+    	    // 	temp = temp.getNext();
+    	    // }
+    	    temp.setNext(new LNode<T>(i));
+    	}
+    	size++;
+    	tail = temp.getNext();
+    	return true;
     }
+    
 
     public int size(){
 	// int ans = 0;
@@ -105,7 +129,9 @@ public class MyLinkedList<T>{
 		    temp = temp.getNext();
 		    index--;
 		}
+		LNode<T> help = temp.getNext();
 		temp.setNext(new LNode<T>(i));
+		temp.getNext().setNext(help);
 	    }
 	}
 	size++;
@@ -113,6 +139,7 @@ public class MyLinkedList<T>{
 	    temp = temp.getNext();
 	}
 	tail = temp;
+	System.out.println(tail.toString());
     }
 
     public T set(int index, T i){
