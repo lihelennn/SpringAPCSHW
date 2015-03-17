@@ -87,14 +87,6 @@ public class MyLinkedList<T>{
     
 
     public int size(){
-	// int ans = 0;
-	// LNode temp = a;
-	// while (temp.getNext() != null){
-	//     ans++;
-	//     temp = temp.getNext();
-	// }
-	// ans++;
-	// return ans;
 	return size;
     }
 
@@ -212,5 +204,30 @@ public class MyLinkedList<T>{
 	}
 	return old;
     }
+
+    public class MyLinkedListIterator{
+	LNode<T> help = a;
+
+	public boolean hasNext(){
+	    if (help.getNext() != null){
+		return true;
+	    }
+	    return false;
+	}
+
+	public T next(){
+	    if (help.getNext() != null){
+		help = help.getNext();
+		return help.getData();
+	    }
+	    throw new NoSuchElementException();
+	}
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+
+    }
+
 
 }
