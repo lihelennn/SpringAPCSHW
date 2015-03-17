@@ -9,6 +9,9 @@ public class Driver{
 	System.out.println(tester.add(1));
 	System.out.println(tester.toString());
 	System.out.println("size" + tester.size());
+	System.out.println(tester.add(999));
+	System.out.println(tester.toString());
+	System.out.println("size" + tester.size());
 	System.out.println(tester.get(1));
 	// System.out.println(tester.get(10));
 	System.out.println(tester.indexOf(1));
@@ -16,7 +19,7 @@ public class Driver{
 	System.out.println(tester.indexOf(1000));
         tester.add(2,1000);
 	System.out.println(tester);
-	System.out.println(tester.set(1, 9));
+	System.out.println(tester.set(2, 9));
 	System.out.println(tester);
 	System.out.println(tester.size());
     	// System.out.println(tester.set(-1, 509));
@@ -35,7 +38,7 @@ public class Driver{
 	System.out.println(tester);
 	tester.add(1,36);
 	System.out.println(tester);
-	tester.add(1,1126);
+	tester.add(2,1126);
 	System.out.println(tester);
 
 

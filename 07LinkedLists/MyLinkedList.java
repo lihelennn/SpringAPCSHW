@@ -12,6 +12,7 @@ public class MyLinkedList<T>{
 
     public MyLinkedList(){
 	a = null;
+	tail = null;
     }
 
     public MyLinkedList(T data){
@@ -59,17 +60,23 @@ public class MyLinkedList<T>{
     
 
     public boolean add(T i){
-    	LNode<T> temp = tail;
-    	if (a.getData() == null){
-    	    a.setData(i);
+	System.out.println("tail");
+	System.out.println(tail);
+	System.out.println("a");
+	System.out.println(a);
+    	LNode<T> temp = a;
+    	if (temp.getData() == null){
+    	    temp.setData(i);
     	}else{
-    	    // while (temp.getNext() != null){
-    	    // 	temp = temp.getNext();
-    	    // }
+    	    while (temp.getNext() != null){
+    	    	temp = temp.getNext();
+    	    }
     	    temp.setNext(new LNode<T>(i));
+
     	}
+	tail = temp.getNext();
     	size++;
-    	tail = temp.getNext();
+    	// tail = tail.getNext();
     	return true;
     }
     
@@ -121,7 +128,12 @@ public class MyLinkedList<T>{
 	    throw new IndexOutOfBoundsException();
 	}else{
 	    if (index == 0){
-		temp.setNext(new LNode<T>(a.getData()));
+		if (temp.getNext() != null){
+		    LNode<T> help1 = temp.getNext();
+		    temp.setNext(new LNode<T>(temp.getData()));
+		    temp.getNext().setNext(help1);
+		}
+		// temp.setNext(temp);
 		temp.setData(i);
 		// LNode b = new LNode(i);
 		// b.setNext(temp);
