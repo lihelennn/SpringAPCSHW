@@ -141,7 +141,7 @@ public class Quick{
 
     public static int quickSelect(int[] ary, int target){
 	if (target < 0 || target >= ary.length){
-	    System.out.println("out of bounds");
+	    throw new IndexOutOfBoundsException("out of bounds");
 	}
 
 	int start = 0;
@@ -215,11 +215,11 @@ public class Quick{
 	Quick tester = new Quick();
 	int[]ary = {5,4,3,7,1,2,59,-2,-5,-1, -10, 100};
 	// System.out.println(Arrays.toString(ary));
-	System.out.println(partitionIn2(ary,0,ary.length-1));
+	// System.out.println(partitionIn2(ary,0,ary.length-1));
 	// tester.partitionIn(ary,0,ary.length-1);
 	// quicksort(ary);
-	// System.out.println(Arrays.toString(ary));
-	// System.out.println(quickSelect(ary,11));
+	System.out.println(Arrays.toString(ary));
+	System.out.println(quickSelect(ary,5));
 	// tester.partition(ary,3,ary.length-1);
 	// System.out.println(Arrays.toString(ary));
 	// tester.partition(ary,3,ary.length-1);
@@ -227,6 +227,7 @@ public class Quick{
 
     }
     */
+    
    
     // start1 = start1;
     // end1 = now1-1;
