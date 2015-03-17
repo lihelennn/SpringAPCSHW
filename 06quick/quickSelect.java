@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Sorts{
+public class quickSelect{
 
     public String name(){
 	return "li.helen";
@@ -146,32 +146,6 @@ public class Sorts{
     }
 
 
-    public static void quicksortH(int[]ary, int start, int end){
-	// int start = 0;
-	// int end = ary.length-1;
-        int now = partitionIn(ary,start,end);
-	// System.out.println(Arrays.toString(ary));
-	// System.out.println("start" + start);
-	// System.out.println("end" + end);
-	// System.out.println("now" + now);
-	if (ary.length > 1 && end>now && now>start){
-	    if (ary.length > 1){
-	    
-		if (now >= 2){
-		    quicksortH(ary,start,now-1);
-		}
-		if (now < ary.length - 2){
-		    quicksortH(ary,now+1,end);
-
-		}
-	    }
-	}
-    }
-
-    public static void quicksort(int[]ary){
-	quicksortH(ary,0,ary.length-1);
-    }
-
     public static int quickSelect(int[] ary, int target){
 	if (target < 0 || target >= ary.length){
 	    throw new IndexOutOfBoundsException("out of bounds");
@@ -198,16 +172,5 @@ public class Sorts{
 	// System.out.println("answer");
 	return ary[target];
     }
-
-    /*
-    
-      public static void main(String[]args){
-      int[]ary = {3,10,2,-9,9,14,13,15,100,-100};
-      System.out.println(Arrays.toString(ary));
-      quicksort(ary);
-      System.out.println(Arrays.toString(ary));
-      }
-    
-    */
 
 }
