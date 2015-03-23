@@ -8,4 +8,25 @@ public class MyStack<T>{
     }
 
     public T push(T n){
+	stack.add(0, n);
+	return n;
+    }
+
+    public boolean empty(){
+	return stack.size() == 0;
+    }
+
+    public T peek(){
+	return stack.get(0);
+    }
+
+    public T pop(){
+	return stack.remove(0);
+    }
+
+    public String toString(){
+	return stack.toString();
+    }
+
+}
 

@@ -16,7 +16,11 @@ public class MyQueue<T>{
     }
 
     public boolean isEmpty(){
-	return stack.size() == 0;
+	return queue.size() == 0;
+    }
+
+    public String toString(){
+	return queue.toString();
     }
 
 }
