@@ -206,19 +206,21 @@ public class MyLinkedList<T>{
     }
 
     public class MyLinkedListIterator{
-	LNode<T> help = a;
+	LNode<T> help = new LNode<T>();
 
 	public boolean hasNext(){
-	    if (help.getNext() != null){
-		return true;
-	    }
-	    return false;
+	    // if (help.getNext() != null){
+	    // 	return true;
+	    // }
+	    // return false;
+	    return help != null;
 	}
 
 	public T next(){
-	    if (help.getNext() != null){
+	    if (hasNext()){
+		T ans = help.getData();
 		help = help.getNext();
-		return help.getData();
+		return ans;
 	    }
 	    throw new NoSuchElementException();
 	}
