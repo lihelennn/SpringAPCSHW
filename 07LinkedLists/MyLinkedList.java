@@ -126,15 +126,28 @@ public class MyLinkedList<T> implements Iterable<T>{
 	if (index < 0 || index > size()){
 	    throw new IndexOutOfBoundsException();
 	}else{
-	    while (index > 0){
-		temp = temp.getNext();
-		index--;
+	    if (index == 0){
+		dummy.setNext(new LNode<T>(i));
+		dummy.getNext().setNext(temp1);
+	    }else{
+		if (index == size){
+		    tail.setNext(new LNode<T> (i));
+		    tail = tail.getNext();
+		}else{
+
+		    while (index > 0){
+			if (temp.getNext() != null){
+			    temp = temp.getNext();
+			}
+			index--;
+		    }
+		    LNode<T> help = temp.getNext();
+		    temp.setNext(new LNode<T>(i));
+		    temp = temp.getNext();
+		    temp.setNext(help);
+		}    
 	    }
-	    LNode<T> help = temp.getNext();
-	    temp.setNext(new LNode<T>(i));
-	    temp = temp.getNext();
-	    temp.setNext(help);
-	}    
+	}
 	size++;
 	while (temp.getNext() != null){
 	    temp = temp.getNext();
