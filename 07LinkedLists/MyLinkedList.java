@@ -128,13 +128,16 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}else{
 	    if (index == 0){
 		dummy.setNext(new LNode<T>(i));
-		dummy.getNext().setNext(temp1);
+		if (size != 0){
+		    dummy.getNext().setNext(temp1);
+		}		
 	    }else{
 		if (index == size){
+		    System.out.println("tail");
+		    System.out.println(tail.toString());
 		    tail.setNext(new LNode<T> (i));
 		    tail = tail.getNext();
 		}else{
-
 		    while (index > 0){
 			if (temp.getNext() != null){
 			    temp = temp.getNext();
