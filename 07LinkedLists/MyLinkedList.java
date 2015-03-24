@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MyLinkedList<T>{
+public class MyLinkedList<T> implements Iterable<T>{
 
     LNode<T> a = new LNode<T>();
     LNode<T> tail = new LNode<T>();
@@ -205,8 +205,13 @@ public class MyLinkedList<T>{
 	return old;
     }
 
-    public class MyLinkedListIterator{
-	LNode<T> help = new LNode<T>();
+    public class MyLinkedListIterator<T> implements Iterator<T>{
+
+	LNode<T> help;
+
+	public MyLinkedListIterator(LNode<T> head){
+	    help = head;
+	}
 
 	public boolean hasNext(){
 	    // if (help.getNext() != null){
@@ -230,6 +235,11 @@ public class MyLinkedList<T>{
 	}
 
     }
+
+    public Iterator<T> iterator(){
+	return new MyLinkedListIterator<T>(a);
+    }
+
 
 
 }
