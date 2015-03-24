@@ -54,7 +54,7 @@ public class Driver{
 	  System.out.println(tester);
 	  tester.add(0,36);
 	  System.out.println(tester);
-	  tester.add(2,1126);
+	  tester.add(1,1126);
 	  System.out.println(tester);
 	
        
