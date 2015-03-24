@@ -12,9 +12,9 @@ public class MyLinkedList<T> implements Iterable<T>{
     }
 
     public MyLinkedList(){
-	a = null;
-	tail = null;
-	dummy = null;
+	// a = null;
+	// tail = null;
+	// dummy = null;
     }
 
     public MyLinkedList(T data){
@@ -70,7 +70,8 @@ public class MyLinkedList<T> implements Iterable<T>{
 	// System.out.println("a");
 	// System.out.println(a);
 	LNode<T> temp = a;
-	if (temp.getData() == null){
+	// if (temp.getData() == null){
+	if (size == 0){
 	    temp.setData(i);
 	}else{
 	    while (temp.getNext() != null){
@@ -239,7 +240,6 @@ public class MyLinkedList<T> implements Iterable<T>{
     public Iterator<T> iterator(){
 	return new MyLinkedListIterator<T>(a);
     }
-
 
 
 }
