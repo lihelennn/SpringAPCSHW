@@ -2,23 +2,26 @@ import java.util.*;
 
 public class MyDeque<T>{
 
-    int size = 10;
+    int size = 5;
     Object[] data = new Object[size];
     int head = size / 2;
     int tail = head + 1;
     boolean begin = true;
-    boolean being2 = true;
+    boolean begin2 = true;
 
-    public static void resize(int size, Object[]data){
+    public void resize(int size, Object[]data){
 	Object[]ans = new Object[size];
 	int place = 0;
 	while (place < data.length){
 	    ans[place] = data[place];
 	    place++;
 	}
+	data=ans;
     }
 
     public void addFirst(T value){
+	System.out.println(toString());
+	System.out.println("size" + size);
 	if ((head-1 == tail) || (head == 0 && tail == size-1)){
 	    size*= 2;
 	    resize(size, data);
@@ -29,9 +32,14 @@ public class MyDeque<T>{
 		data[head] = value;
 	    }
 	}else{
-	    if (head-1 < size && data[head-1] == null){
-		data[head-1] = value;
-	        head--;
+	    if (begin == true){
+		data[head] = value;
+		begin = false;
+	    }else{
+		if (head-1 < size && data[head-1] == null){
+		    data[head-1] = value;
+		    head--;
+		}
 	    }
 	}
     }
@@ -49,9 +57,14 @@ public class MyDeque<T>{
 		data[tail] = value;
 	    }
 	}else{
-	    if (tail+1 < size && data[tail+1] == null){
-		data[tail+1] = value;
-		tail++;
+	    if (begin2 == true){
+		data[tail] = value;
+		begin2 = false;
+	    }else{
+		if (tail+1 < size && data[tail+1] == null){
+		    data[tail+1] = value;
+		    tail++;
+		}
 	    }
 	}
     }
@@ -64,6 +77,10 @@ public class MyDeque<T>{
 	    place++;
 	}
 	return ans;
+    }
+
+    public int size(){
+	return size;
     }
 
     public T getFirst(){
@@ -116,6 +133,15 @@ public class MyDeque<T>{
 	test.addFirst(9);
 	test.addLast(0);
 	test.addLast(1);
+	System.out.println(test);
+	// System.out.println(test.removeLast());
+	// System.out.println(test.removeFirst());
+	// System.out.println(test);
+	test.addFirst(8);
+	System.out.println(test);
+	System.out.println(test.size());
+	test.addFirst(7);
+	System.out.println(test.size());
 	System.out.println(test);
     }
 
