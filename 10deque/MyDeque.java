@@ -6,17 +6,35 @@ public class MyDeque<T>{
     Object[] data = new Object[size];
     int head = size / 2;
     int tail = head + 1;
+    int hC = head;
+    int tC = tail;
     boolean begin = true;
     boolean begin2 = true;
 
     public void resize(int size){
 	Object[]ans = new Object[size];
-	int place = 0;
-	while (place < data.length){
-	    ans[place] = data[place];
-	    place++;
+	int h = size / 2;
+	int t = h + 1;
+	int keep = h;
+	int keep2 = t;;
+	int hC = head;
+	int tC = tail;
+	while (head != tail){
+	    ans[h] = getFirst();
+	    head--;
+	    h--;
+	    // hC--;
+	    
+	}
+	while (tail != head){
+	    ans[t] = getLast();
+	    tail++;
+	    t++;
+	    // tC--;
 	}
 	data=ans;
+	head = keep;
+	tail = keep2;
     }
 
     public void addFirst(T value){
