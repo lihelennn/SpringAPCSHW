@@ -9,7 +9,7 @@ public class MyDeque<T>{
     boolean begin = true;
     boolean begin2 = true;
 
-    public void resize(int size, Object[]data){
+    public void resize(int size){
 	Object[]ans = new Object[size];
 	int place = 0;
 	while (place < data.length){
@@ -24,7 +24,7 @@ public class MyDeque<T>{
 	System.out.println("size" + size);
 	if ((head-1 == tail) || (head == 0 && tail == size-1)){
 	    size*= 2;
-	    resize(size, data);
+	    resize(size);
 	}
 	if (head == 0){
 	    head = size-1;
@@ -49,11 +49,11 @@ public class MyDeque<T>{
     public void addLast(T value){
 	if ((tail+1 == head) || (tail==size-1 && head == 0)){
 	    size*= 2;
-	    resize(size, data);
+	    resize(size);
 	}
 	if (tail == size-1){
 	    tail = 0;
-	    if (tail+1 != head){
+	    if (tail != head){
 		data[tail] = value;
 	    }
 	}else{
@@ -142,6 +142,19 @@ public class MyDeque<T>{
 	System.out.println(test.size());
 	test.addFirst(7);
 	System.out.println(test.size());
+	System.out.println(test);
+	System.out.println(test.removeFirst());
+	System.out.println(test.removeFirst());
+	// System.out.println(test);
+	test.addLast(2);
+	test.addLast(3);
+	test.addLast(4);
+	test.addLast(5);
+	System.out.println(test);
+	test.addLast(6);
+	test.addLast(7);
+	System.out.println(test);
+	test.addLast(8);
 	System.out.println(test);
     }
 
