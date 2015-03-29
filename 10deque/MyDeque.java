@@ -11,15 +11,15 @@ public class MyDeque<T>{
     boolean begin = true;
     boolean begin2 = true;
 
-    public void resize(int size1){
-	Object[]ans = new Object[size1];
-	int h = size1 / 2;
+    public void resize(int size){
+	Object[]ans = new Object[size];
+	int h = size / 2;
 	int t = h + 1;
 	int saveh = h;
 	int savet = t;
 	while (hC != head){
 	    if (h == -1){
-		h = size1-1;
+		h = size-1;
 	    }
 	    if (hC == -1){
 		hC = size-1;
@@ -28,27 +28,25 @@ public class MyDeque<T>{
 	    h--;
 	    hC--;
 	}
-	ans[h] = data[hC];
-	while (tC != tail){
-	    if (t == size1){
+	while (t != tail){
+	    if (t == size){
 		t = 0;
 	    }
 	    if (tC == size){
-		tC = 0;
+		t = 0;
 	    }
 	    ans[t] = data[tC];
 	    t++;
 	    tC++;
 	}
-	ans[t] = data[tC];
 	hC = saveh;
 	tC = savet;
-	// head = hC;
-	// h--;
-	// t--;
+	head = hC;
+	h--;
+	t--;
 	head = h;
 	tail = t;
-	data = ans;
+
 
     }
 
@@ -94,8 +92,7 @@ public class MyDeque<T>{
 		data[tail] = value;
 		begin2 = false;
 	    }else{
-		// if (tail+1 < size && data[tail+1] == null){
-		if (tail + 1 < size){
+		if (tail+1 < size && data[tail+1] == null){
 		    data[tail+1] = value;
 		    tail++;
 		}
@@ -186,7 +183,7 @@ public class MyDeque<T>{
 	test.addLast(5);
 	System.out.println(test);
 	test.addLast(6);
-	test.addFirst(7);
+	test.addLast(7);
 	System.out.println(test);
 	test.addLast(8);
 	System.out.println(test);
