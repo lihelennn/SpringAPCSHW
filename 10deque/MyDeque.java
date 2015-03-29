@@ -15,26 +15,39 @@ public class MyDeque<T>{
 	Object[]ans = new Object[size];
 	int h = size / 2;
 	int t = h + 1;
-	int keep = h;
-	int keep2 = t;;
-	int hC = head;
-	int tC = tail;
-	while (head != tail){
-	    ans[h] = getFirst();
-	    head--;
+	int saveh = h;
+	int savet = t;
+	while (hC != head){
+	    if (h == -1){
+		h = size-1;
+	    }
+	    if (hC == -1){
+		hC = size-1;
+	    }
+	    ans[h] = data[hC];
 	    h--;
-	    // hC--;
-	    
+	    hC--;
 	}
-	while (tail != head){
-	    ans[t] = getLast();
-	    tail++;
+	while (t != tail){
+	    if (t == size){
+		t = 0;
+	    }
+	    if (tC == size){
+		t = 0;
+	    }
+	    ans[t] = data[tC];
 	    t++;
-	    // tC--;
+	    tC++;
 	}
-	data=ans;
-	head = keep;
-	tail = keep2;
+	hC = saveh;
+	tC = savet;
+	head = hC;
+	h--;
+	t--;
+	head = h;
+	tail = t;
+
+
     }
 
     public void addFirst(T value){
@@ -44,7 +57,7 @@ public class MyDeque<T>{
 	    size*= 2;
 	    resize(size);
 	}
-	if (head == 0){
+	if (head == -1){
 	    head = size-1;
 	    if (head-1 != tail){
 		data[head] = value;
