@@ -2,7 +2,7 @@ import java.util.*;
 
 public class MyDeque<T>{
 
-    int size = 1;
+    int size = 100;
     Object[] data = new Object[size];
     int head = size/2;
     int tail = head+1;
@@ -11,6 +11,10 @@ public class MyDeque<T>{
     boolean begin = true;
     boolean begin2 = true;
     int numElements = 0;
+
+    public String name(){
+	return "li.helen";
+    }
 
     public void resize(int size1){
 	Object[]ans = new Object[size1];
@@ -197,9 +201,10 @@ public class MyDeque<T>{
 	return ans;
     }
 
-
+    /*
     public static void main(String[]args){
 	MyDeque<Integer>test = new MyDeque<Integer>();
+	System.out.println(test.name());
 	// test.addFirst(10);
 	// test.addFirst(9);
 	// test.addLast(0);
@@ -330,15 +335,9 @@ public class MyDeque<T>{
 	System.out.println(test.getLast());
 	System.out.println(test);
 
-
-
-
-
-
-
-
-
     }
+
+    */
 
 }
 
