@@ -30,6 +30,9 @@ public class MyDeque<T>{
 	}
 	ans[h] = data[hC];
 	while (tC != tail){
+	    // System.out.print(tC);
+	    // System.out.println(size);
+	    // System.out.println(Arrays.toString(ans));
 	    if (t == size1){
 		t = 0;
 	    }
@@ -49,6 +52,7 @@ public class MyDeque<T>{
 	head = h;
 	tail = t;
 	data = ans;
+	size=size1;
 
     }
 
@@ -56,8 +60,7 @@ public class MyDeque<T>{
 	// System.out.println(toString());
 	// System.out.println("size" + size);
 	if ((head-1 == tail) || (head == 0 && tail == size-1)){
-	    size*= 2;
-	    resize(size);
+	    resize(size*2);
 	}
 	if (head == 0){
 	    head = size-1;
@@ -81,8 +84,7 @@ public class MyDeque<T>{
 
     public void addLast(T value){
 	if ((tail+1 == head) || (tail==size-1 && head == 0)){
-	    size*= 2;
-	    resize(size);
+	    resize(size*2);
 	}
 	if (tail == size-1){
 	    tail = 0;
