@@ -4,6 +4,10 @@ public class MyStack<T>{
 
     LinkedList<T> stack = new LinkedList<T>();
 
+    public String name(){
+	return "li.helen";
+    }
+    
     public MyStack(){
     }
 
