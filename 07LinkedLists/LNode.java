@@ -4,7 +4,7 @@ public class LNode<T>{
     private LNode<T> next;
     private T data;
     
-     public String name(){
+    public String name(){
 	return "li.helen";
     }
 
