@@ -3,6 +3,10 @@ import java.util.*;
 public class LNode<T>{
     private LNode<T> next;
     private T data;
+    
+     public String name(){
+	return "li.helen";
+    }
 
     public LNode(T n){
 	setData(n);
