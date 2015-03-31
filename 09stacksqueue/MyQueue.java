@@ -3,6 +3,10 @@ import java.util.*;
 public class MyQueue<T>{
 
     LinkedList<T> queue = new LinkedList<T>();
+    
+    public String name(){
+	return "li.helen";
+    }
 
     public MyQueue(){
     }
