@@ -7,7 +7,7 @@ public class Maze{
     private int maxx,maxy;
     private int startx,starty;
     private LinkedList<Coordinate> deck = new LinkedList<Coordinate>();
-    private int current;
+    private int current = 0;
 
     public Maze(String filename){
 	startx = -1;
@@ -87,14 +87,37 @@ public class Maze{
 	return hide()+invert()+go(0,0)+ans+"\n"+show();
     }
 
-    public boolean solveBFShelper(int x, int y){
-	if (maze[x][y] == 'E'){
-	    return true;
-	}
-	if (maze[x][y] == ' '){
-	    maze[x][y] = current;
-	    deck.addLast(new Coordinate(x,y,current));
+    public boolean solveBFShelper(){
+	// if (maze[x][y] == 'E'){
+	//     return true;
+	// }
+	deck.addLast(new Coordinate(startx, starty, current));
+	maze[startx][starty] = 0;
+	int x = startx;
+	int y = starty;
+	while (maze[deck.getFirst().getX()][deck.getFirst().getY()] != 'E'){
 	    if (maze[x+1][y] == ' '){
-		deck.addLast(next Coordinate(x,y,current));
+		deck.addLast(new Coordinate(x+1,y,current+1));
+	    }
+	    if (maze[x-1][y] == ' '){
+		deck.addLast(new Coordinate(x-1,y,current+1));
+	    }
+	    if (maze[x][y+1] == ' '){
+		deck.addLast(new Coordinate(x,y+1, current+1));
+	    }
+	    if (maze[x][y-1] == ' '){
+		deck.addLast(new Coordinate(x,y-1,current+1));
+	    }
+	    deck.removeFirst();
+	}
+    }
+
+private 
+
+}
+
+
+
+		    
 	
 
