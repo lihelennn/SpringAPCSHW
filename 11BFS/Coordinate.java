@@ -31,4 +31,9 @@ public class Coordinate{
 	y = ycoor;
     }
 
+    public String toString(){
+	String ans = "[" + x + "," + y + "," + current + "]";
+	return ans;
+    }
+
 }
