@@ -92,27 +92,34 @@ public class Maze{
 	//     return true;
 	// }
 	deck.addLast(new Coordinate(startx, starty, current));
-	maze[startx][starty] = 0;
+	maze[startx][starty] = '0';
 	int x = startx;
 	int y = starty;
-	while (maze[deck.getFirst().getX()][deck.getFirst().getY()] != 'E'){
+	while (deck.size() != 0){
+	    if (maze[deck.getFirst().getX()][deck.getFirst().getY()] == 'E'){
+		return true;
+	    }
 	    if (maze[x+1][y] == ' '){
 		deck.addLast(new Coordinate(x+1,y,current+1));
+		maze[x+1][y] = Integer.toString(current+1).charAt(0);
 	    }
 	    if (maze[x-1][y] == ' '){
 		deck.addLast(new Coordinate(x-1,y,current+1));
+		maze[x-1][y] = Integer.toString(current+1).charAt(0);
 	    }
 	    if (maze[x][y+1] == ' '){
 		deck.addLast(new Coordinate(x,y+1, current+1));
+		maze[x][y+1] = Integer.toString(current+1).charAt(0);
 	    }
 	    if (maze[x][y-1] == ' '){
 		deck.addLast(new Coordinate(x,y-1,current+1));
+		maze[x][y-1] = Integer.toString(current+1).charAt(0);
 	    }
+	    current++;
 	    deck.removeFirst();
 	}
+	return false;
     }
-
-private 
 
 }
 
