@@ -4,7 +4,8 @@ public class Driver{
 
      	Maze test = new Maze("data1.dat");
 	System.out.println(test.name());
-	System.out.println(test.solveBFS(true));
+	// System.out.println(test.solveBFS(true));
+	System.out.println(test.solveDFS(true));
 
     }
 

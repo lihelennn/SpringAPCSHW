@@ -92,6 +92,12 @@ public class Maze{
 	    }
 	    ans += mazeC[i%maxx][i/maxx];
 	}
+	// for(int i=0;i<maxx*maxy;i++){
+	//     if(i%maxx ==0 && i!=0){
+	// 	ans+="\n";
+	//     }
+	//     ans += maze[i%maxx][i/maxx];
+	// }
 	// return hide()+invert()+go(0,0)+ans+"\n"+show();
 	return hide()+clear()+go(0,0)+ans+"\n"+show();
 
@@ -149,6 +155,72 @@ public class Maze{
 	    current++;
 	    System.out.println("current" + current);
 	    deck.removeFirst();
+	    if (animate){
+		System.out.println(this);
+	    }
+	}
+	return false;
+    }
+
+ public boolean solveDFS(boolean animate){
+	deck.addLast(new Coordinate(startx, starty, current));
+	maze[startx][starty] = 0;
+	mazeC[startx][starty] = 'x';
+	int x = startx;
+	int y = starty;
+	while (deck.size() > 0){
+	    x = deck.getLast().getX();
+	    y = deck.getLast().getY();
+	    if (mazeC[deck.getLast().getX()][deck.getLast().getY()] == 'E'){	
+		maze[deck.getLast().getX()][deck.getLast().getY()] = current+1;
+		mazeC[x][y] = 'x';
+		System.out.println(this);
+		return true;
+	    }
+	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
+		System.out.println(1);
+		deck.addLast(new Coordinate(x+1,y,current+1));
+		if (mazeC[x+1][y] == ' '){
+		    mazeC[x+1][y] = 'x';
+		    maze[x+1][y] = current+1;
+		}
+
+	    }
+	    x = deck.getLast().getX();
+	    y = deck.getLast().getY();
+	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
+		deck.addLast(new Coordinate(x-1,y,current+1));
+		System.out.println(2);
+		if (mazeC[x-1][y] == ' '){
+		    mazeC[x-1][y] = 'x';
+		    maze[x-1][y] = current+1;
+		}
+
+	    }
+	    x = deck.getLast().getX();
+	    y = deck.getLast().getY();
+	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
+		deck.addLast(new Coordinate(x,y+1,current+1));
+		System.out.println(3);
+		if (mazeC[x][y+1] == ' '){
+		    mazeC[x][y+1] = 'x';
+		    maze[x][y+1] = current+1;
+		}
+	    }
+	    x = deck.getLast().getX();
+	    y = deck.getLast().getY();
+	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
+		deck.addLast(new Coordinate(x,y-1,current+1));
+		System.out.println(4);
+		if (mazeC[x][y-1] == ' '){
+		    mazeC[x][y-1] = 'x';
+		    maze[x][y-1] = current+1;
+		}
+	    }
+	    current++;
+	    System.out.println("current" + current);
+	    deck.removeLast();
+	    System.out.println(deck);
 	    if (animate){
 		System.out.println(this);
 	    }
