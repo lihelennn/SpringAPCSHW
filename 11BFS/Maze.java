@@ -86,7 +86,7 @@ public class Maze{
 	    if(i%maxx ==0 && i!=0){
 		ans+="\n";
 	    }
-	    ans += maze[i%maxx][i/maxx];
+	    ans += mazeC[i%maxx][i/maxx];
 	}
 	// return hide()+invert()+go(0,0)+ans+"\n"+show();
 	return hide()+clear()+go(0,0)+ans+"\n"+show();
@@ -108,39 +108,47 @@ public class Maze{
 	    if (mazeC[deck.getFirst().getX()][deck.getFirst().getY()] == 'E'){
 		maze[deck.getFirst().getX()][deck.getFirst().getY()] = current+1;
 		mazeC[x][y] = 'x';
+		System.out.println(this);
 		return true;
 	    }
-	    if (maze[x+1][y] == ' '){
+	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
 		System.out.println(1);
 		deck.addLast(new Coordinate(x+1,y,current+1));
-		maze[x+1][y] = current+1;
-		mazeC[x+1][y] = 'x';
+		if (mazeC[x+1][y] == ' '){
+		    mazeC[x+1][y] = 'x';
+		    maze[x+1][y] = current+1;
+		}
 
 	    }
-	    if (maze[x-1][y] == ' '){
+	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
 		deck.addLast(new Coordinate(x-1,y,current+1));
-		maze[x-1][y] = current+1;
 		System.out.println(2);
-		mazeC[x-1][y] = 'x';
+		if (mazeC[x-1][y] == ' '){
+		    mazeC[x-1][y] = 'x';
+		    maze[x-1][y] = current+1;
+		}
 
 	    }
-	    if (maze[x][y+1] == ' '){
+	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
 		deck.addLast(new Coordinate(x,y+1,current+1));
-		maze[x][y+1] = current+1;
 		System.out.println(3);
-		mazeC[x][y+1] = 'x';
-
+		if (mazeC[x][y+1] == ' '){
+		    mazeC[x][y+1] = 'x';
+		    maze[x][y+1] = current+1;
+		}
 	    }
-	    if (maze[x][y-1] == ' '){
+	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
 		deck.addLast(new Coordinate(x,y-1,current+1));
-		maze[x][y-1] = current+1;
 		System.out.println(4);
-		mazeC[x][y-1] = 'x';
+		if (mazeC[x][y-1] == ' '){
+		    mazeC[x][y-1] = 'x';
+		    maze[x][y-1] = current+1;
+		}
 	    }
 	    current++;
 	    deck.removeFirst();
 	    System.out.println(this);
-	    System.out.println(Arrays.toString(deck.toArray()));
+	    // System.out.println(Arrays.toString(deck.toArray()));
 	}
 	return false;
     }
