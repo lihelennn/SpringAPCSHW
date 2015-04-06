@@ -12,6 +12,10 @@ public class Maze{
     private LinkedList<Coordinate> deck = new LinkedList<Coordinate>();
     private int current = 0;
 
+    public String name(){
+	return "li.helen";
+    }
+
     public Maze(String filename){
 	startx = -1;
 	starty = -1;
@@ -93,10 +97,7 @@ public class Maze{
 
     }
 
-    public boolean solveBFShelper(){
-	// if (maze[x][y] == 'E'){
-	//     return true;
-	// }
+    public boolean solveBFS(boolean animate){
 	deck.addLast(new Coordinate(startx, starty, current));
 	maze[startx][starty] = 0;
 	mazeC[startx][starty] = 'x';
@@ -146,11 +147,17 @@ public class Maze{
 		}
 	    }
 	    current++;
+	    System.out.println("current" + current);
 	    deck.removeFirst();
-	    System.out.println(this);
-	    // System.out.println(Arrays.toString(deck.toArray()));
+	    if (animate){
+		System.out.println(this);
+	    }
 	}
 	return false;
+    }
+
+    public boolean solveBFS(){
+	return solveBFS(false);
     }
 
 }
