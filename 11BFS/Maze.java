@@ -10,6 +10,7 @@ public class Maze{
     private int maxx,maxy;
     private int startx,starty;
     private LinkedList<Coordinate> deck = new LinkedList<Coordinate>();
+    private LinkedList<Coordinate> deckhelper = new LinkedList<Coordinate>();
     private int current = 0;
 
     public String name(){
@@ -104,18 +105,24 @@ public class Maze{
     }
 
     public boolean solveBFS(boolean animate){
+	boolean curr = false;
 	deck.addLast(new Coordinate(startx, starty, current));
 	maze[startx][starty] = 0;
 	mazeC[startx][starty] = 'x';
 	int x = startx;
 	int y = starty;
 	while (deck.size() > 0){
+	    // if (current == 62){
+	    // 	return true;
+	    // }
+	
 	    x = deck.getFirst().getX();
 	    y = deck.getFirst().getY();
 	    if (mazeC[deck.getFirst().getX()][deck.getFirst().getY()] == 'E'){
 		maze[deck.getFirst().getX()][deck.getFirst().getY()] = current+1;
 		mazeC[x][y] = 'x';
 		System.out.println(this);
+		System.out.println(deckhelper);
 		return true;
 	    }
 	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
@@ -125,6 +132,7 @@ public class Maze{
 		    mazeC[x+1][y] = 'x';
 		    maze[x+1][y] = current+1;
 		}
+		curr = true;
 
 	    }
 	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
@@ -134,6 +142,7 @@ public class Maze{
 		    mazeC[x-1][y] = 'x';
 		    maze[x-1][y] = current+1;
 		}
+		curr = true;
 
 	    }
 	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
@@ -143,6 +152,7 @@ public class Maze{
 		    mazeC[x][y+1] = 'x';
 		    maze[x][y+1] = current+1;
 		}
+		curr = true;
 	    }
 	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
 		deck.addLast(new Coordinate(x,y-1,current+1));
@@ -151,10 +161,14 @@ public class Maze{
 		    mazeC[x][y-1] = 'x';
 		    maze[x][y-1] = current+1;
 		}
+		curr = true;
 	    }
-	    current++;
+	    if (curr){
+		current++;
+		curr = false;
+	    }
 	    System.out.println("current" + current);
-	    deck.removeFirst();
+	    deckhelper.addLast(deck.removeFirst());
 	    if (animate){
 		System.out.println(this);
 	    }
