@@ -8,7 +8,7 @@ public class Maze{
     private char[][]mazeC;
     private int[][]maze ;
     private int maxx,maxy;
-    private int startx,starty;
+    private int startx,starty,endx,endy;
     private LinkedList<Coordinate> deck = new LinkedList<Coordinate>();
     private LinkedList<Coordinate> deckhelper = new LinkedList<Coordinate>();
     private int current = 0;
@@ -50,6 +50,10 @@ public class Maze{
 	    if(c=='S'){
 		startx = i%maxx;
 		starty = i/maxx;
+	    }
+	    if (c=='E'){
+		endx = i%maxx;
+		endy = i/maxx;
 	    }
 	}
     }
@@ -112,13 +116,11 @@ public class Maze{
 	int x = startx;
 	int y = starty;
 	while (deck.size() > 0){
-	    // if (current == 62){
-	    // 	return true;
-	    // }
-	
 	    x = deck.getFirst().getX();
 	    y = deck.getFirst().getY();
 	    if (mazeC[x][y] == 'E'){
+		endx = x;
+		endy = y;
 		maze[x][y] = current+1;
 		mazeC[x][y] = 'x';
 		System.out.println(this);
@@ -186,7 +188,9 @@ public class Maze{
 	    x = deck.getLast().getX();
 	    y = deck.getLast().getY();
 	    deck.removeLast();
-	    if (mazeC[x][y] == 'E'){	
+	    if (mazeC[x][y] == 'E'){
+		endx = x;
+		endy = y;	
 		maze[x][y] = current+1;
 		mazeC[x][y] = 'x';
 		System.out.println(this);
@@ -247,10 +251,52 @@ public class Maze{
 	return solveBFS(false);
     }
 
-}
+    public boolean solveDFS(){
+	return solveDFS(false);
+    }
 
+    public int[] solutionCoordinates(){
+	int x = endx;
+	int y = endy;
+	System.out.println(endx + " , " + endy);
+	System.out.println(Arrays.toString(maze[23]));
+	int[]ans = new int[current*2];
+	while (current > 1){
+	    if (maze[x+1][y] == current - 1){
+		ans[(current-1)*2 -1] = x+1;
+		ans[(current-1)*2] = y;
+		maze[x+1][y] = -1;
+		x++;
+	    }
+	    if (maze[x-1][y] == current - 1){
+		ans[(current-1)*2 - 1] = x-1;
+		ans[(current-1)*2] = y;
+		maze[x-1][y] = -1;
+		x--;
+
+	    }
+	    if (maze[x][y+1] == current - 1){
+		ans[(current-1)*2 - 1] = x;
+		ans[(current-1)*2] = y+1;
+		maze[x][y+1] = -1;
+		y++;
+
+	    }
+	    if (maze[x][y-1] == current - 1){
+		ans[(current-1)*2 - 1] = x;
+		ans[(current-1)*2] = y-1;
+		maze[x][y-1] = -1;
+		y--;
+	    }
+	    current--;
+	}
+	System.out.println(Arrays.toString(ans));
+	return ans;
+    }
+	    
 
 
 		    
 	
 
+}
