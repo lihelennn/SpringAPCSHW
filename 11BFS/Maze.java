@@ -259,37 +259,40 @@ public class Maze{
 	int x = endx;
 	int y = endy;
 	System.out.println(endx + " , " + endy);
-	System.out.println(Arrays.toString(maze[23]));
-	int[]ans = new int[current*2];
+	int[]ans = new int[current*2 + 2];
+	ans[current*2] = x;
+	ans[current*2 + 1] = y;
 	while (current > 1){
 	    if (maze[x+1][y] == current - 1){
-		ans[(current-1)*2 -1] = x+1;
-		ans[(current-1)*2] = y;
+		ans[(current-1)*2] = x+1;
+		ans[(current-1)*2 + 1] = y;
 		maze[x+1][y] = -1;
 		x++;
 	    }
 	    if (maze[x-1][y] == current - 1){
-		ans[(current-1)*2 - 1] = x-1;
-		ans[(current-1)*2] = y;
+		ans[(current-1)*2] = x-1;
+		ans[(current-1)*2 + 1] = y;
 		maze[x-1][y] = -1;
 		x--;
 
 	    }
 	    if (maze[x][y+1] == current - 1){
-		ans[(current-1)*2 - 1] = x;
-		ans[(current-1)*2] = y+1;
+		ans[(current-1)*2] = x;
+		ans[(current-1)*2 + 1] = y+1;
 		maze[x][y+1] = -1;
 		y++;
 
 	    }
 	    if (maze[x][y-1] == current - 1){
-		ans[(current-1)*2 - 1] = x;
-		ans[(current-1)*2] = y-1;
+		ans[(current-1)*2] = x;
+		ans[(current-1)*2 + 1] = y-1;
 		maze[x][y-1] = -1;
 		y--;
 	    }
 	    current--;
 	}
+	ans[0] = startx;
+	ans[1] = starty;
 	System.out.println(Arrays.toString(ans));
 	return ans;
     }
