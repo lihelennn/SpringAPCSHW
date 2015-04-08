@@ -118,8 +118,8 @@ public class Maze{
 	
 	    x = deck.getFirst().getX();
 	    y = deck.getFirst().getY();
-	    if (mazeC[deck.getFirst().getX()][deck.getFirst().getY()] == 'E'){
-		maze[deck.getFirst().getX()][deck.getFirst().getY()] = current+1;
+	    if (mazeC[x][y] == 'E'){
+		maze[x][y] = current+1;
 		mazeC[x][y] = 'x';
 		System.out.println(this);
 		System.out.println(deckhelper);
@@ -176,7 +176,7 @@ public class Maze{
 	return false;
     }
 
- public boolean solveDFS(boolean animate){
+    public boolean solveDFS(boolean animate){
 	deck.addLast(new Coordinate(startx, starty, current));
 	maze[startx][starty] = 0;
 	mazeC[startx][starty] = 'x';
@@ -185,8 +185,9 @@ public class Maze{
 	while (deck.size() > 0){
 	    x = deck.getLast().getX();
 	    y = deck.getLast().getY();
-	    if (mazeC[deck.getLast().getX()][deck.getLast().getY()] == 'E'){	
-		maze[deck.getLast().getX()][deck.getLast().getY()] = current+1;
+	    deck.removeLast();
+	    if (mazeC[x][y] == 'E'){	
+		maze[x][y] = current+1;
 		mazeC[x][y] = 'x';
 		System.out.println(this);
 		return true;
@@ -200,8 +201,8 @@ public class Maze{
 		}
 
 	    }
-	    x = deck.getLast().getX();
-	    y = deck.getLast().getY();
+	    // x = deck.getLast().getX();
+	    // y = deck.getLast().getY();
 	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
 		deck.addLast(new Coordinate(x-1,y,current+1));
 		System.out.println(2);
@@ -211,8 +212,8 @@ public class Maze{
 		}
 
 	    }
-	    x = deck.getLast().getX();
-	    y = deck.getLast().getY();
+	    // x = deck.getLast().getX();
+	    // y = deck.getLast().getY();
 	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
 		deck.addLast(new Coordinate(x,y+1,current+1));
 		System.out.println(3);
@@ -221,8 +222,8 @@ public class Maze{
 		    maze[x][y+1] = current+1;
 		}
 	    }
-	    x = deck.getLast().getX();
-	    y = deck.getLast().getY();
+	    // x = deck.getLast().getX();
+	    // y = deck.getLast().getY();
 	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
 		deck.addLast(new Coordinate(x,y-1,current+1));
 		System.out.println(4);
@@ -233,7 +234,7 @@ public class Maze{
 	    }
 	    current++;
 	    System.out.println("current" + current);
-	    deck.removeLast();
+	    // deck.removeLast();
 	    System.out.println(deck);
 	    if (animate){
 		System.out.println(this);
