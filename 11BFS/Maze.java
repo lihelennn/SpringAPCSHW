@@ -1,4 +1,4 @@
-//make the mazeC also change (along with the maze)
+//figure out BFS
 
 import java.util.*;
 import java.io.*;
@@ -115,13 +115,14 @@ public class Maze{
 	mazeC[startx][starty] = 'x';
 	int x = startx;
 	int y = starty;
+	current++;
 	while (deck.size() > 0){
 	    x = deck.getFirst().getX();
 	    y = deck.getFirst().getY();
 	    if (mazeC[x][y] == 'E'){
 		endx = x;
 		endy = y;
-		maze[x][y] = current+1;
+		maze[x][y] = current;
 		mazeC[x][y] = 'x';
 		System.out.println(this);
 		System.out.println(deckhelper);
@@ -129,39 +130,39 @@ public class Maze{
 	    }
 	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
 		System.out.println(1);
-		deck.addLast(new Coordinate(x+1,y,current+1));
+		deck.addLast(new Coordinate(x+1,y,current));
 		if (mazeC[x+1][y] == ' '){
 		    mazeC[x+1][y] = 'x';
-		    maze[x+1][y] = current+1;
+		    maze[x+1][y] = current;
 		}
 		curr = true;
 
 	    }
 	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
-		deck.addLast(new Coordinate(x-1,y,current+1));
+		deck.addLast(new Coordinate(x-1,y,current));
 		System.out.println(2);
 		if (mazeC[x-1][y] == ' '){
 		    mazeC[x-1][y] = 'x';
-		    maze[x-1][y] = current+1;
+		    maze[x-1][y] = current;
 		}
 		curr = true;
 
 	    }
 	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
-		deck.addLast(new Coordinate(x,y+1,current+1));
+		deck.addLast(new Coordinate(x,y+1,current));
 		System.out.println(3);
 		if (mazeC[x][y+1] == ' '){
 		    mazeC[x][y+1] = 'x';
-		    maze[x][y+1] = current+1;
+		    maze[x][y+1] = current;
 		}
 		curr = true;
 	    }
 	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
-		deck.addLast(new Coordinate(x,y-1,current+1));
+		deck.addLast(new Coordinate(x,y-1,current));
 		System.out.println(4);
 		if (mazeC[x][y-1] == ' '){
 		    mazeC[x][y-1] = 'x';
-		    maze[x][y-1] = current+1;
+		    maze[x][y-1] = current;
 		}
 		curr = true;
 	    }
@@ -258,7 +259,8 @@ public class Maze{
     public int[] solutionCoordinates(){
 	int x = endx;
 	int y = endy;
-	System.out.println(endx + " , " + endy);
+	System.out.println(current);
+	// System.out.println(endx + " , " + endy);
 	int[]ans = new int[current*2 + 2];
 	ans[current*2] = x;
 	ans[current*2 + 1] = y;
