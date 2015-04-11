@@ -109,16 +109,17 @@ public class Maze{
     }
 
     public boolean solveBFS(boolean animate){
-	boolean curr = false;
+	// boolean curr = false;
 	deck.addLast(new Coordinate(startx, starty, current));
 	maze[startx][starty] = 0;
 	mazeC[startx][starty] = 'x';
 	int x = startx;
 	int y = starty;
-	current++;
+	current = deck.getFirst().getCurrent() + 1;
 	while (deck.size() > 0){
 	    x = deck.getFirst().getX();
 	    y = deck.getFirst().getY();
+	    current = deck.getFirst().getCurrent() + 1;
 	    if (mazeC[x][y] == 'E'){
 		endx = x;
 		endy = y;
@@ -135,7 +136,7 @@ public class Maze{
 		    mazeC[x+1][y] = 'x';
 		    maze[x+1][y] = current;
 		}
-		curr = true;
+		// curr = true;
 
 	    }
 	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
@@ -145,7 +146,7 @@ public class Maze{
 		    mazeC[x-1][y] = 'x';
 		    maze[x-1][y] = current;
 		}
-		curr = true;
+		// curr = true;
 
 	    }
 	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
@@ -155,7 +156,7 @@ public class Maze{
 		    mazeC[x][y+1] = 'x';
 		    maze[x][y+1] = current;
 		}
-		curr = true;
+		// curr = true;
 	    }
 	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
 		deck.addLast(new Coordinate(x,y-1,current));
@@ -164,12 +165,12 @@ public class Maze{
 		    mazeC[x][y-1] = 'x';
 		    maze[x][y-1] = current;
 		}
-		curr = true;
+		// curr = true;
 	    }
-	    if (curr){
-		current++;
-		curr = false;
-	    }
+	    // if (curr){
+	    // 	current = deck.getFirst().getCurrent() + 1;
+	    // 	curr = false;
+	    // }
 	    System.out.println("current" + current);
 	    deckhelper.addLast(deck.removeFirst());
 	    if (animate){
@@ -206,8 +207,6 @@ public class Maze{
 		}
 
 	    }
-	    // x = deck.getLast().getX();
-	    // y = deck.getLast().getY();
 	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
 		deck.addLast(new Coordinate(x-1,y,current+1));
 		System.out.println(2);
@@ -217,8 +216,6 @@ public class Maze{
 		}
 
 	    }
-	    // x = deck.getLast().getX();
-	    // y = deck.getLast().getY();
 	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
 		deck.addLast(new Coordinate(x,y+1,current+1));
 		System.out.println(3);
@@ -227,8 +224,6 @@ public class Maze{
 		    maze[x][y+1] = current+1;
 		}
 	    }
-	    // x = deck.getLast().getX();
-	    // y = deck.getLast().getY();
 	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
 		deck.addLast(new Coordinate(x,y-1,current+1));
 		System.out.println(4);
@@ -261,33 +256,33 @@ public class Maze{
 	int y = endy;
 	System.out.println(current);
 	// System.out.println(endx + " , " + endy);
-	int[]ans = new int[current*2 + 2];
+	int[]ans = new int[current*2 +2];
 	ans[current*2] = x;
 	ans[current*2 + 1] = y;
 	while (current > 1){
 	    if (maze[x+1][y] == current - 1){
-		ans[(current-1)*2] = x+1;
-		ans[(current-1)*2 + 1] = y;
+		ans[(current-1)*2 - 1] = x+1;
+		ans[(current-1)*2] = y;
 		maze[x+1][y] = -1;
 		x++;
 	    }
 	    if (maze[x-1][y] == current - 1){
-		ans[(current-1)*2] = x-1;
-		ans[(current-1)*2 + 1] = y;
+		ans[(current-1)*2 -1] = x-1;
+		ans[(current-1)*2] = y;
 		maze[x-1][y] = -1;
 		x--;
 
 	    }
 	    if (maze[x][y+1] == current - 1){
-		ans[(current-1)*2] = x;
-		ans[(current-1)*2 + 1] = y+1;
+		ans[(current-1)*2 -1] = x;
+		ans[(current-1)*2] = y+1;
 		maze[x][y+1] = -1;
 		y++;
 
 	    }
 	    if (maze[x][y-1] == current - 1){
-		ans[(current-1)*2] = x;
-		ans[(current-1)*2 + 1] = y-1;
+		ans[(current-1)*2 -1] = x;
+		ans[(current-1)*2] = y-1;
 		maze[x][y-1] = -1;
 		y--;
 	    }
