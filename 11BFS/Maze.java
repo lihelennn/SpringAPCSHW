@@ -1,4 +1,4 @@
-//figure out BFS
+//figure out toString(animate)
 
 import java.util.*;
 import java.io.*;
@@ -105,8 +105,17 @@ public class Maze{
 	//     ans += maze[i%maxx][i/maxx];
 	// }
 	// return hide()+invert()+go(0,0)+ans+"\n"+show();
-	return hide()+clear()+go(0,0)+ans+"\n"+show();
+	// return hide()+clear()+go(0,0)+ans+"\n"+show();
+	return ans;
+    }
 
+
+    public String toString(boolean animate){
+	if (animate){
+	    return hide() + go(0,0) + toString() + "\n" + show() + clear();
+	}else{
+	    return toString();
+	}
     }
 
     public boolean solveBFS(boolean animate){
@@ -172,7 +181,8 @@ public class Maze{
 	    // System.out.println("current" + current);
 	    deckhelper.addLast(deck.removeFirst());
 	    if (animate){
-		System.out.println(this);
+		System.out.println(toString(true));
+		wait(200);
 	    }
 	}
 	solveable = false;
@@ -234,7 +244,8 @@ public class Maze{
 	    // deck.removeLast();
 	    // System.out.println(deck);
 	    if (animate){
-		System.out.println(this);
+		System.out.println(toString(true));
+		wait(200);
 	    }
 	}
 	solveable = false;
