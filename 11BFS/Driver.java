@@ -10,8 +10,8 @@ public class Driver{
 
 
     	Maze test2 = new Maze("data2.dat");
-	// System.out.println(test.solveBFS(true));
-	System.out.println(test2.solveDFS(true));
+	System.out.println(test2.solveBFS(true));
+	// System.out.println(test2.solveDFS(true));
 	System.out.println(test2.solutionCoordinates());
 
 

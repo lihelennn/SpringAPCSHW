@@ -12,6 +12,7 @@ public class Maze{
     private LinkedList<Coordinate> deck = new LinkedList<Coordinate>();
     private LinkedList<Coordinate> deckhelper = new LinkedList<Coordinate>();
     private int current = 0;
+    private boolean solveable = false;
 
     public String name(){
 	return "li.helen";
@@ -127,6 +128,7 @@ public class Maze{
 		mazeC[x][y] = 'x';
 		System.out.println(this);
 		System.out.println(deckhelper);
+		solveable = true;
 		return true;
 	    }
 	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
@@ -167,12 +169,13 @@ public class Maze{
 	    // 	current = deck.getFirst().getCurrent() + 1;
 	    // 	curr = false;
 	    // }
-	    System.out.println("current" + current);
+	    // System.out.println("current" + current);
 	    deckhelper.addLast(deck.removeFirst());
 	    if (animate){
 		System.out.println(this);
 	    }
 	}
+	solveable = false;
 	return false;
     }
 
@@ -193,6 +196,7 @@ public class Maze{
 		maze[x][y] = current;
 		mazeC[x][y] = 'x';
 		System.out.println(this);
+		solveable = true;
 		return true;
 	    }
 	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
@@ -228,11 +232,12 @@ public class Maze{
 	    // current++;
 	    // System.out.println("current" + current);
 	    // deck.removeLast();
-	    System.out.println(deck);
+	    // System.out.println(deck);
 	    if (animate){
 		System.out.println(this);
 	    }
 	}
+	solveable = false;
 	return false;
     }
 
@@ -247,43 +252,45 @@ public class Maze{
     public int[] solutionCoordinates(){
 	int x = endx;
 	int y = endy;
-	System.out.println(current);
+	// System.out.println(current);
 	// System.out.println(endx + " , " + endy);
 	int[]ans = new int[current*2];
-	ans[current*2 -2] = x;
-	ans[current*2 -1] = y;
-	while (current > 1){
-	    if (maze[x+1][y] == current - 1){
-		ans[(current-1)*2] = x+1;
-		ans[(current-1)*2 +1] = y;
-		maze[x+1][y] = -1;
-		x++;
-	    }
-	    if (maze[x-1][y] == current - 1){
-		ans[(current-1)*2] = x-1;
-		ans[(current-1)*2 +1] = y;
-		maze[x-1][y] = -1;
-		x--;
+	if (solveable){
+	    ans[current*2 -2] = x;
+	    ans[current*2 -1] = y;
+	    while (current > 1){
+		if (maze[x+1][y] == current - 1){
+		    ans[(current-1)*2] = x+1;
+		    ans[(current-1)*2 +1] = y;
+		    maze[x+1][y] = -1;
+		    x++;
+		}
+		if (maze[x-1][y] == current - 1){
+		    ans[(current-1)*2] = x-1;
+		    ans[(current-1)*2 +1] = y;
+		    maze[x-1][y] = -1;
+		    x--;
 
-	    }
-	    if (maze[x][y+1] == current - 1){
-		ans[(current-1)*2] = x;
-		ans[(current-1)*2 +1] = y+1;
-		maze[x][y+1] = -1;
-		y++;
+		}
+		if (maze[x][y+1] == current - 1){
+		    ans[(current-1)*2] = x;
+		    ans[(current-1)*2 +1] = y+1;
+		    maze[x][y+1] = -1;
+		    y++;
 
+		}
+		if (maze[x][y-1] == current - 1){
+		    ans[(current-1)*2] = x;
+		    ans[(current-1)*2 +1] = y-1;
+		    maze[x][y-1] = -1;
+		    y--;
+		}
+		current--;
 	    }
-	    if (maze[x][y-1] == current - 1){
-		ans[(current-1)*2] = x;
-		ans[(current-1)*2 +1] = y-1;
-		maze[x][y-1] = -1;
-		y--;
-	    }
-	    current--;
+	    ans[0] = startx;
+	    ans[1] = starty;
+	    System.out.println(Arrays.toString(ans));
 	}
-	ans[0] = startx;
-	ans[1] = starty;
-	System.out.println(Arrays.toString(ans));
 	return ans;
     }
 	    
