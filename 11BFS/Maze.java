@@ -192,7 +192,7 @@ public class Maze{
 	    deck.removeFirst();
 	    if (animate){
 		System.out.println(toString(true));
-		// wait(200);
+		wait(200);
 	    }
 	}
 	solveable = false;
@@ -257,7 +257,7 @@ public class Maze{
 	    // System.out.println(deck);
 	    if (animate){
 		System.out.println(toString(true));
-		// wait(200);
+		wait(200);
 	    }
 	}
 	solveable = false;
@@ -276,8 +276,6 @@ public class Maze{
 	int x = endx;
 	int y = endy;
 	boolean sub = false;
-	// System.out.println(current);
-	// System.out.println(endx + " , " + endy);
 	int[]ans = new int[current*2];
 	if (solveable){
 	    ans[current*2 -2] = x;
@@ -321,14 +319,15 @@ public class Maze{
 	    }
 	    ans[0] = startx;
 	    ans[1] = starty;
-	    System.out.println(Arrays.toString(ans));
+	    // System.out.println(Arrays.toString(ans));
 	}
-	int place = 0;
-	while (place +2 < ans.length){
-	    mazeC[ans[place]][ans[place+1]] = 'a';
-	    place+=2;
-	}
-	System.out.println(this);
+	// int place = 0;
+	// while (place +2 < ans.length){
+	//     mazeC[ans[place]][ans[place+1]] = 'a';
+	//     place+=2;
+	// }
+	// System.out.println(this);
+	// System.out.println("length" + ans.length / 2);
 	return ans;
     }
 	    
