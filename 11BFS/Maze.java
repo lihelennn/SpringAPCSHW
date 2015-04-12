@@ -320,6 +320,7 @@ public class Maze{
 	    ans[0] = startx;
 	    ans[1] = starty;
 	    // System.out.println(Arrays.toString(ans));
+	    // System.out.println("length" + ans.length / 2);
 	}
 	// int place = 0;
 	// while (place +2 < ans.length){
