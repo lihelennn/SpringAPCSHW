@@ -14,6 +14,13 @@ public class Maze{
     private int current = 0;
     private boolean solveable = false;
 
+    private static final String clear =  "\033[2J";
+    private static final String hide =  "\033[?25l";
+    private static final String show =  "\033[?25h";
+    private String go(int x,int y){
+	return ("\033[" + x + ";" + y + "H");
+    }
+
     public String name(){
 	return "li.helen";
     }
@@ -59,9 +66,9 @@ public class Maze{
 	}
     }
 
-    private String go(int x,int y){
-	return ("["+x+";"+y+"H");
-    }
+    // private String go(int x,int y){
+    // 	return ("["+x+";"+y+"H");
+    // }
     
     private String clear(){
 	return  "[2J";
@@ -112,7 +119,7 @@ public class Maze{
 
     public String toString(boolean animate){
 	if (animate){
-	    return hide() + go(0,0) + toString() + "\n" + show() + clear();
+	    return hide + go(0,0) + toString() + "\n" + show + clear;
 	}else{
 	    return toString();
 	}
@@ -135,8 +142,10 @@ public class Maze{
 		endy = y;
 		maze[x][y] = current;
 		mazeC[x][y] = 'x';
-		System.out.println(this);
-		System.out.println(deckhelper);
+		if (animate){
+		    System.out.println(this);
+		}
+		// System.out.println(deckhelper);
 		solveable = true;
 		return true;
 	    }
@@ -179,10 +188,11 @@ public class Maze{
 	    // 	curr = false;
 	    // }
 	    // System.out.println("current" + current);
-	    deckhelper.addLast(deck.removeFirst());
+	    // deckhelper.addLast(deck.removeFirst());
+	    deck.removeFirst();
 	    if (animate){
 		System.out.println(toString(true));
-		wait(200);
+		// wait(200);
 	    }
 	}
 	solveable = false;
@@ -205,7 +215,9 @@ public class Maze{
 		endy = y;	
 		maze[x][y] = current;
 		mazeC[x][y] = 'x';
-		System.out.println(this);
+		if (animate){
+		    System.out.println(this);
+		}
 		solveable = true;
 		return true;
 	    }
@@ -245,7 +257,7 @@ public class Maze{
 	    // System.out.println(deck);
 	    if (animate){
 		System.out.println(toString(true));
-		wait(200);
+		// wait(200);
 	    }
 	}
 	solveable = false;
@@ -263,6 +275,7 @@ public class Maze{
     public int[] solutionCoordinates(){
 	int x = endx;
 	int y = endy;
+	boolean sub = false;
 	// System.out.println(current);
 	// System.out.println(endx + " , " + endy);
 	int[]ans = new int[current*2];
@@ -275,39 +288,50 @@ public class Maze{
 		    ans[(current-1)*2 +1] = y;
 		    maze[x+1][y] = -1;
 		    x++;
+		    current--;
+		    sub = true;
 		}
 		if (maze[x-1][y] == current - 1){
 		    ans[(current-1)*2] = x-1;
 		    ans[(current-1)*2 +1] = y;
 		    maze[x-1][y] = -1;
 		    x--;
-
+		    current--;
+		    sub = true;
 		}
 		if (maze[x][y+1] == current - 1){
 		    ans[(current-1)*2] = x;
 		    ans[(current-1)*2 +1] = y+1;
 		    maze[x][y+1] = -1;
 		    y++;
-
+		    current--;
+		    sub = true;
 		}
 		if (maze[x][y-1] == current - 1){
 		    ans[(current-1)*2] = x;
 		    ans[(current-1)*2 +1] = y-1;
 		    maze[x][y-1] = -1;
 		    y--;
+		    current--;
+		    sub = true;
 		}
-		current--;
+		if (sub == false){
+		    current--;
+		}
 	    }
 	    ans[0] = startx;
 	    ans[1] = starty;
 	    System.out.println(Arrays.toString(ans));
 	}
+	int place = 0;
+	while (place +2 < ans.length){
+	    mazeC[ans[place]][ans[place+1]] = 'a';
+	    place+=2;
+	}
+	System.out.println(this);
 	return ans;
     }
 	    
 
-
-		    
-	
 
 }
