@@ -13,7 +13,7 @@ public class Maze{
     private LinkedList<Coordinate> deckhelper = new LinkedList<Coordinate>();
     private int current = 0;
     private boolean solveable = false;
-    private int[] coord;
+    
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
