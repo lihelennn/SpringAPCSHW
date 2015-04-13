@@ -147,7 +147,6 @@ public class Maze{
 		    System.out.println(this);
 		    this.solutionCoordinates();
 		    System.out.println(this);
-
 		}
 		// System.out.println(deckhelper);
 		return true;
@@ -282,7 +281,6 @@ public class Maze{
 	int y = endy;
 	boolean sub = false;
 	int[]ans = new int[current*2];
-	coord = new int[current*2];
 	if (solveable){
 	    ans[current*2 -2] = x;
 	    ans[current*2 -1] = y;
@@ -336,7 +334,6 @@ public class Maze{
 	return ans;
     }
 
- 
 
 }
 
