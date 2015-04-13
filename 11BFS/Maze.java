@@ -119,7 +119,7 @@ public class Maze{
 
     public String toString(boolean animate){
 	if (animate){
-	    return hide + go(0,0) + toString() + "\n" + show + clear;
+	    return hide + go(0,0) + toString() + "\n" + show;
 	}else{
 	    return toString();
 	}
@@ -144,7 +144,8 @@ public class Maze{
 		mazeC[x][y] = 'x';
 		if (animate){
 		    System.out.println(this);
-		}
+		    this.charAnswer();
+		    System.out.println(this);		}
 		// System.out.println(deckhelper);
 		solveable = true;
 		return true;
@@ -216,6 +217,8 @@ public class Maze{
 		maze[x][y] = current;
 		mazeC[x][y] = 'x';
 		if (animate){
+		    System.out.println(this);
+		    this.charAnswer();
 		    System.out.println(this);
 		}
 		solveable = true;
@@ -330,6 +333,15 @@ public class Maze{
 	// System.out.println(this);
 	// System.out.println("length" + ans.length / 2);
 	return ans;
+    }
+
+    public void charAnswer(){
+	int[]ans = this.solutionCoordinates();
+	int place = 0;
+	while (place +2 < ans.length){
+	    mazeC[ans[place]][ans[place+1]] = 'a';
+	    place+=2;
+	}
     }
 	    
 
