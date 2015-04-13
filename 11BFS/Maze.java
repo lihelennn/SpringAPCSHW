@@ -323,7 +323,7 @@ public class Maze{
 	    }
 	    ans[0] = startx;
 	    ans[1] = starty;
-	    // System.out.println(Arrays.toString(ans));
+	    System.out.println(Arrays.toString(ans));
 	    // System.out.println("length" + ans.length / 2);
 	}
 	// int place = 0;
@@ -385,14 +385,16 @@ public class Maze{
 	    }
 	    ans[0] = startx;
 	    ans[1] = starty;
+
+	    int place = 0;
+	    System.out.println(Arrays.toString(ans));
+	    while (place +2 < ans.length){
+		mazeC[ans[place]][ans[place+1]] = 'a';
+		place+=2;
+	    }
+	    System.out.println(mazeC.toString());
 	}
-    
-	int place = 0;
-	while (place +2 < ans.length){
-	    mazeC[ans[place]][ans[place+1]] = 'a';
-	    place+=2;
-	}
-	System.out.println(mazeC);
+   
 
 
     }
