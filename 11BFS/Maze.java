@@ -13,7 +13,7 @@ public class Maze{
     private LinkedList<Coordinate> deckhelper = new LinkedList<Coordinate>();
     private int current = 0;
     private boolean solveable = false;
-
+    private int[] coord;
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
@@ -193,7 +193,7 @@ public class Maze{
 	    deck.removeFirst();
 	    if (animate){
 		System.out.println(toString(true));
-		wait(200);
+		wait(50);
 	    }
 	}
 	solveable = false;
@@ -260,7 +260,7 @@ public class Maze{
 	    // System.out.println(deck);
 	    if (animate){
 		System.out.println(toString(true));
-		wait(200);
+		wait(50);
 	    }
 	}
 	solveable = false;
@@ -280,6 +280,7 @@ public class Maze{
 	int y = endy;
 	boolean sub = false;
 	int[]ans = new int[current*2];
+	coord = new int[current*2];
 	if (solveable){
 	    ans[current*2 -2] = x;
 	    ans[current*2 -1] = y;
@@ -332,18 +333,69 @@ public class Maze{
 	// }
 	// System.out.println(this);
 	// System.out.println("length" + ans.length / 2);
+
 	return ans;
     }
 
     public void charAnswer(){
-	int[]ans = this.solutionCoordinates();
+	int x = endx;
+	int y = endy;
+	boolean sub = false;
+	int[]ans = new int[current*2];
+	coord = new int[current*2];
+	if (solveable){
+	    ans[current*2 -2] = x;
+	    ans[current*2 -1] = y;
+	    while (current > 1){
+		if (maze[x+1][y] == current - 1){
+		    ans[(current-1)*2] = x+1;
+		    ans[(current-1)*2 +1] = y;
+		    maze[x+1][y] = -1;
+		    x++;
+		    current--;
+		    sub = true;
+		}
+		if (maze[x-1][y] == current - 1){
+		    ans[(current-1)*2] = x-1;
+		    ans[(current-1)*2 +1] = y;
+		    maze[x-1][y] = -1;
+		    x--;
+		    current--;
+		    sub = true;
+		}
+		if (maze[x][y+1] == current - 1){
+		    ans[(current-1)*2] = x;
+		    ans[(current-1)*2 +1] = y+1;
+		    maze[x][y+1] = -1;
+		    y++;
+		    current--;
+		    sub = true;
+		}
+		if (maze[x][y-1] == current - 1){
+		    ans[(current-1)*2] = x;
+		    ans[(current-1)*2 +1] = y-1;
+		    maze[x][y-1] = -1;
+		    y--;
+		    current--;
+		    sub = true;
+		}
+		if (sub == false){
+		    current--;
+		}
+	    }
+	    ans[0] = startx;
+	    ans[1] = starty;
+	}
+    
 	int place = 0;
 	while (place +2 < ans.length){
 	    mazeC[ans[place]][ans[place+1]] = 'a';
 	    place+=2;
 	}
-    }
-	    
+	System.out.println(mazeC);
 
+
+    }
 
 }
+
