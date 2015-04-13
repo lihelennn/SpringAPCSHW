@@ -325,7 +325,8 @@ public class Maze{
 	    }
 	    ans[0] = startx;
 	    ans[1] = starty;   
-
+	    
+	    //mark solution
 	    int place = 0;
 	    while (place +1 < ans.length){
 		mazeC[ans[place]][ans[place+1]] = 'S';
@@ -336,5 +337,6 @@ public class Maze{
     }
 
  
+
 }
 
