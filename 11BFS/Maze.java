@@ -142,12 +142,14 @@ public class Maze{
 		endy = y;
 		maze[x][y] = current;
 		mazeC[x][y] = 'x';
+		solveable = true;
 		if (animate){
 		    System.out.println(this);
-		    this.charAnswer();
-		    System.out.println(this);		}
+		    this.solutionCoordinates();
+		    System.out.println(this);
+
+		}
 		// System.out.println(deckhelper);
-		solveable = true;
 		return true;
 	    }
 	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
@@ -216,12 +218,12 @@ public class Maze{
 		endy = y;	
 		maze[x][y] = current;
 		mazeC[x][y] = 'x';
+		solveable = true;
 		if (animate){
 		    System.out.println(this);
-		    this.charAnswer();
+		    this.solutionCoordinates();
 		    System.out.println(this);
 		}
-		solveable = true;
 		return true;
 	    }
 	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
@@ -322,82 +324,17 @@ public class Maze{
 		}
 	    }
 	    ans[0] = startx;
-	    ans[1] = starty;
-	    System.out.println(Arrays.toString(ans));
-	    // System.out.println("length" + ans.length / 2);
-	}
-	// int place = 0;
-	// while (place +2 < ans.length){
-	//     mazeC[ans[place]][ans[place+1]] = 'a';
-	//     place+=2;
-	// }
-	// System.out.println(this);
-	// System.out.println("length" + ans.length / 2);
+	    ans[1] = starty;   
 
+	    int place = 0;
+	    while (place +1 < ans.length){
+		mazeC[ans[place]][ans[place+1]] = 'S';
+		place+=2;
+	    }
+	}
 	return ans;
     }
 
-    public void charAnswer(){
-	int x = endx;
-	int y = endy;
-	boolean sub = false;
-	int[]ans = new int[current*2];
-	coord = new int[current*2];
-	if (solveable){
-	    ans[current*2 -2] = x;
-	    ans[current*2 -1] = y;
-	    while (current > 1){
-		if (maze[x+1][y] == current - 1){
-		    ans[(current-1)*2] = x+1;
-		    ans[(current-1)*2 +1] = y;
-		    maze[x+1][y] = -1;
-		    x++;
-		    current--;
-		    sub = true;
-		}
-		if (maze[x-1][y] == current - 1){
-		    ans[(current-1)*2] = x-1;
-		    ans[(current-1)*2 +1] = y;
-		    maze[x-1][y] = -1;
-		    x--;
-		    current--;
-		    sub = true;
-		}
-		if (maze[x][y+1] == current - 1){
-		    ans[(current-1)*2] = x;
-		    ans[(current-1)*2 +1] = y+1;
-		    maze[x][y+1] = -1;
-		    y++;
-		    current--;
-		    sub = true;
-		}
-		if (maze[x][y-1] == current - 1){
-		    ans[(current-1)*2] = x;
-		    ans[(current-1)*2 +1] = y-1;
-		    maze[x][y-1] = -1;
-		    y--;
-		    current--;
-		    sub = true;
-		}
-		if (sub == false){
-		    current--;
-		}
-	    }
-	    ans[0] = startx;
-	    ans[1] = starty;
-
-	    int place = 0;
-	    System.out.println(Arrays.toString(ans));
-	    while (place +2 < ans.length){
-		mazeC[ans[place]][ans[place+1]] = 'a';
-		place+=2;
-	    }
-	    System.out.println(mazeC.toString());
-	}
-   
-
-
-    }
-
+ 
 }
 
