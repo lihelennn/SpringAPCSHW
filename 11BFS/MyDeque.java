@@ -215,18 +215,35 @@ public class MyDeque<T>{
     }
 
    public void add(Object o, int n){
+	if (begin2){
+	    nums[tail] = n;
+	}else{
+	    nums[tail+1] = n;
+	}
 	this.addLast((T)o);
-	nums[tail+1] = n;
     }
 
    public int removeSmallest(){
        //making this compatible with with I do with add(object, int): addLast
 	   int smallest = nums[head+1];
+	   int place = head+1;
+
 
        if (head <= tail){
-	   int place = head;
-	    smallest = nums[head];
-	   while (place < tail){
+	    smallest = nums[place];
+
+	       int index = 0;
+	       while (index < nums.length){
+		   if (nums[index] > 0){
+		       System.out.println("hi" + index);
+		       System.out.println("bye" + data[index]);
+		   }
+		   index++;
+	       }
+
+	   while (place <= tail){
+	       System.out.println(nums[place]);
+
 	       if (nums[place] < smallest){
 		   smallest = nums[place];
 	       }

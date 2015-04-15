@@ -4,6 +4,7 @@ public class Test{
 	MyDeque<String> hi = new MyDeque<String>();
 	hi.add("yo", 1);
 	hi.add("hello", 2);
+	hi.add("ooo", 3);
 	hi.arrayString();
 
 	System.out.println(hi);
