@@ -9,6 +9,7 @@ public class Test{
 
         hi.removeSmallest();
 	hi.arrayString();
+	System.out.println(hi);
     }
 
 }

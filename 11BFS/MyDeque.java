@@ -276,7 +276,7 @@ public class MyDeque<T>{
 	    smallest++;
 	    if (h < tail){
 		if (smallest != nums.length){
-		    while (smallest < tail){
+		    while (smallest <= tail){
 			nums[smallest-1] = nums[smallest];
 			smallest++;
 		    }
@@ -286,13 +286,13 @@ public class MyDeque<T>{
 		if (smallest == nums.length){
 		    smallest = 0;
 		}
-		if (smallest < tail){
-		    while (smallest < tail){
+		if (smallest <= tail){
+		    while (smallest <= tail){
 			nums[smallest-1] = nums[smallest];
 			smallest++;
 		    }
 		}
-		if (smallest > tail){
+		if (smallest >= tail){
 		    while(smallest < nums.length){
 			nums[smallest-1] = nums[smallest];
 			smallest++;
