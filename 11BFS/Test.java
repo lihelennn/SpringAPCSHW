@@ -7,9 +7,8 @@ public class Test{
 	hi.add("ooo", 3);
 	hi.arrayString();
 
-	System.out.println(hi);
-	System.out.println(hi.removeSmallest());
-
+        hi.removeSmallest();
+	hi.arrayString();
     }
 
 }

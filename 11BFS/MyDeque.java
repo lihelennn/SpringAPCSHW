@@ -214,7 +214,7 @@ public class MyDeque<T>{
 	return ans;
     }
 
-   public void add(Object o, int n){
+    public void add(Object o, int n){
 	if (begin2){
 	    nums[tail] = n;
 	}else{
@@ -223,23 +223,95 @@ public class MyDeque<T>{
 	this.addLast((T)o);
     }
 
-   public int removeSmallest(){
-       //making this compatible with with I do with add(object, int): addLast
-       int smallest = nums[head+1];
-       int place = head+1;
-       if (head <= tail){
-	   smallest = nums[place];
-	   while (place <= tail){
-	       if (nums[place] < smallest){
-		   smallest = nums[place];
-	       }
-	       place++;
-	   }
-       }
-       return smallest;
-   }
+    public int findSmallest(){
+	//making this compatible with with I do with add(object, int): addLast
+	int smallest = 0;
+	int place = 0;
+	if (size > 0){
+	    place = head+1;
+	    if (place == nums.length){
+		place = 0;
+	    }
+	    smallest = place;
+	    int smallestVal = nums[place];
+	    if (place < tail){
+		while (place <= tail){
+		    if (place == nums.length){
+			place = 0;
+		    }
+		    if (nums[place] < smallestVal){
+			smallest = place;
+		    }
+		    place++;
+		}
+	    }else{
+		while(place >= tail){
+		    if (place == nums.length){
+			place = 0;
+		    }
+		    if (nums[place] < smallestVal){
+			smallest = place;
+		    }
+		    place++;
+		}
+		while (place <= tail){
+		    if (place == nums.length){
+			place = 0;
+		    }
+		    if (nums[place] < smallestVal){
+			smallest = place;
+		    }
+		    place++;
+		}
+	    }
+	}
+        return smallest;
+    }
 
+    public void removeSmallest(){
+	int smallest = this.findSmallest();
+	int h = head+1;
+	if (size > 0){
+	    // nums[smallest] = null;
+	    smallest++;
+	    if (h < tail){
+		if (smallest != nums.length){
+		    while (smallest < tail){
+			nums[smallest-1] = nums[smallest];
+			smallest++;
+		    }
+		}
+	    }
+	    if (h > tail){
+		if (smallest == nums.length){
+		    smallest = 0;
+		}
+		if (smallest < tail){
+		    while (smallest < tail){
+			nums[smallest-1] = nums[smallest];
+			smallest++;
+		    }
+		}
+		if (smallest > tail){
+		    while(smallest < nums.length){
+			nums[smallest-1] = nums[smallest];
+			smallest++;
+		    }
+		    smallest = 0;
+		    while (smallest < tail){
+		   
+			nums[smallest-1] = nums[smallest];
+			smallest++;
+		    }
+		}
+	    }
+	    nums[tail] = 0;
+	    tail--;
+	    
+	}
+    }
 }
+
 
 
 
