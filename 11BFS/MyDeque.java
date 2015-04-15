@@ -225,25 +225,11 @@ public class MyDeque<T>{
 
    public int removeSmallest(){
        //making this compatible with with I do with add(object, int): addLast
-	   int smallest = nums[head+1];
-	   int place = head+1;
-
-
+       int smallest = nums[head+1];
+       int place = head+1;
        if (head <= tail){
-	    smallest = nums[place];
-
-	       int index = 0;
-	       while (index < nums.length){
-		   if (nums[index] > 0){
-		       System.out.println("hi" + index);
-		       System.out.println("bye" + data[index]);
-		   }
-		   index++;
-	       }
-
+	   smallest = nums[place];
 	   while (place <= tail){
-	       System.out.println(nums[place]);
-
 	       if (nums[place] < smallest){
 		   smallest = nums[place];
 	       }
