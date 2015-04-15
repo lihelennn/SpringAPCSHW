@@ -2,7 +2,7 @@ import java.util.*;
 
 public class MyDeque<T>{
 
-    int size = 100;
+    int size = 5;
     Object[] data = new Object[size];
     int[]nums = new int[size];
     int head = size/2;
@@ -218,7 +218,11 @@ public class MyDeque<T>{
 	if (begin2){
 	    nums[tail] = n;
 	}else{
-	    nums[tail+1] = n;
+	    if (tail + 1 == nums.length){
+		tail = -1;
+	    }else{
+		nums[tail+1] = n;
+	    }
 	}
 	this.addLast((T)o);
     }
@@ -241,6 +245,7 @@ public class MyDeque<T>{
 		    }
 		    if (nums[place] < smallestVal){
 			smallest = place;
+			smallestVal = nums[place];
 		    }
 		    place++;
 		}
@@ -248,9 +253,11 @@ public class MyDeque<T>{
 		while(place >= tail){
 		    if (place == nums.length){
 			place = 0;
+			break;
 		    }
 		    if (nums[place] < smallestVal){
 			smallest = place;
+			smallestVal = nums[place];
 		    }
 		    place++;
 		}
@@ -260,6 +267,7 @@ public class MyDeque<T>{
 		    }
 		    if (nums[place] < smallestVal){
 			smallest = place;
+			smallestVal = nums[place];
 		    }
 		    place++;
 		}
@@ -277,7 +285,13 @@ public class MyDeque<T>{
 	    if (h < tail){
 		if (smallest != nums.length){
 		    while (smallest <= tail){
-			nums[smallest-1] = nums[smallest];
+			if (smallest - 1 < 0){
+			    nums[nums.length - 1] = nums[smallest];
+			    data[nums.length - 1] = data[smallest];
+			}else{
+			    nums[smallest-1] = nums[smallest];
+			    data[smallest-1] = data[smallest];
+			}
 			smallest++;
 		    }
 		}
@@ -288,26 +302,43 @@ public class MyDeque<T>{
 		}
 		if (smallest <= tail){
 		    while (smallest <= tail){
-			nums[smallest-1] = nums[smallest];
+			if (smallest - 1 < 0){
+			    nums[nums.length - 1] = nums[smallest];
+			    data[nums.length - 1] = data[smallest];
+			}else{
+			    nums[smallest-1] = nums[smallest];
+			    data[smallest-1] = data[smallest];
+			}
 			smallest++;
 		    }
 		}
 		if (smallest >= tail){
 		    while(smallest < nums.length){
 			nums[smallest-1] = nums[smallest];
+			data[smallest-1] = data[smallest];
 			smallest++;
 		    }
 		    smallest = 0;
-		    while (smallest < tail){
-		   
-			nums[smallest-1] = nums[smallest];
+		    while (smallest <= tail){
+			if (smallest - 1 < 0){
+			    nums[nums.length - 1] = nums[smallest];
+			    data[nums.length - 1] = data[smallest];
+			}else{
+			    nums[smallest-1] = nums[smallest];
+			    data[smallest-1] = data[smallest];
+			}
 			smallest++;
 		    }
 		}
 	    }
+	    data[tail] = null;
 	    nums[tail] = 0;
-	    tail--;
-	    
+	    if (tail-1 > 0){
+		tail--;
+	    }else{
+		tail = nums.length;
+	    }
+	    size--;
 	}
     }
 }
