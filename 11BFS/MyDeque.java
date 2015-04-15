@@ -220,9 +220,8 @@ public class MyDeque<T>{
 	}else{
 	    if (tail + 1 == nums.length){
 		tail = -1;
-	    }else{
-		nums[tail+1] = n;
 	    }
+	    nums[tail+1] = n;
 	}
 	this.addLast((T)o);
     }
@@ -230,6 +229,7 @@ public class MyDeque<T>{
     public int findSmallest(){
 	//making this compatible with with I do with add(object, int): addLast
 	int smallest = 0;
+	int smallestVal = 0;
 	int place = 0;
 	if (size > 0){
 	    place = head+1;
@@ -237,7 +237,7 @@ public class MyDeque<T>{
 		place = 0;
 	    }
 	    smallest = place;
-	    int smallestVal = nums[place];
+	    smallestVal = nums[place];
 	    if (place < tail){
 		while (place <= tail){
 		    if (place == nums.length){
