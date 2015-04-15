@@ -11,6 +11,7 @@ public class Maze{
     private int startx,starty,endx,endy;
     private LinkedList<Coordinate> deck = new LinkedList<Coordinate>();
     private LinkedList<Coordinate> deckhelper = new LinkedList<Coordinate>();
+    private MyDeque<Coordinate>pQueue = new MyDeque<Coordinate>();
     private int current = 0;
     private boolean solveable = false;
     
@@ -334,6 +335,70 @@ public class Maze{
 	return ans;
     }
 
+    public int distance(int startx, int starty, int endx, int endy){
+	return (int)Math.sqrt((double)((endx-startx)*(endx-startx) + (endy-starty)*(endy-starty)));
+    }
+
+    public boolean solveBest(boolean animate){
+	pQueue.add(new Coordinate(startx, starty, current),1);
+	maze[startx][starty] = 0;
+	mazeC[startx][starty] = 'x';
+	int x = startx;
+	int y = starty;
+	pQueue.add(new Coordinate(x,y,current),distance(x+1,y,endx,endy));
+	while(pQueue.size() > 0){
+	    x = pQueue.removeSmallest().getX();
+	    y = pQueue.removeSmallest().getY();
+
+	    if (mazeC[x][y] == 'E'){
+		endx = x;
+		endy = y;	
+		maze[x][y] = current;
+		mazeC[x][y] = 'x';
+		solveable = true;
+		if (animate){
+		    System.out.println(this);
+		    this.solutionCoordinates();
+		    System.out.println(this);
+		}
+		return true;
+	    }
+	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
+		pQueue.add(new Coordinate(x+1,y,current),distance(x+1,y,endx,endy));
+		if (mazeC[x+1][y] == ' '){
+		    mazeC[x+1][y] = 'x';
+		    maze[x+1][y] = current;
+		}
+
+	    }
+	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
+		pQueue.add(new Coordinate(x-1,y,current),distance(x-1,y,endx,endy));
+		if (mazeC[x-1][y] == ' '){
+		    mazeC[x-1][y] = 'x';
+		    maze[x-1][y] = current;
+		}
+
+	    }
+	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
+		pQueue.add(new Coordinate(x,y+1,current),distance(x,y+1,endx,endy));
+		if (mazeC[x][y+1] == ' '){
+		    mazeC[x][y+1] = 'x';
+		    maze[x][y+1] = current;
+		}
+	    }
+	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
+		pQueue.add(new Coordinate(x,y+1,current),distance(x,y+1,endx,endy));
+		if (mazeC[x][y-1] == ' '){
+		    mazeC[x][y-1] = 'x';
+		    maze[x][y-1] = current;
+		}
+	    }
+
+
+
+	}
+
+    }
 
 }
 
