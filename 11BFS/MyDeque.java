@@ -73,6 +73,7 @@ public class MyDeque<T>{
 	head = h;
 	tail = t;
 	data = ans;
+	nums = numbers;
 	size=size1;
 
     }
@@ -158,6 +159,11 @@ public class MyDeque<T>{
 	return ans + "head:" + head + "   tail:" + tail;
     }
 
+    public void arrayString(){
+	System.out.println(Arrays.toString(data));
+	System.out.println(Arrays.toString(nums));
+    }
+
     public int size(){
 	return size;
     }
@@ -212,6 +218,23 @@ public class MyDeque<T>{
 	this.addLast((T)o);
 	nums[tail+1] = n;
     }
+
+   public int removeSmallest(){
+       //making this compatible with with I do with add(object, int): addLast
+	   int smallest = nums[head+1];
+
+       if (head <= tail){
+	   int place = head;
+	    smallest = nums[head];
+	   while (place < tail){
+	       if (nums[place] < smallest){
+		   smallest = nums[place];
+	       }
+	       place++;
+	   }
+       }
+       return smallest;
+   }
 
 }
 
