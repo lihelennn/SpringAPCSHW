@@ -4,6 +4,7 @@ public class MyDeque<T>{
 
     int size = 100;
     Object[] data = new Object[size];
+    int[]nums = new int[size];
     int head = size/2;
     int tail = head+1;
     int hC = head;
@@ -18,6 +19,7 @@ public class MyDeque<T>{
 
     public void resize(int size1){
 	Object[]ans = new Object[size1];
+	int[]numbers = new int[size1];
 	int h = size1/2;
 	int t = h + 1;
 	int saveh = h;
@@ -33,6 +35,7 @@ public class MyDeque<T>{
 		hC = size-1;
 	    }
 	    ans[h] = data[hC];
+	    numbers[h] = nums[hC];
 	    if (hC == head){
 		break;
 	    }
@@ -40,6 +43,8 @@ public class MyDeque<T>{
 	    hC--;
 	}
 	ans[h] = data[hC];
+	numbers[h] = nums[hC];
+
 	while (tC != tail){
 	    // System.out.print(tC);
 	    // System.out.println(size);
@@ -51,6 +56,7 @@ public class MyDeque<T>{
 		tC = 0;
 	    }
 	    ans[t] = data[tC];
+	    numbers[t] = nums[tC];
 	    if (tC == tail){
 		break;
 	    }
@@ -58,6 +64,7 @@ public class MyDeque<T>{
 	    tC++;
 	}
 	ans[t] = data[tC];
+	numbers[t] = nums[tC];
 	hC = saveh;
 	tC = savet;
 	// head = hC;
@@ -201,143 +208,10 @@ public class MyDeque<T>{
 	return ans;
     }
 
-    /*
-    public static void main(String[]args){
-	MyDeque<Integer>test = new MyDeque<Integer>();
-	System.out.println(test.name());
-	// test.addFirst(10);
-	// test.addFirst(9);
-	// test.addLast(0);
-	// test.addLast(1);
-	// System.out.println(test);
-	// // System.out.println(test.removeLast());
-	// // System.out.println(test.removeFirst());
-	// // System.out.println(test);
-	// test.addFirst(8);
-	// System.out.println(test);
-	// System.out.println(test.size());
-	// test.addFirst(7);
-	// System.out.println(test.size());
-	// System.out.println(test);
-	// System.out.println(test.removeFirst());
-	// System.out.println(test.removeFirst());
-	// // System.out.println(test);
-	// test.addLast(2);
-	// test.addLast(3);
-	// test.addLast(4);
-	// test.addLast(5);
-	// System.out.println(test);
-	// test.addLast(6);
-	// test.addFirst(7);
-	// System.out.println(test);
-	// test.addLast(8);
-	// System.out.println(test);
-	test.addFirst(10);
-	System.out.println(test);
-	test.addFirst(9);
-	System.out.println(test);
-	test.addFirst(8);
-	System.out.println(test);
-	test.addFirst(7);
-	System.out.println(test);
-	test.addFirst(6);
-	System.out.println(test);
-	System.out.println(test.removeFirst());
-	System.out.println(test);
-	test.addLast(100);
-	System.out.println(test);
-	test.addLast(10000);
-	System.out.println(test);
-	test.addLast(2);
-	System.out.println(test);
-	test.addLast(30000);
-	System.out.println(test);
-	test.addLast(40000);
-	System.out.println(test);
-	test.addLast(50000);
-	System.out.println(test);
-	test.addLast(60000);
-	System.out.println(test);
-	test.addLast(70000);
-	System.out.println(test);
-	test.addLast(80000);
-	System.out.println(test);
-	test.addLast(90000);
-	System.out.println(test);
-	System.out.println(test.size());
-	test.addFirst(111);
-	System.out.println(test);
-
-	test.addFirst(222);
-	System.out.println(test);
-
-	test.addFirst(333);
-	System.out.println(test);
-
-	test.addFirst(444);
-	System.out.println(test);
-	test.addFirst(555);
-	System.out.println(test);
-	test.addFirst(666);
-	System.out.println(test);
-	test.addFirst(666);
-	System.out.println(test);
-	System.out.println(test.size());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());	
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test.removeFirst());
-	System.out.println(test);
-	System.out.println(test.removeLast());
-	System.out.println(test);
-	System.out.println(test.removeLast());
-	System.out.println(test.removeLast());
-	System.out.println(test.removeLast());
-	System.out.println(test.removeLast());
-	System.out.println(test.removeLast());
-	System.out.println(test.removeLast());
-	System.out.println(test.removeLast());
-	test.addLast(2);
-	System.out.println(test);
-	test.addLast(3);
-	System.out.println(test);
-	test.addFirst(100);
-	System.out.println(test);
-	System.out.println(test.getFirst());
-	System.out.println(test.getLast());
-	System.out.println(test.removeLast());
-	System.out.println(test.getLast());
-	System.out.println(test.removeFirst());
-	System.out.println(test.getFirst());
-	System.out.println(test);
-
-	test.addFirst(10);
-	test.addLast(20);
-	System.out.println(test);
-	System.out.println(test.getFirst());
-	System.out.println(test.getLast());
-	System.out.println(test.removeFirst());
-	System.out.println(test);
-	System.out.println(test.getFirst());
-	System.out.println(test.removeLast());
-	System.out.println(test);
-	System.out.println(test.removeLast());
-	System.out.println(test);
-	System.out.println(test.getLast());
-	System.out.println(test);
-
+   public void add(Object o, int n){
+	this.addLast((T)o);
+	nums[tail+1] = n;
     }
-
-    */
 
 }
 
