@@ -336,19 +336,22 @@ public class Maze{
     }
 
     public int distance(int startx, int starty, int endx, int endy){
-	return (int)Math.sqrt((double)((endx-startx)*(endx-startx) + (endy-starty)*(endy-starty)));
+	return Math.abs(endx-startx) + Math.abs(endy-starty);
     }
 
     public boolean solveBest(boolean animate){
+	Coordinate one;
 	pQueue.add(new Coordinate(startx, starty, current),1);
 	maze[startx][starty] = 0;
 	mazeC[startx][starty] = 'x';
 	int x = startx;
 	int y = starty;
+	System.out.println(pQueue);
 	pQueue.add(new Coordinate(x,y,current),distance(x+1,y,endx,endy));
 	while(pQueue.size() > 0){
-	    x = pQueue.removeSmallest().getX();
-	    y = pQueue.removeSmallest().getY();
+	    one = pQueue.removeSmallest();
+	    x = one.getX();
+	    y = one.getY();
 
 	    if (mazeC[x][y] == 'E'){
 		endx = x;
@@ -397,6 +400,7 @@ public class Maze{
 
 
 	}
+	return false;
 
     }
 

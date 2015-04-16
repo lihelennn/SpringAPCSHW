@@ -276,9 +276,10 @@ public class MyDeque<T>{
         return smallest;
     }
 
-    public void removeSmallest(){
+    public T removeSmallest(){
 	int smallest = this.findSmallest();
 	int h = head+1;
+	T ans = (T)data[smallest];
 	if (size > 0){
 	    // nums[smallest] = null;
 	    smallest++;
@@ -340,6 +341,7 @@ public class MyDeque<T>{
 	    }
 	    size--;
 	}
+	return ans;
     }
 }
 
