@@ -217,11 +217,19 @@ public class MyDeque<T>{
     public void add(Object o, int n){
 	if (begin2){
 	    nums[tail] = n;
+	    begin2 = false;
 	}else{
 	    if (tail + 1 == nums.length){
-		tail = -1;
+		System.out.println(1);
+		tail = 0;
+		System.out.println(tail);
+		nums[tail] = n;
+		System.out.println(tail);
+	    }else{
+		System.out.println(2);
+		nums[tail+1] = n;
 	    }
-	    nums[tail+1] = n;
+	    tail++;
 	}
 	this.addLast((T)o);
     }
@@ -339,7 +347,7 @@ public class MyDeque<T>{
 	    }else{
 		tail = nums.length;
 	    }
-	    size--;
+	    numElements--;
 	}
 	return ans;
     }
