@@ -11,6 +11,7 @@ public class MyDeque<T>{
     int tC = tail;
     boolean begin = true;
     boolean begin2 = true;
+    boolean begin3 = true;
     int numElements = 0;
 
     public String name(){
@@ -146,6 +147,7 @@ public class MyDeque<T>{
 		}
 	    }
 	}
+	System.out.println(this);
 	numElements++;
     }
 
@@ -215,26 +217,34 @@ public class MyDeque<T>{
     }
 
     public void add(Object o, int n){
+	int holdTail = tail;
+	System.out.println(this);
 	System.out.println(nums.length);
 	System.out.println(tail);
-	if (begin2){
+	if (begin3){
 	    nums[tail] = n;
-	    begin2 = false;
+	    begin3 = false;
 	}else{
 	    if (numElements == size){
+		System.out.println("resize");
 		this.resize(size*2);
 	    }
 	    if (tail + 1 == nums.length){
 		System.out.println(1);
 		tail = 0;
 		nums[tail] = n;
+		tail = holdTail;
+		System.out.println(Arrays.toString(nums));
+
 	    }else{
 		System.out.println(2);
 		nums[tail+1] = n;
-		tail++;
+		// tail++; done in the add function later
 	    }
 	}
-	numElements++;
+	System.out.println("tail" + tail);
+
+	// numElements++; done in the add function later
 	this.addLast((T)o);
     }
 
@@ -292,70 +302,72 @@ public class MyDeque<T>{
 	int smallest = this.findSmallest();
 	int h = head+1;
 	T ans = (T)data[smallest];
-	if (size > 0){
-	    // nums[smallest] = null;
-	    smallest++;
-	    if (h < tail){
-		if (smallest != nums.length){
-		    while (smallest <= tail){
-			if (smallest - 1 < 0){
-			    nums[nums.length - 1] = nums[smallest];
-			    data[nums.length - 1] = data[smallest];
-			}else{
-			    nums[smallest-1] = nums[smallest];
-			    data[smallest-1] = data[smallest];
-			}
-			smallest++;
-		    }
-		}
-	    }
-	    if (h > tail){
-		if (smallest == nums.length){
-		    smallest = 0;
-		}
-		if (smallest <= tail){
-		    while (smallest <= tail){
-			if (smallest - 1 < 0){
-			    nums[nums.length - 1] = nums[smallest];
-			    data[nums.length - 1] = data[smallest];
-			}else{
-			    nums[smallest-1] = nums[smallest];
-			    data[smallest-1] = data[smallest];
-			}
-			smallest++;
-		    }
-		}
-		if (smallest >= tail){
-		    while(smallest < nums.length){
-			nums[smallest-1] = nums[smallest];
-			data[smallest-1] = data[smallest];
-			smallest++;
-		    }
-		    smallest = 0;
-		    while (smallest <= tail){
-			if (smallest - 1 < 0){
-			    nums[nums.length - 1] = nums[smallest];
-			    data[nums.length - 1] = data[smallest];
-			}else{
-			    nums[smallest-1] = nums[smallest];
-			    data[smallest-1] = data[smallest];
-			}
-			smallest++;
-		    }
-		}
-	    }
-	    data[tail] = null;
-	    nums[tail] = 0;
-	    if (tail-1 > 0){
-		tail--;
-	    }else{
-		tail = nums.length;
-	    }
-	    numElements--;
+	// if (size > 0){
+	//     // nums[smallest] = null;
+	//     smallest++;
+	//     if (h < tail){
+	// 	if (smallest != nums.length){
+	// 	    while (smallest <= tail){
+	// 		if (smallest - 1 < 0){
+	// 		    nums[nums.length - 1] = nums[smallest];
+	// 		    data[nums.length - 1] = data[smallest];
+	// 		}else{
+	// 		    nums[smallest-1] = nums[smallest];
+	// 		    data[smallest-1] = data[smallest];
+	// 		}
+	// 		smallest++;
+	// 	    }
+	// 	}
+	//     }
+	//     if (h > tail){
+	// 	if (smallest == nums.length){
+	// 	    smallest = 0;
+	// 	}
+	// 	if (smallest <= tail){
+	// 	    while (smallest <= tail){
+	// 		if (smallest - 1 < 0){
+	// 		    nums[nums.length - 1] = nums[smallest];
+	// 		    data[nums.length - 1] = data[smallest];
+	// 		}else{
+	// 		    nums[smallest-1] = nums[smallest];
+	// 		    data[smallest-1] = data[smallest];
+	// 		}
+	// 		smallest++;
+	// 	    }
+	// 	}
+	// 	if (smallest >= tail){
+	// 	    while(smallest < nums.length){
+	// 		nums[smallest-1] = nums[smallest];
+	// 		data[smallest-1] = data[smallest];
+	// 		smallest++;
+	// 	    }
+	// 	    smallest = 0;
+	// 	    while (smallest <= tail){
+	// 		if (smallest - 1 < 0){
+	// 		    nums[nums.length - 1] = nums[smallest];
+	// 		    data[nums.length - 1] = data[smallest];
+	// 		}else{
+	// 		    nums[smallest-1] = nums[smallest];
+	// 		    data[smallest-1] = data[smallest];
+	// 		}
+	// 		smallest++;
+	// 	    }
+	// 	}
+	//     }
+	data[smallest] = data[tail];
+	nums[smallest] = nums[tail];
+	data[tail] = null;
+	nums[tail] = -1;
+	if (tail-1 > 0){
+	    tail--;
+	}else{
+	    tail = nums.length;
 	}
+	numElements--;
 	return ans;
     }
 }
+
 
 
 
