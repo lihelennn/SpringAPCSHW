@@ -346,10 +346,11 @@ public class Maze{
 	mazeC[startx][starty] = 'x';
 	int x = startx;
 	int y = starty;
+	System.out.println(pQueue);
 	System.out.println("sizee1" + pQueue.size());
 	while(pQueue.size() > 0){
-	    System.out.println(pQueue);
 	    one = pQueue.removeSmallest();
+	    // System.out.println(pQueue);
 	    System.out.println("sizee" + pQueue.size());
 	    x = one.getX();
 	    y = one.getY();
@@ -380,7 +381,7 @@ public class Maze{
 	    }
 	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
 		pQueue.add(new Coordinate(x-1,y,current),distance(x-1,y,endx,endy));
-System.out.println(pQueue);	    
+		System.out.println(pQueue);	    
 		System.out.println("sizee22" + pQueue.size());
 
 		if (mazeC[x-1][y] == ' '){
@@ -391,7 +392,7 @@ System.out.println(pQueue);
 	    }
 	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
 		pQueue.add(new Coordinate(x,y+1,current),distance(x,y+1,endx,endy));
-System.out.println(pQueue);	    
+		System.out.println(pQueue);	    
 		System.out.println("sizee33" + pQueue.size());
 
 		if (mazeC[x][y+1] == ' '){
@@ -401,7 +402,7 @@ System.out.println(pQueue);
 	    }
 	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
 		pQueue.add(new Coordinate(x,y-1,current),distance(x,y-1,endx,endy));
-System.out.println(pQueue);	    
+		System.out.println(pQueue);	    
 		System.out.println("sizee44" + pQueue.size());
 
 		if (mazeC[x][y-1] == ' '){

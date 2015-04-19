@@ -129,7 +129,7 @@ public class MyDeque<T>{
 	// if (((tail+1 == head || head == tail) && (data[tail] != null && data[tail+1] != null)) || (tail==size-1 && head == 0)){
 	    // System.out.println("need to resize last");
 	    // if (begin = false){
-	if (numElements == size){
+	if (numElements >= size){
 		resize(size*2);
 	    }
 	// }
@@ -224,8 +224,8 @@ public class MyDeque<T>{
 	    nums[tail] = n;
 	    begin3 = false;
 	}else{
-	    System.out.println(Arrays.toString(nums));
-	    System.out.println(Arrays.toString(data));
+	    // System.out.println(Arrays.toString(nums));
+	    // System.out.println(Arrays.toString(data));
 	    if (numElements == size){
 		System.out.println("resize");
 		this.resize(size*2);
@@ -308,7 +308,7 @@ public class MyDeque<T>{
 	    nums[smallest] = nums[tail];
 	    data[tail] = null;
 	    nums[tail] = -10000;
-	    if (tail-1 > 0){
+	    if (tail-1 >= 0){
 		tail--;
 	    }else{
 		tail = nums.length-1;
