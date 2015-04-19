@@ -346,15 +346,13 @@ public class Maze{
 	mazeC[startx][starty] = 'x';
 	int x = startx;
 	int y = starty;
-	// pQueue.add(new Coordinate(x,y,current),distance(x+1,y,endx,endy));
-	System.out.println("size" + pQueue.size());
+	System.out.println("sizee1" + pQueue.size());
 	while(pQueue.size() > 0){
+	    System.out.println(pQueue);
 	    one = pQueue.removeSmallest();
-	    System.out.println(one);
+	    System.out.println("sizee" + pQueue.size());
 	    x = one.getX();
 	    y = one.getY();
-	    System.out.println(pQueue.size());
-
 	    if (mazeC[x][y] == 'E'){
 		endx = x;
 		endy = y;	
@@ -370,6 +368,10 @@ public class Maze{
 	    }
 	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
 		pQueue.add(new Coordinate(x+1,y,current),distance(x+1,y,endx,endy));
+		System.out.println(pQueue);	    
+		System.out.println("sizee11" + pQueue.size());
+
+
 		if (mazeC[x+1][y] == ' '){
 		    mazeC[x+1][y] = 'x';
 		    maze[x+1][y] = current;
@@ -378,6 +380,9 @@ public class Maze{
 	    }
 	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
 		pQueue.add(new Coordinate(x-1,y,current),distance(x-1,y,endx,endy));
+System.out.println(pQueue);	    
+		System.out.println("sizee22" + pQueue.size());
+
 		if (mazeC[x-1][y] == ' '){
 		    mazeC[x-1][y] = 'x';
 		    maze[x-1][y] = current;
@@ -386,21 +391,25 @@ public class Maze{
 	    }
 	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
 		pQueue.add(new Coordinate(x,y+1,current),distance(x,y+1,endx,endy));
+System.out.println(pQueue);	    
+		System.out.println("sizee33" + pQueue.size());
+
 		if (mazeC[x][y+1] == ' '){
 		    mazeC[x][y+1] = 'x';
 		    maze[x][y+1] = current;
 		}
 	    }
 	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
-		pQueue.add(new Coordinate(x,y+1,current),distance(x,y+1,endx,endy));
+		pQueue.add(new Coordinate(x,y-1,current),distance(x,y-1,endx,endy));
+System.out.println(pQueue);	    
+		System.out.println("sizee44" + pQueue.size());
+
 		if (mazeC[x][y-1] == ' '){
 		    mazeC[x][y-1] = 'x';
 		    maze[x][y-1] = current;
 		}
 	    }
-
 	    // current++; fix currrent
-
 	}
 	return false;
 

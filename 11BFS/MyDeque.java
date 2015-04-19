@@ -19,6 +19,7 @@ public class MyDeque<T>{
     }
 
     public void resize(int size1){
+	System.out.println("number of Elements" + numElements);
 	Object[]ans = new Object[size1];
 	int[]numbers = new int[size1];
 	int h = size1/2;
@@ -26,9 +27,6 @@ public class MyDeque<T>{
 	int saveh = h;
 	int savet = t;
 	while (hC != head){
-	    // System.out.println(Arrays.toString(data));
-	    // System.out.println(Arrays.toString(ans));
-	    // System.out.println(hC);
 	    if (h == -1){
 		h = size1-1;
 	    }
@@ -66,13 +64,18 @@ public class MyDeque<T>{
 	}
 	ans[t] = data[tC];
 	numbers[t] = nums[tC];
-	hC = saveh;
-	tC = savet;
+	// hC = saveh;
+	// tC = savet;
+
 	// head = hC;
 	// h--;
 	// t--;
 	head = h;
 	tail = t;
+
+	hC = head;
+	tC = tail;
+
 	data = ans;
 	nums = numbers;
 	size=size1;
@@ -98,18 +101,15 @@ public class MyDeque<T>{
 	    head = size-1;
 	    if (data[head] == null || head-1 != tail){
 		data[head] = value;
-		// System.out.println(1);
 	    }
 	}else{
 	    if (begin == true){
 		data[head] = value;
 		begin = false;
-		// System.out.println(2);
 	    }else{
 		if (head-1 < size || data[head-1] == null){
 		    data[head-1] = value;
 		    head--;
-		    // System.out.println(3);
 		}
 	    }
 	}
@@ -126,13 +126,16 @@ public class MyDeque<T>{
 	    hC = head;
 	    tC = tail;
 	}
-	if (((tail+1 == head || head == tail) && (data[tail] != null && data[tail+1] != null)) || (tail==size-1 && head == 0)){
+	// if (((tail+1 == head || head == tail) && (data[tail] != null && data[tail+1] != null)) || (tail==size-1 && head == 0)){
 	    // System.out.println("need to resize last");
-	    resize(size*2);
-	}
+	    // if (begin = false){
+	if (numElements == size){
+		resize(size*2);
+	    }
+	// }
 	if (tail == size-1){
 	    tail = 0;
-	    if (tail != head){
+	    if (tail != head || begin == true){
 		data[tail] = value;
 	    }
 	}else{
@@ -142,13 +145,11 @@ public class MyDeque<T>{
 	    }else{
 		// if (tail+1 < size && data[tail+1] == null){
 		if (tail + 1 < size){
-		    System.out.println(333);
 		    data[tail+1] = value;
 		    tail++;
 		}
 	    }
 	}
-	System.out.println(this);
 	numElements++;
     }
 
@@ -218,12 +219,13 @@ public class MyDeque<T>{
     }
 
     public void add(Object o, int n){
-	System.out.println("tail" + tail);
 	int holdTail = tail;
 	if (begin3){
 	    nums[tail] = n;
 	    begin3 = false;
 	}else{
+	    System.out.println(Arrays.toString(nums));
+	    System.out.println(Arrays.toString(data));
 	    if (numElements == size){
 		System.out.println("resize");
 		this.resize(size*2);
@@ -299,68 +301,20 @@ public class MyDeque<T>{
 	int smallest = this.findSmallest();
 	int h = head+1;
 	T ans = (T)data[smallest];
-	// if (size > 0){
-	//     // nums[smallest] = null;
-	//     smallest++;
-	//     if (h < tail){
-	// 	if (smallest != nums.length){
-	// 	    while (smallest <= tail){
-	// 		if (smallest - 1 < 0){
-	// 		    nums[nums.length - 1] = nums[smallest];
-	// 		    data[nums.length - 1] = data[smallest];
-	// 		}else{
-	// 		    nums[smallest-1] = nums[smallest];
-	// 		    data[smallest-1] = data[smallest];
-	// 		}
-	// 		smallest++;
-	// 	    }
-	// 	}
-	//     }
-	//     if (h > tail){
-	// 	if (smallest == nums.length){
-	// 	    smallest = 0;
-	// 	}
-	// 	if (smallest <= tail){
-	// 	    while (smallest <= tail){
-	// 		if (smallest - 1 < 0){
-	// 		    nums[nums.length - 1] = nums[smallest];
-	// 		    data[nums.length - 1] = data[smallest];
-	// 		}else{
-	// 		    nums[smallest-1] = nums[smallest];
-	// 		    data[smallest-1] = data[smallest];
-	// 		}
-	// 		smallest++;
-	// 	    }
-	// 	}
-	// 	if (smallest >= tail){
-	// 	    while(smallest < nums.length){
-	// 		nums[smallest-1] = nums[smallest];
-	// 		data[smallest-1] = data[smallest];
-	// 		smallest++;
-	// 	    }
-	// 	    smallest = 0;
-	// 	    while (smallest <= tail){
-	// 		if (smallest - 1 < 0){
-	// 		    nums[nums.length - 1] = nums[smallest];
-	// 		    data[nums.length - 1] = data[smallest];
-	// 		}else{
-	// 		    nums[smallest-1] = nums[smallest];
-	// 		    data[smallest-1] = data[smallest];
-	// 		}
-	// 		smallest++;
-	// 	    }
-	// 	}
-	//     }
-	data[smallest] = data[tail];
-	nums[smallest] = nums[tail];
-	data[tail] = null;
-	nums[tail] = -1;
-	if (tail-1 > 0){
-	    tail--;
+	if (numElements <= 0){
+	    throw new NoSuchElementException();
 	}else{
-	    tail = nums.length-1;
+	    data[smallest] = data[tail];
+	    nums[smallest] = nums[tail];
+	    data[tail] = null;
+	    nums[tail] = -10000;
+	    if (tail-1 > 0){
+		tail--;
+	    }else{
+		tail = nums.length-1;
+	    }
+	    numElements--;
 	}
-	numElements--;
 	return ans;
     }
 }
