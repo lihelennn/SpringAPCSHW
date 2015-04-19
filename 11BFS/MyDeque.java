@@ -142,6 +142,7 @@ public class MyDeque<T>{
 	    }else{
 		// if (tail+1 < size && data[tail+1] == null){
 		if (tail + 1 < size){
+		    System.out.println(333);
 		    data[tail+1] = value;
 		    tail++;
 		}
@@ -167,7 +168,7 @@ public class MyDeque<T>{
     }
 
     public int size(){
-	return size;
+	return numElements;
     }
 
     public T getFirst(){
@@ -217,10 +218,8 @@ public class MyDeque<T>{
     }
 
     public void add(Object o, int n){
+	System.out.println("tail" + tail);
 	int holdTail = tail;
-	System.out.println(this);
-	System.out.println(nums.length);
-	System.out.println(tail);
 	if (begin3){
 	    nums[tail] = n;
 	    begin3 = false;
@@ -230,20 +229,18 @@ public class MyDeque<T>{
 		this.resize(size*2);
 	    }
 	    if (tail + 1 == nums.length){
-		System.out.println(1);
+		// System.out.println(1);
 		tail = 0;
 		nums[tail] = n;
 		tail = holdTail;
-		System.out.println(Arrays.toString(nums));
+		// System.out.println(Arrays.toString(nums));
 
 	    }else{
-		System.out.println(2);
+		// System.out.println(2);
 		nums[tail+1] = n;
 		// tail++; done in the add function later
 	    }
 	}
-	System.out.println("tail" + tail);
-
 	// numElements++; done in the add function later
 	this.addLast((T)o);
     }
@@ -260,7 +257,7 @@ public class MyDeque<T>{
 	    }
 	    smallest = place;
 	    smallestVal = nums[place];
-	    if (place < tail){
+	    if (place <= tail){
 		while (place <= tail){
 		    if (place == nums.length){
 			place = 0;
@@ -361,7 +358,7 @@ public class MyDeque<T>{
 	if (tail-1 > 0){
 	    tail--;
 	}else{
-	    tail = nums.length;
+	    tail = nums.length-1;
 	}
 	numElements--;
 	return ans;

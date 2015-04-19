@@ -346,12 +346,14 @@ public class Maze{
 	mazeC[startx][starty] = 'x';
 	int x = startx;
 	int y = starty;
-	System.out.println(pQueue);
-	pQueue.add(new Coordinate(x,y,current),distance(x+1,y,endx,endy));
+	// pQueue.add(new Coordinate(x,y,current),distance(x+1,y,endx,endy));
+	System.out.println("size" + pQueue.size());
 	while(pQueue.size() > 0){
 	    one = pQueue.removeSmallest();
+	    System.out.println(one);
 	    x = one.getX();
 	    y = one.getY();
+	    System.out.println(pQueue.size());
 
 	    if (mazeC[x][y] == 'E'){
 		endx = x;
@@ -361,8 +363,8 @@ public class Maze{
 		solveable = true;
 		if (animate){
 		    System.out.println(this);
-		    this.solutionCoordinates();
-		    System.out.println(this);
+		    // this.solutionCoordinates();
+		    // System.out.println(this);
 		}
 		return true;
 	    }
@@ -397,7 +399,7 @@ public class Maze{
 		}
 	    }
 
-
+	    // current++; fix currrent
 
 	}
 	return false;
