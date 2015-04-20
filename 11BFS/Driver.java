@@ -10,9 +10,9 @@ public class Driver{
 	// // System.out.println(test.solveDFS(true));
 	// System.out.println(test.solutionCoordinates());
 
-	Maze test3 = new Maze("data2.dat");
+	Maze test3 = new Maze("data3.dat");
 	System.out.println(test3.name());
-	System.out.println(test3.solveBest(true));
+	System.out.println(test3.solveAStar(true));
 	// System.out.println(test.solveDFS(true));
 	System.out.println(test3.solutionCoordinates());
 

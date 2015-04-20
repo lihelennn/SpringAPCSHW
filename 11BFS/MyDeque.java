@@ -41,6 +41,9 @@ public class MyDeque<T>{
 	    h--;
 	    hC--;
 	}
+	if (h < 0){
+	    h = nums.length - 1;
+	}
 	ans[h] = data[hC];
 	numbers[h] = nums[hC];
 
@@ -61,6 +64,9 @@ public class MyDeque<T>{
 	    }
 	    t++;
 	    tC++;
+	}
+	if (t == size1){
+	    t = 0;
 	}
 	ans[t] = data[tC];
 	numbers[t] = nums[tC];

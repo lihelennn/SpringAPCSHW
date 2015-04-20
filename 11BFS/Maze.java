@@ -195,7 +195,7 @@ public class Maze{
 	    deck.removeFirst();
 	    if (animate){
 		System.out.println(toString(true));
-		wait(50);
+		wait(100);
 	    }
 	}
 	solveable = false;
@@ -262,7 +262,7 @@ public class Maze{
 	    // System.out.println(deck);
 	    if (animate){
 		System.out.println(toString(true));
-		wait(50);
+		wait(100);
 	    }
 	}
 	solveable = false;
@@ -275,6 +275,14 @@ public class Maze{
 
     public boolean solveDFS(){
 	return solveDFS(false);
+    }
+
+    public boolean solveBest(){
+	return solveBest(false);
+    }
+
+    public boolean solveAStar(){
+	return solveAStar(false);
     }
 
     public int[] solutionCoordinates(){
@@ -418,6 +426,75 @@ public class Maze{
 	    	wait(100);
 	    }
 	    // current++; fix currrent
+	}
+	return false;
+
+    }
+
+    public boolean solveAStar(boolean animate){
+	Coordinate one;
+	current = 0;
+	pQueue.add(new Coordinate(startx, starty, current),1+current);
+	maze[startx][starty] = 0;
+	mazeC[startx][starty] = 'x';
+	int x = startx;
+	int y = starty;
+	// System.out.println(pQueue);
+	// System.out.println("sizee1" + pQueue.size());
+	while(pQueue.size() > 0){
+	    one = pQueue.removeSmallest();
+	    // System.out.println(pQueue);
+	    // System.out.println("sizee" + pQueue.size());
+	    x = one.getX();
+	    y = one.getY();
+	    current = one.getCurrent()+1;
+	    if (mazeC[x][y] == 'E'){
+		endx = x;
+		endy = y;	
+		maze[x][y] = current;
+		mazeC[x][y] = 'x';
+		solveable = true;
+		if (animate){
+		    System.out.println(this);
+		    this.solutionCoordinates();
+		    System.out.println(this);
+		}
+		return true;
+	    }
+	    if (mazeC[x+1][y] == ' ' || mazeC[x+1][y] == 'E'){
+		pQueue.add(new Coordinate(x+1,y,current),current + distance(x+1,y,endx,endy));
+		if (mazeC[x+1][y] == ' '){
+		    mazeC[x+1][y] = 'x';
+		    maze[x+1][y] = current;
+		}
+
+	    }
+	    if (mazeC[x-1][y] == ' ' || mazeC[x-1][y] == 'E'){
+		pQueue.add(new Coordinate(x-1,y,current),current + distance(x-1,y,endx,endy));
+		if (mazeC[x-1][y] == ' '){
+		    mazeC[x-1][y] = 'x';
+		    maze[x-1][y] = current;
+		}
+
+	    }
+	    if (mazeC[x][y+1] == ' '|| mazeC[x][y+1] == 'E'){
+		pQueue.add(new Coordinate(x,y+1,current),current + distance(x,y+1,endx,endy));
+		if (mazeC[x][y+1] == ' '){
+		    mazeC[x][y+1] = 'x';
+		    maze[x][y+1] = current;
+		}
+	    }
+	    if (mazeC[x][y-1] == ' '|| mazeC[x][y-1] == 'E'){
+		pQueue.add(new Coordinate(x,y-1,current),current + distance(x,y-1,endx,endy));
+		if (mazeC[x][y-1] == ' '){
+		    mazeC[x][y-1] = 'x';
+		    maze[x][y-1] = current;
+		}
+	    }
+	    if (animate){
+	    	System.out.println(toString(true));
+	    	wait(100);
+	    }
 	}
 	return false;
 
