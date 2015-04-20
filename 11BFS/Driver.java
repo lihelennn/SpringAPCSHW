@@ -6,14 +6,13 @@ public class Driver{
 	
      	// Maze test = new Maze("data1.dat");
 	// System.out.println(test.name());
-	// System.out.println(test.solveBFS(true));
+	// System.out.println(test.solveDFS(true));
 	// // System.out.println(test.solveDFS(true));
 	// System.out.println(test.solutionCoordinates());
 
 	Maze test3 = new Maze("data3.dat");
 	System.out.println(test3.name());
 	System.out.println(test3.solveAStar(true));
-	// System.out.println(test.solveDFS(true));
 	System.out.println(test3.solutionCoordinates());
 
 

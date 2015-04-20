@@ -1,4 +1,4 @@
-//figure out toString(animate)
+//done?
 
 import java.util.*;
 import java.io.*;
@@ -439,12 +439,8 @@ public class Maze{
 	mazeC[startx][starty] = 'x';
 	int x = startx;
 	int y = starty;
-	// System.out.println(pQueue);
-	// System.out.println("sizee1" + pQueue.size());
 	while(pQueue.size() > 0){
 	    one = pQueue.removeSmallest();
-	    // System.out.println(pQueue);
-	    // System.out.println("sizee" + pQueue.size());
 	    x = one.getX();
 	    y = one.getY();
 	    current = one.getCurrent()+1;
