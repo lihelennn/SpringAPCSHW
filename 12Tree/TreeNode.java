@@ -37,4 +37,8 @@ public class TreeNode<T>{
 	right = n;
     }
 
+    public String toString(){
+	return "[" + this.getData() + "]";
+    }
+
 }
