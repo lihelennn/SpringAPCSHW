@@ -21,7 +21,11 @@ public class BTree<E> {
       Wrapper method for the recursive add()
       ====================*/     
     public void add( E d ) {
-	add(root,new TreeNode<E>(d));
+	if (root == null){
+	    root = new TreeNode<E>(d);
+	}else{
+	    add(root,new TreeNode<E>(d));
+	}
     }
 
     /*======== public void add() ==========
