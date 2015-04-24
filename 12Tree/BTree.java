@@ -66,7 +66,7 @@ public class BTree<E> {
 	    }
 	}
     }
-    
+   
     public void traverse( int mode) {
 	if ( mode == PRE_ORDER )
 	    preOrder( root );
@@ -122,7 +122,16 @@ public class BTree<E> {
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
-	return -1;
+	if (curr.getLeft() == null && curr.getRight() == null){
+	    return 0;
+	}
+	int left = getHeight(curr.getLeft());
+	int right = getHeight(curr.getRight());
+	if (left > right){
+	    return left;
+	}else{
+	    return right;
+	}
     }
 
     /*======== public String getLevel() ==========
