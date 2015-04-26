@@ -42,17 +42,17 @@ public class BTree<E> {
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
 	Random rand = new Random();
 	int n = rand.nextInt(2);
-	if (curr.getRight() == null && curr.getLeft() == null){
+	if (curr.leftEmpty() && curr.rightEmpty()){
 	    if (n == 0){
 		curr.setRight(bn);
 	    }else{
 		curr.setLeft(bn);
 	    }
 	}else{
-	    if (curr.getRight() == null && curr.getLeft() != null){
+	    if (curr.rightEmpty() && !curr.leftEmpty()){
 		curr.setRight(bn);
 	    }else{
-		if (curr.getLeft() == null && curr.getLeft() != null){
+		if (curr.leftEmpty() && !curr.rightEmpty()){
 		    curr.setLeft(bn);
 		}else{
 		    if (n == 0){
@@ -122,15 +122,15 @@ public class BTree<E> {
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
-	if (curr.getLeft() == null && curr.getRight() == null){
-	    return 0;
+	if (curr.leftEmpty() && curr.rightEmpty()){
+	    return 1;
 	}
 	int left = getHeight(curr.getLeft());
 	int right = getHeight(curr.getRight());
 	if (left > right){
-	    return left;
+	    return left + 1;
 	}else{
-	    return right;
+	    return right + 1;
 	}
     }
 

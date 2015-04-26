@@ -37,6 +37,14 @@ public class TreeNode<T>{
 	right = n;
     }
 
+    public boolean leftEmpty(){
+	return left == null;
+    }
+
+    public boolean rightEmpty(){
+	return right == null;
+    }
+
     public String toString(){
 	return "[" + this.getData() + "]";
     }
