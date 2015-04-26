@@ -122,15 +122,26 @@ public class BTree<E> {
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
+	int left, right;
 	if (curr.leftEmpty() && curr.rightEmpty()){
 	    return 1;
 	}
-	int left = getHeight(curr.getLeft());
-	int right = getHeight(curr.getRight());
-	if (left > right){
+	if (curr.rightEmpty()){
+	    left = getHeight(curr.getLeft());
 	    return left + 1;
 	}else{
-	    return right + 1;
+	    if (curr.leftEmpty()){
+		right = getHeight(curr.getRight());
+		return right + 1;
+	    }else{
+		left = getHeight(curr.getLeft());
+		right = getHeight(curr.getRight());
+		if (left > right){
+		    return left + 1;
+		}else{
+		    return right + 1;
+		}
+	    }
 	}
     }
 
