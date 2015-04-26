@@ -6,6 +6,8 @@ public class BTree<E> {
     public static final int PRE_ORDER = 0;
     public static final int IN_ORDER = 1;
     public static final int POST_ORDER = 2;
+
+    private int randSeed = 999;
     
 
     private TreeNode<E> root;
@@ -40,7 +42,7 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-	Random rand = new Random();
+	Random rand = new Random(randSeed);
 	int n = rand.nextInt(2);
 	if (curr.leftEmpty() && curr.rightEmpty()){
 	    if (n == 0){
@@ -148,13 +150,18 @@ public class BTree<E> {
     /*======== public String getLevel() ==========
       Inputs:   TreeNode<E> curr
       int level
-      int currLevel  
       Returns: A string containing all the elements on the
       given level, ordered left -> right
       
       ====================*/
-    private String getLevel( TreeNode<E> curr, int level, int currLevel ) {
-	return "";
+    private String getLevel( TreeNode<E> curr, int level) {
+	if (curr == null){
+	    return "";
+	}
+	if (level == 0){
+	    return curr.toString();
+	}
+	return getLevel(curr.getLeft(), level-1) + getLevel(curr.getRight(), level-1);
     }
     
     /*======== public String toString()) ==========
@@ -176,9 +183,15 @@ public class BTree<E> {
       3  4   5
       ====================*/
     public String toString() {
-	return "";
+	String ans = "";
+	int level = getHeight();
+	int place = 0;
+	while (place <= level){
+	    ans += getLevel(root, place) + "\n";
+	    place++;
+	}
+	return ans;
     }
-	
 
     public static void main( String[] args ) {
 
