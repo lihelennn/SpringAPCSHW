@@ -7,7 +7,7 @@ public class BTree<E> {
     public static final int IN_ORDER = 1;
     public static final int POST_ORDER = 2;
 
-    private int randSeed = 989898299;
+    private int randSeed = 8979289;
     
 
     private TreeNode<E> root;
@@ -86,8 +86,7 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
-	if (curr == null){
-	}else{
+	if (curr != null){
 	    System.out.println(curr.toString());
 	    preOrder(curr.getLeft());
 	    preOrder(curr.getRight());
@@ -103,6 +102,11 @@ public class BTree<E> {
       in-order Traversal
       ====================*/
     public void inOrder( TreeNode<E> curr ) {
+        if (curr != null){
+	    inOrder(curr.getLeft());
+	    System.out.println(curr.toString());
+	    inOrder(curr.getRight());
+	}
     }
 
     /*======== public void postOrder() ==========
@@ -113,6 +117,11 @@ public class BTree<E> {
       post-order Traversal    
       ====================*/
     public void postOrder( TreeNode<E> curr ) {
+	if (curr != null){
+	    postOrder(curr.getLeft());
+	    postOrder(curr.getRight());
+	    System.out.println(curr.toString());
+	}
     }
     
     /*======== public int getHeight()) ==========
