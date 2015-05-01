@@ -40,8 +40,13 @@ public class BSTree <T extends Comparable> {
 	    curr = t;
 	    return curr;
 	}else{
-	    if (curr.compareTo(t)){
-
+	    if (curr.getData().compareTo(t.getData()) < 0){
+	        curr.setRight(add(curr.getRight(),t));
+	    }else{
+		curr.setLeft(add(curr.getLeft(),t));
+	    }
+	}
+	return curr;
     }
 
     /*======== public void remove() ==========
@@ -95,6 +100,11 @@ public class BSTree <T extends Comparable> {
 
    
     public static void main( String[] args ) {
+	BSTree<Integer>test = new BSTree<Integer>();
+	test.add(5);
+	test.add(60);
+	test.add(9);
+	test.add(4);
 
     }
 
