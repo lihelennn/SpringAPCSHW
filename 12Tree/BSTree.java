@@ -236,6 +236,10 @@ public class BSTree <T extends Comparable> {
 	test.add(60);
 	test.add(9);
 	test.add(4);
+	test.add(2304);
+	test.add(-1);
+	test.add(10);
+	System.out.println(test);
 
     }
 

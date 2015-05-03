@@ -35,4 +35,21 @@ public class BSTreeNode<T extends Comparable> {
     public void setRight( BSTreeNode<T> r ) {
 	right = r;
     }
+
+    //empty?
+    public boolean rightEmpty(){
+	return right == null;
+    }
+
+    public boolean leftEmpty(){
+	return left == null;
+    }
+
+    //toString
+    public String toString(){
+	String ans = "";
+	ans += this.getData();
+	return ans;
+    }
+
 }
