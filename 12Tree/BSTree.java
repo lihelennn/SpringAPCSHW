@@ -68,22 +68,25 @@ public class BSTree <T extends Comparable> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-	//no children
 	BSTreeNode<T>sub = curr;
 	if (curr.getData().equals(c)){
 	    //leaf
 	    if (curr.rightEmpty() && curr.leftEmpty()){
 		curr = null;
-		return null;
+		return curr;
 	    }else{
 		//only one child
 		if (curr.rightEmpty() && !curr.leftEmpty()){
+		    // curr = remove(curr.getLeft(),curr.getLeft().getData());
 		    curr = curr.getLeft();
-		    curr.setLeft(null);
+		    return curr;
+
 		}else{
 		    if (!curr.rightEmpty() && curr.leftEmpty()){
+			// curr = remove(curr.getRight(),curr.getRight().getData());
 			curr = curr.getRight();
-			curr.setRight(null);
+			return curr;
+
 		    }else{
 			//has two children
 			if (curr.equals(c) && !curr.rightEmpty() && !curr.leftEmpty()){
@@ -94,16 +97,13 @@ public class BSTree <T extends Comparable> {
 	    }
 	}else{
 	    if (curr.getData().compareTo(c) < 0){
-		if (!curr.rightEmpty()){
-		    curr.setRight(remove(curr.getRight(),c));
-		}
+		// if (!curr.rightEmpty()){
+		curr.setRight(remove(curr.getRight(),c));
+		// }
 	    }else{
-		if (!curr.leftEmpty()){
-		    curr.setLeft(remove(curr.getLeft(),c));
-		}else{
-		    return null;
-		}
-
+		// if (!curr.leftEmpty()){
+		curr.setLeft(remove(curr.getLeft(),c));
+		// }
 	    }
 	}
 	return sub;
@@ -264,11 +264,13 @@ public class BSTree <T extends Comparable> {
 	test.add(2304);
 	test.add(-1);
 	test.add(10);
+	test.add(3);
 
 	System.out.println(test);
 
-	test.remove(10);
+	test.remove(9);
 	test.remove(-1);
+	test.remove(4);
 
 	System.out.println(test);
 
