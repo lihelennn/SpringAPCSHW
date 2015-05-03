@@ -47,9 +47,13 @@ public class BSTreeNode<T extends Comparable> {
 
     //toString
     public String toString(){
-	String ans = "";
-	ans += this.getData();
-	return ans;
+	if (this == null){
+	    return "";
+	}else{
+	    String ans = "";
+	    ans += this.getData();
+	    return ans;
+	}
     }
 
 }
