@@ -5,6 +5,10 @@ import java.util.*;
 
 public class BSTree <T extends Comparable> {
 
+    public String name(){
+	return "li.helen";
+    }
+
     private BSTreeNode<T> root;
 
     public BSTree() {
@@ -77,20 +81,18 @@ public class BSTree <T extends Comparable> {
 	    }else{
 		//only one child
 		if (curr.rightEmpty() && !curr.leftEmpty()){
-		    // curr = remove(curr.getLeft(),curr.getLeft().getData());
 		    curr = curr.getLeft();
 		    return curr;
 
 		}else{
 		    if (!curr.rightEmpty() && curr.leftEmpty()){
-			// curr = remove(curr.getRight(),curr.getRight().getData());
 			curr = curr.getRight();
 			return curr;
 
 		    }else{
 			//has two children
 			if (!curr.rightEmpty() && !curr.leftEmpty()){
-			    BSTreeNode<T>help = getSub(root);
+			    BSTreeNode<T>help = getSub(curr);
 			    remove(root,help.getData());
 			    curr.setData(help.getData());
 			    return curr;
@@ -273,32 +275,6 @@ public class BSTree <T extends Comparable> {
     	result += getLevel(root, height, height, height, wordLength).replaceFirst("\\s+$", "");
 				
     	return result;
-    }
-
-   
-    public static void main( String[] args ) {
-	BSTree<Integer>test = new BSTree<Integer>();
-	test.add(5);
-	test.add(60);
-	test.add(9);
-	test.add(4);
-	test.add(2304);
-	test.add(-1);
-	test.add(10);
-	test.add(3);
-
-	System.out.println(test);
-	System.out.println("\n\n\n\n");
-
-	// test.remove(9);
-	// test.remove(-1);
-	// test.remove(4);
-	test.remove(5);
-	test.remove(60);
-
-	System.out.println(test);
-
-
     }
 
 }

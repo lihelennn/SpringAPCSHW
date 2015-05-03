@@ -8,6 +8,10 @@ public class BSTreeNode<T extends Comparable> {
     private BSTreeNode<T> left;
     private BSTreeNode<T> right;
 
+    public String name(){
+	return "li.helen";
+    }
+
     public BSTreeNode( T d ) {
  
 	data = d;
