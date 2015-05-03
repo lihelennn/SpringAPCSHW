@@ -7,7 +7,7 @@ public class BTree<E> {
     public static final int IN_ORDER = 1;
     public static final int POST_ORDER = 2;
 
-    private int randSeed = 8979289;
+    private int randSeed;
     
 
     private TreeNode<E> root;
@@ -42,7 +42,9 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-	Random rand = new Random(randSeed);
+	// Random rand = new Random(randSeed);
+	Random rand = new Random();
+
 	int n = rand.nextInt(2);
 	if (curr.leftEmpty() && curr.rightEmpty()){
 	    if (n == 0){
@@ -176,7 +178,7 @@ public class BTree<E> {
 	if (level == 0){
 	    return curr.toString();
 	}
-	return getLevel(curr.getLeft(), level-1) + "  "+ getLevel(curr.getRight(), level-1);
+	return getLevel(curr.getLeft(), level-1) + getLevel(curr.getRight(), level-1);
     }
     
     /*======== public String toString()) ==========
