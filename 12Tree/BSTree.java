@@ -89,8 +89,11 @@ public class BSTree <T extends Comparable> {
 
 		    }else{
 			//has two children
-			if (curr.equals(c) && !curr.rightEmpty() && !curr.leftEmpty()){
-			    curr = curr.getLeft();
+			if (!curr.rightEmpty() && !curr.leftEmpty()){
+			    BSTreeNode<T>help = getSub(root);
+			    remove(root,help.getData());
+			    curr.setData(help.getData());
+			    return curr;
 			}
 		    }
 		}
@@ -108,6 +111,24 @@ public class BSTree <T extends Comparable> {
 	}
 	return sub;
     }
+
+    private BSTreeNode<T> getSub(BSTreeNode<T>curr){
+	Random rand = new Random();
+	int r = rand.nextInt(2);
+	if (r == 0){
+	    curr = curr.getLeft();
+	    while (!curr.rightEmpty()){
+		curr = curr.getRight();
+	    }
+	}else{
+	    curr = curr.getRight();
+	    while (!curr.leftEmpty()){
+		curr = curr.getLeft();
+	    }
+	}
+	return curr;
+    }
+
 
 
     /*======== public void inOrder()) ==========
@@ -267,10 +288,13 @@ public class BSTree <T extends Comparable> {
 	test.add(3);
 
 	System.out.println(test);
+	System.out.println("\n\n\n\n");
 
-	test.remove(9);
-	test.remove(-1);
-	test.remove(4);
+	// test.remove(9);
+	// test.remove(-1);
+	// test.remove(4);
+	test.remove(5);
+	test.remove(60);
 
 	System.out.println(test);
 
