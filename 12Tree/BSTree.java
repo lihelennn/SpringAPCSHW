@@ -38,7 +38,7 @@ public class BSTree <T extends Comparable> {
     private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
 	if (curr == null){
 	    curr = t;
-	    return curr;
+     	    return curr;
 	}else{
 	    if (curr.getData().compareTo(t.getData()) < 0){
 	        curr.setRight(add(curr.getRight(),t));
@@ -69,22 +69,21 @@ public class BSTree <T extends Comparable> {
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
 	//no children
+	BSTreeNode<T>sub = curr;
 	if (curr.getData().equals(c)){
+	    //leaf
 	    if (curr.rightEmpty() && curr.leftEmpty()){
 		curr = null;
-		return curr;
+		return null;
 	    }else{
 		//only one child
 		if (curr.rightEmpty() && !curr.leftEmpty()){
-		    System.out.println(2);
-		    //do this part recursive b/c what if the left also has children?
-		    curr = remove(curr.getLeft(),curr.getLeft().getData());
+		    curr = curr.getLeft();
+		    curr.setLeft(null);
 		}else{
 		    if (!curr.rightEmpty() && curr.leftEmpty()){
-			System.out.println(1);
-			//do this part recursive b/c what if the right also has children?
-			curr = remove(curr.getRight(),curr.getRight().getData());
-		        
+			curr = curr.getRight();
+			curr.setRight(null);
 		    }else{
 			//has two children
 			if (curr.equals(c) && !curr.rightEmpty() && !curr.leftEmpty()){
@@ -96,18 +95,18 @@ public class BSTree <T extends Comparable> {
 	}else{
 	    if (curr.getData().compareTo(c) < 0){
 		if (!curr.rightEmpty()){
-		    remove(curr.getRight(),c);
+		    curr.setRight(remove(curr.getRight(),c));
 		}
 	    }else{
 		if (!curr.leftEmpty()){
-		    remove(curr.getLeft(),c);
+		    curr.setLeft(remove(curr.getLeft(),c));
 		}else{
 		    return null;
 		}
 
 	    }
 	}
-	return curr;
+	return sub;
     }
 
 
@@ -269,6 +268,7 @@ public class BSTree <T extends Comparable> {
 	System.out.println(test);
 
 	test.remove(10);
+	test.remove(-1);
 
 	System.out.println(test);
 
