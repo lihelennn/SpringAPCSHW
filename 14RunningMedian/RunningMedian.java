@@ -28,26 +28,24 @@ public class RunningMedian{
 	    if (size2 == 0 && size1 == 1){
 		if (min.peek() < value){
 		    max.add(value);
-		    size2++;
 		}else{
 		    max.add(min.remove());
 		    min.add(value);
-		    size1++;
 		}
+		size2++;
 	    }else{
 		//if there are two medians
 		if (size1 == size2){
-		    if (min.peek() > value){
-			med1 = min.remove();
+		    if (min.peek() >= value){
+			max.add(min.remove());
+			size2++;
 			min.add(value);
 		    }else{
-			if (max.peek() < value){
-			    med1 = max.remove();
-			    max.add(value);
+			if (value >= min.peek() && value < max.peek()){
+			    min.add(value);
+			    size1++;
 			}else{
-			    med1 = value;
-			}
-		    }
-		}
+			    if (max.peek() <= peek){
+
 
 		 
