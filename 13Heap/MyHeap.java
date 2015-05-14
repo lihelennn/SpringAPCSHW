@@ -44,25 +44,30 @@ public class MyHeap{
     }
 
     public int remove(){
-	if (arr[0] == 1){
-	    arr[0]--;
-	    arr[1] = -1;
+	if (arr[0] <= 0){
+	    throw new NoSuchElementException();
 	}else{
-	    int sub = arr[arr[0]];
-	    arr[arr[0]] = -1;
-	    System.out.println(arr[0]);
-	    arr[1] = sub;
-	    arr[0]--;
-	    switchChild(1);
+	    int largest = arr[1];
+	    if (arr[0] == 1){
+		arr[0]--;
+		arr[1] = -1;
+	    }else{
+		int sub = arr[arr[0]];
+		arr[arr[0]] = -1;
+		arr[1] = sub;
+		arr[0]--;
+		switchChild(1);
 
+	    }
+	    return largest;
 	}
-	return peek();
     }
 
-
-
     public int peek(){
-	return arr[1];
+	if (arr[0] > 0){
+	    return arr[1];
+	}
+	throw new NoSuchElementException(); 
     }
 
 
@@ -78,36 +83,64 @@ public class MyHeap{
 
     private void switchChild(int ind){
 	int sub,ind2;
-	while (ind <= arr[0]){
-	    System.out.println(this);
-	    if (ind*2 <= arr[0] && ind*2+1 <= arr[0]){
-		System.out.println("ind*" + arr[ind*2]);
-		System.out.println("ind+" + arr[ind*2+1]);
-		if (arr[ind*2] > arr[ind*2+1]){
-		    ind2 = ind*2;
+	if (isMax){
+	    while (ind <= arr[0]){
+		if (ind*2 <= arr[0] && ind*2+1 <= arr[0]){
+		    if (arr[ind*2] > arr[ind*2+1]){
+			ind2 = ind*2;
+		    }else{
+			ind2 = ind*2+1;
+		    }
 		}else{
-		    ind2 = ind*2+1;
+		    if (ind*2 <= arr[0]){
+			ind2 = ind*2;
+		    }else{
+			break;
+		    }
 		}
-	    }else{
-		if (ind*2 <= arr[0]){
-		    ind2 = ind*2;
+		if (arr[ind2] > arr[ind]){
+		    sub = arr[ind];
+		    arr[ind] = arr[ind2];
+		    arr[ind2] = sub;
+		    ind = ind2;
 		}else{
-		    break;
+		    //break out if no more shifting down is required
+		    ind = arr[0] + 1;
 		}
 	    }
-	    System.out.println("ind2" + ind2);
-	    if (arr[ind2] > arr[ind]){
-		sub = arr[ind];
-		arr[ind] = arr[ind2];
-		arr[ind2] = sub;
+	}else{
+	    while (ind <= arr[0]){
+		System.out.println(this);
+		if (ind*2 <= arr[0] && ind*2+1 <= arr[0]){
+		    // System.out.println("ind*" + arr[ind*2]);
+		    // System.out.println("ind+" + arr[ind*2+1]);
+		    if (arr[ind*2] < arr[ind*2+1]){
+			ind2 = ind*2;
+		    }else{
+			ind2 = ind*2+1;
+		    }
+		}else{
+		    if (ind*2 <= arr[0]){
+			ind2 = ind*2;
+		    }else{
+			break;
+		    }
+		}
+		// System.out.println("ind2" + ind2);
+		if (arr[ind2] < arr[ind]){
+		    sub = arr[ind];
+		    arr[ind] = arr[ind2];
+		    arr[ind2] = sub;
+		    ind = ind2;
+		}else{
+		    //break out if no more shifting down is required
+		    ind = arr[0] + 1;
+		}
 	    }
-	    ind = ind2;
-	    System.out.println("IND" + ind);
+	    	
 	}
     }
-
-    // while (ind*2 < arr[0]-1 && (isMax && arr[ind] < arr
-
+  
     public String toString(){
 	String ans = "[";
 	int place = 0;
@@ -127,14 +160,29 @@ public class MyHeap{
 	test.add(20);
 	test.add(17);
 	test.add(14);
+	test.add(32);
+	test.add(7);
+	test.add(99);
 	System.out.println(test);
-	test.remove();
-	test.remove();
-	test.remove();
-	test.remove();
-	test.remove();
-	test.remove();
-	test.remove();
+	System.out.println(test.remove());
+	System.out.println(test);
+	System.out.println(test.remove());
+	System.out.println(test);
+	System.out.println(test.remove());
+	System.out.println(test);
+	System.out.println(test.remove());
+	System.out.println(test);
+	System.out.println(test.remove());
+	System.out.println(test);
+	System.out.println(test.remove());
+	System.out.println(test);
+	System.out.println(test.remove());
+	System.out.println(test);
+	System.out.println(test.remove());
+	System.out.println(test);
+	System.out.println(test.remove());
+	System.out.println(test);
+	System.out.println(test.remove());
 	System.out.println(test);
     }
 
