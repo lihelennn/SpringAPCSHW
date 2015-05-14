@@ -25,7 +25,6 @@ public class MyHeap{
 	    place++;
 	}
 	arr = sub;
-	System.out.println(Arrays.toString(arr));
 	capacity*=2;
     }
 
@@ -49,11 +48,13 @@ public class MyHeap{
 	    arr[0]--;
 	    arr[1] = -1;
 	}else{
-	    arr[0]--;
 	    int sub = arr[arr[0]];
 	    arr[arr[0]] = -1;
+	    System.out.println(arr[0]);
 	    arr[1] = sub;
-	    switchChild(arr[0]);
+	    arr[0]--;
+	    switchChild(1);
+
 	}
 	return peek();
     }
@@ -77,22 +78,31 @@ public class MyHeap{
 
     private void switchChild(int ind){
 	int sub,ind2;
-	while (ind < arr[0]){
-	    if (ind*2 < arr[0] && ind*2+1 < arr[0]){
+	while (ind <= arr[0]){
+	    System.out.println(this);
+	    if (ind*2 <= arr[0] && ind*2+1 <= arr[0]){
+		System.out.println("ind*" + arr[ind*2]);
+		System.out.println("ind+" + arr[ind*2+1]);
 		if (arr[ind*2] > arr[ind*2+1]){
 		    ind2 = ind*2;
 		}else{
 		    ind2 = ind*2+1;
 		}
 	    }else{
-		if (ind*2 < arr[0]){
-		    ind = ind*2;
+		if (ind*2 <= arr[0]){
+		    ind2 = ind*2;
+		}else{
+		    break;
 		}
 	    }
-	    sub = arr[ind];
-	    arr[ind] = arr[ind2];
-	    arr[ind2] = sub;
+	    System.out.println("ind2" + ind2);
+	    if (arr[ind2] > arr[ind]){
+		sub = arr[ind];
+		arr[ind] = arr[ind2];
+		arr[ind2] = sub;
+	    }
 	    ind = ind2;
+	    System.out.println("IND" + ind);
 	}
     }
 
@@ -117,6 +127,13 @@ public class MyHeap{
 	test.add(20);
 	test.add(17);
 	test.add(14);
+	System.out.println(test);
+	test.remove();
+	test.remove();
+	test.remove();
+	test.remove();
+	test.remove();
+	test.remove();
 	test.remove();
 	System.out.println(test);
     }
