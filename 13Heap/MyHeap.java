@@ -6,6 +6,9 @@ public class MyHeap{
     private int[]arr = new int[5];
     private int capacity = 5;
 
+    public String name(){
+	return "li.helen";
+    }
 
     public MyHeap(){
 	isMax = true;
@@ -74,9 +77,11 @@ public class MyHeap{
     private void switchParent(int ind){
 	int sub;
 	while (ind/2 != 0 && (isMax && arr[ind] > arr[ind/2]) || (!isMax && arr[ind] < arr[ind/2])){
-	    sub = arr[ind];
-	    arr[ind] = arr[ind/2];
-	    arr[ind/2] = sub;
+	    if (ind/2 > 0){
+		sub = arr[ind];
+		arr[ind] = arr[ind/2];
+		arr[ind/2] = sub;
+	    }
 	    ind/=2;
 	}
     }
@@ -110,10 +115,7 @@ public class MyHeap{
 	    }
 	}else{
 	    while (ind <= arr[0]){
-		System.out.println(this);
 		if (ind*2 <= arr[0] && ind*2+1 <= arr[0]){
-		    // System.out.println("ind*" + arr[ind*2]);
-		    // System.out.println("ind+" + arr[ind*2+1]);
 		    if (arr[ind*2] < arr[ind*2+1]){
 			ind2 = ind*2;
 		    }else{
@@ -137,11 +139,10 @@ public class MyHeap{
 		    ind = arr[0] + 1;
 		}
 	    }
-	    	
 	}
     }
   
-    public String toString(){
+    public String toStringH(){
 	String ans = "[";
 	int place = 0;
 	while (place < arr.length){
@@ -151,18 +152,74 @@ public class MyHeap{
 	ans+="]";
 	return ans;
     }
+
+    public String toString() {
+	String ans = "";
+	if (arr[0] > 0){
+	    int level = getHeight();
+	    int place = 0;
+	    while (place <= level){
+		ans += getLevel( place) + "\n";
+		place++;
+	    }
+	    return ans;
+	}
+	return ans + "\n";
+    }
+
+    private int getHeight(){
+	int times = 0;
+	int sub = 0;
+	while (sub < arr[0]){
+	    sub += (int)Math.pow(2, times);
+	    times++;
+	}
+	return times;
+    }
+
+    private String getLevel(int level) {
+	if (level == 0){
+	    return Integer.toString(arr[1]);
+	}
+	int start = (int)Math.pow(2, level);
+	String ans = "";
+	while (start <= arr[0] && start < (int)Math.pow(2,level+1)){
+	    ans += arr[start] + "  ";
+	    start++;
+	}
+	return ans;
+    }
+
 	 
     public static void main(String[]args){
 	MyHeap test = new MyHeap();
+
+	System.out.println(test.name());
+
 	test.add(12);
+	System.out.println(test);
 	test.add(10);
+	System.out.println(test);
 	test.add(13);
+	System.out.println(test);
 	test.add(20);
+	System.out.println(test);
 	test.add(17);
+	System.out.println(test);
 	test.add(14);
+	System.out.println(test);
 	test.add(32);
-	test.add(7);
+	System.out.println(test);
+	test.add(6);
+	System.out.println(test);
 	test.add(99);
+	System.out.println(test);
+	test.add(-142);
+	System.out.println(test);
+
+	System.out.println(test.peek());
+
+	System.out.println(test.remove());
 	System.out.println(test);
 	System.out.println(test.remove());
 	System.out.println(test);
