@@ -56,31 +56,25 @@ public class RunningMedian{
 			if (min.peek() <= value){
 			    max.add(value);
 			    size2++;
-			    System.out.println("value" + value);
 			}else{
-			    if (min.peek() >= value){
-				max.add(min.remove());
-				min.add(value);
-				size2++;
-			    }
+			    max.add(min.remove());
+			    min.add(value);
+			    size2++;
 			}
 		    }else{
-			System.out.println("value 2>1" + value);
 			if (max.peek() >= value){
 			    min.add(value);
 			    size1++;
 			}else{
-			    if (max.peek() <= value){
-				min.add(max.remove());
-				size1++;
-				max.add(value);
-			    }
+			    min.add(max.remove());
+			    size1++;
+			    max.add(value);
 			}
 		    }
 		}
 	    }
 	}
-	System.out.println(size1 + "," + size2);
+	// System.out.println(size1 + "," + size2);
     }
 
     private void toStringH(){
@@ -99,10 +93,11 @@ public class RunningMedian{
 	test.add(17);
 	test.add(34);
 	test.add(25);
+	test.add(9);
 	test.add(20);
 	test.add(16);
 	test.add(15);
-	test.toStringH();
+	// test.toStringH();
 	System.out.println(test.getMedian());
     }
 
