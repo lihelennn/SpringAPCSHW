@@ -48,7 +48,6 @@ public class RunningMedian{
 			    if (max.peek() <= value){
 				max.add(value);
 				size2++;
-
 			    }
 			}
 		    }
@@ -57,13 +56,16 @@ public class RunningMedian{
 			if (min.peek() <= value){
 			    max.add(value);
 			    size2++;
+			    System.out.println("value" + value);
 			}else{
 			    if (min.peek() >= value){
 				max.add(min.remove());
+				min.add(value);
 				size2++;
 			    }
 			}
 		    }else{
+			System.out.println("value 2>1" + value);
 			if (max.peek() >= value){
 			    min.add(value);
 			    size1++;
@@ -71,20 +73,36 @@ public class RunningMedian{
 			    if (max.peek() <= value){
 				min.add(max.remove());
 				size1++;
+				max.add(value);
 			    }
 			}
 		    }
 		}
 	    }
 	}
+	System.out.println(size1 + "," + size2);
+    }
+
+    private void toStringH(){
+	System.out.println(min.toString());
+	System.out.println(max.toString());
     }
 
     public static void main(String[]args){
 	RunningMedian test = new RunningMedian();
 	test.add(3);
+	test.add(43);
+	test.add(183);
+	test.add(-24);
 	test.add(10);
 	test.add(20);
+	test.add(17);
+	test.add(34);
+	test.add(25);
+	test.add(20);
+	test.add(16);
 	test.add(15);
+	test.toStringH();
 	System.out.println(test.getMedian());
     }
 
