@@ -4,7 +4,7 @@ public class HeapSort{
 
     public static void HeapSort(int[]array){
 	//turn array into heap
-	switchParent(array);
+	switchChild(array);
     }
 
 
@@ -30,10 +30,10 @@ public class HeapSort{
 
     private static void switchChild(int[]arr){
 	int sub,ind,ind2,ind3;
-	ind = 0;
-	ind3 = 0;
-	while (ind3 < arr.length){
-	    while (ind < arr.length){
+	ind = arr.length-1;
+	ind3 = ind;
+	while (ind3 >= 0){
+	    while (ind >= 0){
 		if (ind*2+1 < arr.length && ind*2+2 < arr.length){
 		    if (arr[ind*2+1] > arr[ind*2+2]){
 			ind2 = ind*2+1;
@@ -55,8 +55,8 @@ public class HeapSort{
 		}
 		ind = ind2;
 	    }
-	    ind3++;
-	    ind = 0;
+	    ind3--;
+	    ind = ind3;
 	    System.out.println(Arrays.toString(arr));
 	}
     }
@@ -64,7 +64,7 @@ public class HeapSort{
 
 
     public static void main(String[]args){
-	int[]a = {4, 2, 6, 1, 3, 2, 50, 10, 492, -29};
+	int[]a = {4, 2, 6, 1, 3, 2, 50, 14, -14, 208, 10, 492, -29};
 	System.out.println(Arrays.toString(a));
 	HeapSort(a);
 	System.out.println(Arrays.toString(a));
