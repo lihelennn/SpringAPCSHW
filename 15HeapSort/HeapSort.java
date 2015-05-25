@@ -4,51 +4,31 @@ public class HeapSort{
 
     public static void HeapSort(int[]array){
 	//turn array into heap
-	switchChild(array);
+	switchChild(array, array.length-1);
+	sort(array);
     }
 
-
-    private static void switchParent(int[]arr){
-	int sub;
-	int ind3 = arr.length-1;
-	int ind = arr.length-1;
-	while (ind3 >= 0){
-	    while ((ind-1)/2 != 0){
-		if ((ind-1)/2 > 0){
-		    if (arr[ind] > arr[(ind-1)/1]){
-			sub = arr[ind];
-			arr[ind] = arr[(ind-1)/2];
-			arr[(ind-1)/2] = sub;
-		    }
-		}
-	        ind = (ind-1)/2;
-	    }
-	    ind3--;
-	    ind=ind3;
-	}
-    }
-
-    private static void switchChild(int[]arr){
+    private static void switchChild(int[]arr, int end){
 	int sub,ind,ind2,ind3;
-	ind = arr.length-1;
+	ind = end;
 	ind3 = ind;
 	while (ind3 >= 0){
 	    while (ind >= 0){
-		if (ind*2+1 < arr.length && ind*2+2 < arr.length){
+		if (ind*2+1 < end+1 && ind*2+2 < end+1){
 		    if (arr[ind*2+1] > arr[ind*2+2]){
 			ind2 = ind*2+1;
 		    }else{
 			ind2 = ind*2+2;
 		    }
 		}else{
-		    if (ind*2+1 < arr.length){
+		    if (ind*2+1 < end+1){
 			ind2 = ind*2+1;
 		    }else{
 			break;
 		    }
 		}
 		if (arr[ind2] > arr[ind]){
-		    System.out.println(arr[ind] + "," + arr[ind2]);
+		    // System.out.println(arr[ind] + "," + arr[ind2]);
 		    sub = arr[ind];
 		    arr[ind] = arr[ind2];
 		    arr[ind2] = sub;
@@ -57,14 +37,27 @@ public class HeapSort{
 	    }
 	    ind3--;
 	    ind = ind3;
-	    System.out.println(Arrays.toString(arr));
+	}
+	System.out.println(Arrays.toString(arr));
+
+    }
+
+    public static void sort(int[]arr){
+	int sub = 0;
+	int last = arr.length-1;
+	while (last>= 0){
+	    System.out.println("hellO");
+	    sub = arr[last];
+	    arr[last] = arr[0];
+	    arr[0] = sub;
+	    last--;
+	    switchChild(arr,last);
 	}
     }
 
 
-
     public static void main(String[]args){
-	int[]a = {4, 2, 6, 1, 3, 2, 50, 14, -14, 208, 10, 492, -29};
+	int[]a = {4, 2, 6, 1, 3, 2, 50, 14, -14, 15, 208, 10, 492, -29};
 	System.out.println(Arrays.toString(a));
 	HeapSort(a);
 	System.out.println(Arrays.toString(a));
