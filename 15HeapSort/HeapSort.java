@@ -38,7 +38,7 @@ public class HeapSort{
 	    ind3--;
 	    ind = ind3;
 	}
-	System.out.println(Arrays.toString(arr));
+	// System.out.println(Arrays.toString(arr));
 
     }
 
@@ -46,7 +46,6 @@ public class HeapSort{
 	int sub = 0;
 	int last = arr.length-1;
 	while (last>= 0){
-	    System.out.println("hellO");
 	    sub = arr[last];
 	    arr[last] = arr[0];
 	    arr[0] = sub;
@@ -61,6 +60,28 @@ public class HeapSort{
 	System.out.println(Arrays.toString(a));
 	HeapSort(a);
 	System.out.println(Arrays.toString(a));
+
+	int[]b = new int[50];
+	int place = 49;
+	int place2 = 0;
+	while (place >= 0){
+	    b[place2] = place;
+	    place2++;
+	    place--;
+	}
+	System.out.println(Arrays.toString(b));
+	HeapSort(b);
+	System.out.println(Arrays.toString(b));
+
+	int[]c = new int[100];
+	int place3 = 0;
+	while (place3 < 100){
+	    c[place3] = place3;
+	    place3++;
+	}
+	System.out.println(Arrays.toString(c));
+	HeapSort(c);
+	System.out.println(Arrays.toString(c));
     }
 
 }
